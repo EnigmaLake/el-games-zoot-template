@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: el-games-template-postgres-db
+    environment:
+      - "POSTGRES_DB=el_games_template"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  db-migration:
+    build: ./db
+    container_name: el-games-template-db-migration
+    environment:
+      - "PGUSER=postgres"
+      - "PGPASSWORD=postgres"
+      - "PGHOST=el-games-template-postgres-db"
+      - "PGPORT=5432"
+      - "PGDATABASE=el_games_template"
+    depends_on:
+      - db

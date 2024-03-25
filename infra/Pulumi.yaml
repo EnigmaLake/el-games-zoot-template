@@ -1,0 +1,4 @@
+name: el-games-template
+config: ./config
+runtime: nodejs
+description: Infrastructure for El Games Zoot Template game server
