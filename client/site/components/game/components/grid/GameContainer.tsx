@@ -3,6 +3,7 @@ import { Flex } from "@chakra-ui/react";
 
 import { Text } from "../../../../design-system";
 import { GameHeader } from "./GameHeader";
+import { GameScene } from "./GameScene";
 
 interface GameContainerProps {
   containerRef: RefObject<HTMLDivElement> | null;
@@ -17,7 +18,7 @@ export const GameContainer = (props: GameContainerProps) => {
       flexDir="column"
     >
       <GameHeader />
-      <Text>Here comes the game!</Text>
+      <GameScene />
     </Flex>
   );
 };
