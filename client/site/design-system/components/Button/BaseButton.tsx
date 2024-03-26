@@ -26,34 +26,28 @@ export const BaseButton: FC<ButtonProps> = (props) => {
   const styles = useStyleConfig("ButtonV2", { variant, size });
 
   let iconSize;
-  let textPadding;
   let typographyVariant: TypographyVariant;
   switch (size) {
     case "xs":
       typographyVariant = callout ? "small-callout" : "small";
       iconSize = 4;
-      textPadding = "0.5rem";
       break;
     case "sm":
       typographyVariant = "small-callout";
       iconSize = 4;
-      textPadding = "1rem";
       break;
     case "xl":
       typographyVariant = "large-callout";
       iconSize = 6;
-      textPadding = "3rem";
       break;
     case "lg":
       iconSize = 5;
       typographyVariant = "base-callout";
-      textPadding = "2.5rem";
       break;
     case "md":
     default:
       typographyVariant = "base-callout";
       iconSize = 4;
-      textPadding = "2rem";
       break;
   }
 
@@ -71,12 +65,7 @@ export const BaseButton: FC<ButtonProps> = (props) => {
       borderRadius={borderRadius}
       {...rest}
     >
-      <Text
-        variant={typographyVariant}
-        color={textColor}
-        align="center"
-        px={textPadding}
-      >
+      <Text variant={typographyVariant} color={textColor} align="center">
         {children}
       </Text>
     </ChakraButton>

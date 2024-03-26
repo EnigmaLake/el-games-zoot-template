@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
 import { GameContainer } from "./GameContainer";
-import { GameGridProps } from "../gameControls/utils/types";
 import { useGameExpander } from "../../hooks/useGameExpander";
 import { Scoreboard } from "../../../features/scoreboard/components/Scoreboard";
 
-export const GameGrid = ({ socket }: GameGridProps) => {
+export const GameGrid = () => {
   const [gameContainerHeight, setGameContainerHeight] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
 
