@@ -6,10 +6,12 @@ import {
   SecondaryButton,
   Text,
 } from "../../../../../design-system";
-import { buttonWidth, minimumValue } from "../utils/constants";
+import { buttonWidth, minimumValue, maximumValue } from "../utils/constants";
 import { useCurrency } from "../../../hooks/useCurrency";
 import { formatBigNumber } from "../../../../../utility/formatting";
 import { useBetAmount } from "../../../hooks/useBetAmount";
+import { useBalance } from "../../../hooks/useBalance";
+import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 
 interface BetValueOptionsProps {
   disabled?: boolean;
@@ -22,6 +24,12 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
   const { betAmount, setBetAmount } = useBetAmount();
   const { currency, defaultBetValues } = useCurrency();
 
+  const { balance: { sweepsBalance, goldBalance } } = useBalance();
+
+  const availableBalance =
+    currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
+
+    
   const half_length = Math.ceil(defaultBetValues.length / 2);
 
   const leftSide = defaultBetValues.slice(0, half_length);
@@ -68,6 +76,7 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
         ref={inputRef}
         defaultValue={betAmount}
         min={minimumValue}
+        max={maximumValue > availableBalance ? availableBalance : maximumValue}
         onChange={(newValue) => {
           if (!disabled) {
             setBetAmount(newValue);
