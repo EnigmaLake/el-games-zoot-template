@@ -6,4 +6,4 @@ export const multiplyAmountOptions = [
 export const buttonWidth = "5.31rem";
 
 export const minimumValue = 0.5;
-export const maximumValue = 1000;
+export const maximumValue = 50000;
