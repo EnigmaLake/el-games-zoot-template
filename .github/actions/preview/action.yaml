@@ -1,0 +1,63 @@
+name: Preview
+description: Runs pulumi preview
+inputs:
+  packageName:
+    required: true
+    description: Directroy name of the package
+  imageTag:
+    required: true
+    description: The image tag
+  stack:
+    required: true
+    description: Stack where the preview is ran against
+  AWS_ACCOUNT_ID:
+    required: true
+    description: AWS Access Key ID
+  AWS_ACCESS_KEY_ID:
+    required: true
+    description: AWS Access Key ID
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+    description: AWS Secret Acess Key
+  AWS_REGION:
+    required: true
+    description: AWS Region
+  PULUMI_ACCESS_TOKEN:
+    required: true
+    description: Pulumi Access Token
+  GITHUB_TOKEN:
+    required: true
+    description: Github Token
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.AWS_REGION }}
+
+    - run: echo \ \ ${{ inputs.packageName }}:imageTag:\ ${{ inputs.imageTag }} >> ./config/Pulumi.${{ inputs.stack }}.yaml
+      shell: bash
+      working-directory: ./infra
+
+    - run: yarn install
+      shell: bash
+      working-directory: ./infra
+
+    - uses: pulumi/actions@v3
+      with:
+        command: preview
+        stack-name: EnigmaLake/prod
+        comment-on-pr: true
+        github-token: ${{ inputs.GITHUB_TOKEN }}
+        work-dir: ./infra
+      env:
+        PULUMI_ACCESS_TOKEN: ${{ inputs.PULUMI_ACCESS_TOKEN }}

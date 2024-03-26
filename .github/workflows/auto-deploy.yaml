@@ -1,0 +1,63 @@
+name: Auto-deploy
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "server/**"
+
+jobs:
+  # JOB to run change detection
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    # Set job outputs to values from filter step
+    outputs:
+      packages: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            server:
+              - './server/**'
+
+      - name: List changed packages
+        run: "echo Changes detected in packages: ${{ steps.filter.outputs.changes }}"
+
+  build_and_deploy:
+    name: Auto-deploy to prod
+    environment: prod
+    needs: changes
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ${{ matrix.package }}
+        id: build
+        uses: ./.github/actions/build
+        with:
+          packageName: ${{ matrix.package }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy ${{ matrix.package }}
+        uses: ./.github/actions/deploy
+        with:
+          packageName: ${{ matrix.package }}
+          imageTag: ${{ steps.build.outputs.imageTag }}
+          stack: prod
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID_DEV }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_CD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_CD }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

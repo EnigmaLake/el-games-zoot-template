@@ -1,0 +1,67 @@
+name: Build
+description: Builds an Node.js project
+
+inputs:
+  packageName:
+    required: true
+    description: Directroy name of the package
+  preview:
+    required: false
+    description: Optionally tag the build as preview
+  AWS_ACCOUNT_ID:
+    required: true
+    description: AWS Access Key ID
+  AWS_ACCESS_KEY_ID:
+    required: true
+    description: AWS Access Key ID
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+    description: AWS Secret Acess Key
+  AWS_REGION:
+    required: true
+    description: AWS Region
+  GITHUB_TOKEN:
+    required: true
+    description: Github Token
+
+outputs:
+  imageTag:
+    description: "The built and pushed imageTag"
+    value: ${{ steps.build_and_push.outputs.imageTag }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: get-npm-version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@main
+      continue-on-error: true
+      with:
+        path: ./${{ inputs.packageName }}
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build_and_push
+      if: ${{ steps.package-version.outputs.current-version}}
+      shell: bash
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: shared-ecr-repository
+        IMAGE_TAG: ${{ inputs.packageName }}-v${{ steps.package-version.outputs.current-version}}-${{ inputs.preview }}-${{ github.sha }}
+      run: |
+        DOCKER_BUILDKIT=1 docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./${{ inputs.packageName }}/Dockerfile .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "imageTag=$IMAGE_TAG" >> $GITHUB_OUTPUT

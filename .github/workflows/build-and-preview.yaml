@@ -1,0 +1,89 @@
+name: Build and Preview
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "server/**"
+
+jobs:
+  # JOB to run change detection
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    # Set job outputs to values from filter step
+    outputs:
+      packages: ${{ steps.filter.outputs.changes }}
+    steps:
+      # For pull requests it's not necessary to checkout the code
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            server:
+              - './server/**'
+
+      - name: List changed packages
+        run: "echo Changes detected in packages: ${{ steps.filter.outputs.changes }}"
+
+      - name: Find Comment with image tags
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: PR image tags for commit
+
+      - name: Clear comment with image tags
+        if: steps.fc.outputs.comment-id != ''
+        uses: sandeshjangam/comment-actions@v1
+        with:
+          type: "delete"
+          comment_id: ${{ steps.fc.outputs.comment-id }}
+
+      - name: Create comment with image tags
+        uses: peter-evans/create-or-update-comment@v3.0.2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: 🌈 **PR image tags for commit ${{ github.sha }}** 🌈
+
+  build_and_preview:
+    name: Build and Preview
+    needs: changes
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.changes.outputs.packages) }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ${{ matrix.package }}
+        id: build
+        uses: ./.github/actions/build
+        with:
+          packageName: ${{ matrix.package }}
+          preview: preview
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find Comment with image tags
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: PR image tags for commit ${{ github.sha }}
+
+      - name: Update comment with image tags
+        if: steps.fc.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v3.0.2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: append
+          body: |
+
+            - ${{ matrix.package }}: `pulumi up --config imageTag=${{ steps.build.outputs.imageTag }}`
