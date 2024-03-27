@@ -1,4 +1,7 @@
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import {
+  Currency,
+  sendSetUserCurrencyEvent,
+} from "@enigma-lake/zoot-game-integration-sdk";
 import {
   Dropdown,
   DropdownOption,
@@ -37,7 +40,10 @@ export const CurrencySelector = ({
       type="single-select"
       width={buttonWidth}
       showSelectedOption={false}
-      onChange={(value: Currency) => setCurrency(value)}
+      onChange={(value: Currency) => {
+        setCurrency(value);
+        sendSetUserCurrencyEvent({ currency: value });
+      }}
       customSelectedComponent={customSelectedComponent}
       disabled={disabled}
       customButtonStyle={{

@@ -22,7 +22,7 @@ export const Scoreboard = () => {
         <Flex overflow="auto" direction="column" px={4}>
           <Flex overflow="scroll" maxHeight="500px" direction="column" gap={2}>
             {currentScoreboard.map((entry) => (
-              <ScoreboardRow key={entry.playId} entry={entry} />
+              <ScoreboardRow key={entry.gameRoundUuid} entry={entry} />
             ))}
           </Flex>
         </Flex>
