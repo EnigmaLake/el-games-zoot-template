@@ -40,6 +40,7 @@ export const ScoreboardRow = ({
           alignItems="center"
           justifyContent="flex-start"
           gap={1}
+          overflow="hidden"
         >
           <Text variant="small-callout">{userNickname}</Text>
         </Flex>

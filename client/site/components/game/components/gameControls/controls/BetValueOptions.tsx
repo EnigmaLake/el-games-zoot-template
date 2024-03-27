@@ -24,12 +24,13 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
   const { betAmount, setBetAmount } = useBetAmount();
   const { currency, defaultBetValues } = useCurrency();
 
-  const { balance: { sweepsBalance, goldBalance } } = useBalance();
+  const {
+    balance: { sweepsBalance, goldBalance },
+  } = useBalance();
 
   const availableBalance =
     currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
 
-    
   const half_length = Math.ceil(defaultBetValues.length / 2);
 
   const leftSide = defaultBetValues.slice(0, half_length);
@@ -79,6 +80,13 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
         max={maximumValue > availableBalance ? availableBalance : maximumValue}
         onChange={(newValue) => {
           if (!disabled) {
+            if (newValue > maximumValue) {
+              setBetAmount(
+                maximumValue > availableBalance
+                  ? availableBalance
+                  : maximumValue
+              );
+            }
             setBetAmount(newValue);
           }
         }}

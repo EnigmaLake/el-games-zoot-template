@@ -27,8 +27,6 @@ export const useBetAmount = (): IBetAmountHookState => {
   const handleSetBetAmount = (amount: number) => {
     if (amount <= availableBalance) {
       setBetAmount(amount);
-    } else {
-      resetBetAmount();
     }
   };
 

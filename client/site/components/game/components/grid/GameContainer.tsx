@@ -1,7 +1,6 @@
 import { RefObject } from "react";
 import { Flex } from "@chakra-ui/react";
 
-import { Text } from "../../../../design-system";
 import { GameHeader } from "./GameHeader";
 import { GameScene } from "./GameScene";
 
