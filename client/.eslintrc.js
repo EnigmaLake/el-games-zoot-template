@@ -10,7 +10,6 @@ module.exports = {
     "plugin:import/typescript",
     "prettier",
     "plugin:promise/recommended",
-    "next/core-web-vitals",
   ],
   overrides: [
     {
@@ -22,12 +21,6 @@ module.exports = {
         "@typescript-eslint/prefer-nullish-coalescing": ["off"],
         "@typescript-eslint/no-unnecessary-type-assertion": "off",
         "@typescript-eslint/await-thenable": "off",
-      },
-    },
-    {
-      files: ["*.stories.tsx"],
-      rules: {
-        "@typescript-eslint/no-empty-function": "off",
       },
     },
   ],
@@ -47,11 +40,6 @@ module.exports = {
 
     // turn off for typescript
     "import/named": "off",
-
-    "no-console": ["warn", { allow: ["info", "warn", "error"] }],
-    "react-hooks/exhaustive-deps": ["error"],
-    "react/jsx-curly-brace-presence": ["error", { props: "never" }],
-    "promise/prefer-await-to-then": ["warn"],
 
     // Rules beyond eslint recommended
     "no-unused-vars": "off",
