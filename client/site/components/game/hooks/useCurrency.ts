@@ -8,8 +8,8 @@ export const useCurrency = (): ICurrencyHookState => {
 
   return {
     currency,
-    defaultBetValues: {
-      [Currency.GOLD]: [100, 1000, 10000, 50000],
+    defaultPlayValues: {
+      [Currency.GOLD]: [100, 1000, 10_000, 50_000],
       [Currency.SWEEPS]: [0.5, 1, 5, 10],
     }[currency as Currency],
     setCurrency: (curr) => {

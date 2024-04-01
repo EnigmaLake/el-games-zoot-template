@@ -85,40 +85,34 @@ export const Button = defineStyleConfig({
     secondary,
     tertiary,
     success: {
-      bgGradient:
-        "linear-gradient(to right, #0DE83D 0%, #0DE83D  81%, rgba(0,23,16,0.45536)  100%)",
-      bgColor: "#0DE83D",
+      bgGradient: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
+      bgColor: "#11C46B",
       color: "text-primary",
       _hover: {
-        bgColor: "#0DE83D",
+        bgColor: "#11C46B",
       },
       _active: {
-        bgColor:
-          "linear-gradient(124deg, #0DE83D 7.62%, rgba(13, 232, 61, 0.00) 83.5%)",
+        bgColor: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
       },
       _disabled: {
         _hover: {
-          bgColor:
-            "linear-gradient(124deg, #0DE83D 7.62%, rgba(13, 232, 61, 0.00) 83.5%)",
+          bgColor: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
         },
       },
     },
     warning: {
-      bgGradient:
-        "linear-gradient(to right, #F9C611 0%, #F9C611  81%, rgba(0,23,16,0.45536)  100%)",
-      bgColor: "#FACF56",
+      bgGradient: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
+      bgColor: "#F9C611",
       color: "text-primary",
       _hover: {
-        bgColor: "#FACF56",
+        bgColor: "#F9C611",
       },
       _active: {
-        bgColor:
-          "linear-gradient(124deg, #FACF56 7.62%, rgba(13, 232, 61, 0.00) 83.5%)",
+        bgColor: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
       },
       _disabled: {
         _hover: {
-          bgColor:
-            "linear-gradient(124deg, #FACF56 7.62%, rgba(13, 232, 61, 0.00) 83.5%)",
+          bgColor: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
         },
       },
     },

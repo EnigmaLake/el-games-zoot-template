@@ -1,9 +1,9 @@
 import { Flex } from "@chakra-ui/react";
 
-import { format2Decimals } from "../../../game/utils/utils";
+import { format2Decimals } from "../../../game/utils/formatting";
 import { GoldCurrency, SweepsCurrency, Text } from "../../../../design-system";
 import { ServerToClientSocketEventPayload } from "../../../game/websocket/socket";
-import { CoinType } from "../../../game/Currency";
+import { CoinType } from "../../../game/utils/interfaces";
 
 export const ScoreboardRow = ({
   entry,
@@ -54,7 +54,7 @@ export const ScoreboardRow = ({
 
           {hasWinnings && (
             <Text variant="small-callout" color="secondary">
-              {format2Decimals(winMultiplier)}
+              {format2Decimals(Number(winMultiplier))}
             </Text>
           )}
         </Flex>

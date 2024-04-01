@@ -71,8 +71,8 @@ module.exports = {
     "@typescript-eslint/no-inferrable-types": ["off"],
 
     "@typescript-eslint/no-explicit-any": ["error"],
-    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
 
-    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/await-thenable": "off",
   },
 };

@@ -1,15 +1,11 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-import { useBetAmount } from "../../../hooks/useBetAmount";
+import { usePlayAmount } from "../../../hooks/usePlayAmount";
 import { SecondaryButton } from "../../../../../design-system";
-import {
-  buttonWidth,
-  minimumValue,
-  multiplyAmountOptions,
-} from "../utils/constants";
+import { buttonWidth, minimumValue, multiplyAmountOptions } from "./constants";
 
-export const BetMultiplier = ({ disabled }: { disabled?: boolean }) => {
-  const { betAmount, setBetAmount } = useBetAmount();
+export const PlayAmountMultiplier = ({ disabled }: { disabled?: boolean }) => {
+  const { playAmount, setPlayAmount } = usePlayAmount();
 
   return (
     <Flex gap={{ xs: 1, base: 2 }} alignItems="center">
@@ -18,8 +14,8 @@ export const BetMultiplier = ({ disabled }: { disabled?: boolean }) => {
           <SecondaryButton
             width={buttonWidth}
             key={label}
-            onClick={() => setBetAmount(betAmount * multiplier)}
-            disabled={disabled ?? betAmount * multiplier < minimumValue}
+            onClick={() => setPlayAmount(playAmount * multiplier)}
+            disabled={disabled ?? playAmount * multiplier < minimumValue}
             borderRadius="xxl"
           >
             <Text color="secondary" variant="small-callout">

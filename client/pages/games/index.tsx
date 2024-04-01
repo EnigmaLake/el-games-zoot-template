@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { NextPageWithLayout } from "../_app";
 
 const BasicGamePage = dynamic(
   () => import("../../site/components/game/BasicGamePage"),

@@ -40,9 +40,9 @@ export const CurrencySelector = ({
       type="single-select"
       width={buttonWidth}
       showSelectedOption={false}
-      onChange={(value: Currency) => {
-        setCurrency(value);
-        sendSetUserCurrencyEvent({ currency: value });
+      onChange={(value) => {
+        setCurrency(value as Currency);
+        sendSetUserCurrencyEvent({ currency: value as Currency });
       }}
       customSelectedComponent={customSelectedComponent}
       disabled={disabled}

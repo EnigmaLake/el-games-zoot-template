@@ -1,21 +1,21 @@
 import { Flex } from "@chakra-ui/react";
 
 import { CurrencySelector } from "./CurrencySelector";
-import { useBetAmount } from "../../../hooks/useBetAmount";
+import { usePlayAmount } from "../../../hooks/usePlayAmount";
 import { Reload, SecondaryButton } from "../../../../../design-system";
-import { buttonWidth } from "../utils/constants";
+import { buttonWidth } from "./constants";
 import { useCurrency } from "../../../hooks/useCurrency";
 
 export const GameActions = () => {
   const { currency, setCurrency } = useCurrency();
-  const { lastBetAmount, setBetAmount } = useBetAmount();
+  const { lastPlayAmount, setPlayAmount } = usePlayAmount();
 
   return (
     <Flex gap={{ xs: 1, base: 2 }} alignItems="center">
       <CurrencySelector setCurrency={setCurrency} currency={currency} />
       <SecondaryButton
         width={buttonWidth}
-        onClick={() => setBetAmount(lastBetAmount)}
+        onClick={() => setPlayAmount(lastPlayAmount)}
         borderRadius="xxl"
       >
         <Reload />

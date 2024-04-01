@@ -6,23 +6,24 @@ import {
   SecondaryButton,
   Text,
 } from "../../../../../design-system";
-import { buttonWidth, minimumValue, maximumValue } from "../utils/constants";
+import { buttonWidth, minimumValue, maximumValue } from "./constants";
 import { useCurrency } from "../../../hooks/useCurrency";
-import { formatBigNumber } from "../../../../../utility/formatting";
-import { useBetAmount } from "../../../hooks/useBetAmount";
+
+import { usePlayAmount } from "../../../hooks/usePlayAmount";
 import { useBalance } from "../../../hooks/useBalance";
 import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { formatBigNumber } from "../../../utils/formatting";
 
-interface BetValueOptionsProps {
+interface PlayAmountOptionsProps {
   disabled?: boolean;
 }
 
-export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
-  const inputRef: Ref<{ setValue: (value: number) => void }> | undefined =
+export const PlayAmountOptions = ({ disabled }: PlayAmountOptionsProps) => {
+  const inputRef: Ref<{ setValue: (_value: number) => void }> | undefined =
     useRef(null);
 
-  const { betAmount, setBetAmount } = useBetAmount();
-  const { currency, defaultBetValues } = useCurrency();
+  const { playAmount, setPlayAmount } = usePlayAmount();
+  const { currency, defaultPlayValues } = useCurrency();
 
   const {
     balance: { sweepsBalance, goldBalance },
@@ -31,12 +32,12 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
   const availableBalance =
     currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
 
-  const half_length = Math.ceil(defaultBetValues.length / 2);
+  const half_length = Math.ceil(defaultPlayValues?.length / 2);
 
-  const leftSide = defaultBetValues.slice(0, half_length);
-  const rightSide = defaultBetValues.slice(
+  const leftSide = defaultPlayValues?.slice(0, half_length);
+  const rightSide = defaultPlayValues?.slice(
     half_length,
-    defaultBetValues.length
+    defaultPlayValues?.length
   );
 
   const isMobile = useBreakpointValue({
@@ -49,8 +50,8 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
   });
 
   useEffect(() => {
-    inputRef.current?.setValue(betAmount);
-  }, [betAmount]);
+    inputRef.current?.setValue(playAmount);
+  }, [playAmount]);
 
   return (
     <Flex
@@ -60,12 +61,12 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
       alignItems="center"
     >
       {!isMobile &&
-        leftSide.map((option: number) => (
+        leftSide?.map((option: number) => (
           <SecondaryButton
             key={`${currency}-${option}`}
             width={buttonWidth}
             disabled={disabled}
-            onClick={() => setBetAmount(option)}
+            onClick={() => setPlayAmount(option)}
             borderRadius="xxl"
           >
             <Text color="white" variant="small-callout">
@@ -75,30 +76,31 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
         ))}
       <NumberInput
         ref={inputRef}
-        defaultValue={betAmount}
+        defaultValue={playAmount}
         min={minimumValue}
         max={maximumValue > availableBalance ? availableBalance : maximumValue}
         onChange={(newValue) => {
           if (!disabled) {
             if (newValue > maximumValue) {
-              setBetAmount(
+              setPlayAmount(
                 maximumValue > availableBalance
                   ? availableBalance
                   : maximumValue
               );
+            } else {
+              setPlayAmount(newValue);
             }
-            setBetAmount(newValue);
           }
         }}
       />
       <Flex gap={2}>
         {isMobile &&
-          leftSide.map((option: number) => (
+          leftSide?.map((option: number) => (
             <SecondaryButton
               key={`${currency}-${option}`}
               width={buttonWidth}
               disabled={disabled}
-              onClick={() => setBetAmount(option)}
+              onClick={() => setPlayAmount(option)}
               borderRadius="xxl"
             >
               <Text color="white" variant="small-callout">
@@ -106,12 +108,12 @@ export const BetValueOptions = ({ disabled }: BetValueOptionsProps) => {
               </Text>
             </SecondaryButton>
           ))}
-        {rightSide.map((option: number) => (
+        {rightSide?.map((option: number) => (
           <SecondaryButton
             key={`${currency}-${option}`}
             width={buttonWidth}
             disabled={disabled}
-            onClick={() => setBetAmount(option)}
+            onClick={() => setPlayAmount(option)}
             borderRadius="xxl"
           >
             <Text color="white" variant="small-callout">

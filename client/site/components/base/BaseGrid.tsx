@@ -1,7 +1,17 @@
 import { Box, ChakraProps, Grid } from "@chakra-ui/react";
 import type { FC, ReactNode } from "react";
 import { RefObject, useEffect, useState } from "react";
-import { getFullPageViewHeightValue } from "../../utility/style";
+
+const hasCSSSupport = (key: string, value: string) => {
+  if (typeof window !== "undefined" && "CSS" in window && "supports" in CSS) {
+    return CSS.supports(key, value);
+  }
+  return false;
+};
+
+const getFullPageViewHeightValue = () => {
+  return hasCSSSupport("height", "100dvh") ? "100dvh" : "100vh";
+};
 
 type BaseGridProps = {
   children?: ReactNode;

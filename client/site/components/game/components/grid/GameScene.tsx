@@ -1,16 +1,18 @@
 import { Flex } from "@chakra-ui/react";
-import { GameControls } from "../gameControls/GameControls";
 import { Text } from "../../../../design-system";
+
+import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 
 export const GameScene = () => {
   const onPlayClick = () => {
     null;
   };
+
   return (
     <Flex direction="column" w="full">
       <Flex
         w="full"
-        h={{ base: "fit-content", lg: "32rem" }}
+        h="32rem"
         bg="black850"
         px={{ lg: 10, sm: 0, xs: 0 }}
         alignItems="center"
@@ -20,7 +22,7 @@ export const GameScene = () => {
           Here comes the game!
         </Text>
       </Flex>
-      <GameControls onClick={onPlayClick} />
+      <GameControlsContainer onClick={onPlayClick} />
     </Flex>
   );
 };
