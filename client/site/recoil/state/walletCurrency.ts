@@ -4,7 +4,7 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist();
 
-export const useCurrencyAtom = atom<string>({
+export const useCurrencyAtom = atom<Currency>({
   key: "currency",
   default: Currency.SWEEPS,
   effects: [persistAtom],

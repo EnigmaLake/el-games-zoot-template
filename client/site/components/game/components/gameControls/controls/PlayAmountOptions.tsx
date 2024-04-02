@@ -31,6 +31,7 @@ export const PlayAmountOptions = ({ disabled }: PlayAmountOptionsProps) => {
 
   const availableBalance =
     currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
+  const maximumPlayAmount = maximumValue[currency];
 
   const half_length = Math.ceil(defaultPlayValues?.length / 2);
 
@@ -78,14 +79,18 @@ export const PlayAmountOptions = ({ disabled }: PlayAmountOptionsProps) => {
         ref={inputRef}
         defaultValue={playAmount}
         min={minimumValue}
-        max={maximumValue > availableBalance ? availableBalance : maximumValue}
+        max={
+          maximumPlayAmount > availableBalance
+            ? availableBalance
+            : maximumPlayAmount
+        }
         onChange={(newValue) => {
           if (!disabled) {
-            if (newValue > maximumValue) {
+            if (newValue > maximumPlayAmount) {
               setPlayAmount(
-                maximumValue > availableBalance
+                maximumPlayAmount > availableBalance
                   ? availableBalance
-                  : maximumValue
+                  : maximumPlayAmount
               );
             } else {
               setPlayAmount(newValue);

@@ -4,12 +4,12 @@ import Alert from "../../Icon/Alert";
 import CircleCheckMark from "../../Icon/CircleCheckMark";
 import CircleExclamationMark from "../../Icon/CircleExclamationMark";
 
-interface SweepsCorpToastProps {
+interface EnigmaLakeToastProps {
   text: string | ReactNode;
   icon?: ReactNode;
 }
 
-export interface SweepsCorpToastPresetProps {
+export interface EnigmaLakeToastPresetProps {
   text: string | ReactNode;
   height?: number;
   width?: number;
@@ -28,46 +28,46 @@ const style: SystemStyleObject = {
   boxShadow: "lg",
 };
 
-export const SweepsCorpToastSuccess: FC<SweepsCorpToastPresetProps> = ({
+export const EnigmaLakeToastSuccess: FC<EnigmaLakeToastPresetProps> = ({
   text,
   height,
   width,
 }) => {
   return (
-    <SweepsCorpToast
+    <EnigmaLakeToast
       text={text}
       icon={<CircleCheckMark height={height ?? 4} width={width ?? 4} />}
     />
   );
 };
 
-export const SweepsCorpToastError: FC<SweepsCorpToastPresetProps> = ({
+export const EnigmaLakeToastError: FC<EnigmaLakeToastPresetProps> = ({
   text,
   height,
   width,
 }) => {
   return (
-    <SweepsCorpToast
+    <EnigmaLakeToast
       text={text}
       icon={<CircleExclamationMark height={height ?? 4} width={width ?? 4} />}
     />
   );
 };
 
-export const SweepsCorpToastInfo: FC<SweepsCorpToastPresetProps> = ({
+export const EnigmaLakeToastInfo: FC<EnigmaLakeToastPresetProps> = ({
   text,
   height,
   width,
 }) => {
   return (
-    <SweepsCorpToast
+    <EnigmaLakeToast
       text={text}
       icon={<Alert fill="orange100" height={height ?? 4} width={width ?? 4} />}
     />
   );
 };
 
-export const SweepsCorpToast: FC<SweepsCorpToastProps> = ({ text, icon }) => {
+export const EnigmaLakeToast: FC<EnigmaLakeToastProps> = ({ text, icon }) => {
   return (
     <Flex sx={style} alignItems="center" fontWeight="medium">
       {icon}

@@ -3,13 +3,13 @@ export interface IPlayAmountHookState {
   setPlayAmount: (amount: number) => void;
   resetPlayAmount: () => void;
   lastPlayAmount: number;
-  currency: string;
+  currency: Currency;
   setLastPlayAmount: (amount: number) => void;
 }
 
 export interface ICurrencyHookState {
-  currency: string;
-  setCurrency: (currency: string) => void;
+  currency: Currency;
+  setCurrency: (currency: Currency) => void;
   defaultPlayValues: number[];
 }
 

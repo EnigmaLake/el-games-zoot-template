@@ -6,4 +6,7 @@ export const multiplyAmountOptions = [
 export const buttonWidth = "5.31rem";
 
 export const minimumValue = 0.5;
-export const maximumValue = 50_000;
+export const maximumValue = {
+  sweeps: 1000,
+  gold: 50_000,
+};

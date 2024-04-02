@@ -1,20 +1,20 @@
 import { useToast } from "@chakra-ui/react";
 import { FC, ReactNode, useCallback } from "react";
 import {
-  SweepsCorpToast,
-  SweepsCorpToastError,
-  SweepsCorpToastInfo,
-  SweepsCorpToastPresetProps,
-  SweepsCorpToastSuccess,
-} from "../components/base/SweepsCorpToast/SweepsCorpToast";
+  EnigmaLakeToastPresetProps,
+  EnigmaLakeToastSuccess,
+  EnigmaLakeToastError,
+  EnigmaLakeToastInfo,
+  EnigmaLakeToast,
+} from "../components/base/EnigmaLakeToast/EnigmaLakeToast";
 
 export type ToastType = "success" | "error" | "info" | "custom";
-type SweepsCorpToastFunction = (
+type EnigmaLakeToastFunction = (
   text: string | null,
   icon?: ReactNode,
   visibilityDuration?: number
 ) => void;
-export type SweepsCorpToastPresetFunction = (
+export type EnigmaLakeToastPresetFunction = (
   text: string | ReactNode | null,
   toastType?: ToastType
 ) => void;
@@ -23,19 +23,19 @@ const TOAST_VISIBILITY_DURATION = 3000;
 
 export const toastTypeToPresetComponent: Record<
   ToastType,
-  FC<SweepsCorpToastPresetProps>
+  FC<EnigmaLakeToastPresetProps>
 > = {
-  success: SweepsCorpToastSuccess,
-  error: SweepsCorpToastError,
-  info: SweepsCorpToastInfo,
-  custom: SweepsCorpToast,
+  success: EnigmaLakeToastSuccess,
+  error: EnigmaLakeToastError,
+  info: EnigmaLakeToastInfo,
+  custom: EnigmaLakeToast,
 };
 
 /**
  * A hook that displays a customizable toast message.
  *
  * Usage:
- *   const toast = useSweepsCorpToast();
+ *   const toast = useEnigmaLakeToast();
  *   // show the toast message
  *   toast("I am a message", <ExampleIcon />, 5000);
  *
@@ -43,7 +43,7 @@ export const toastTypeToPresetComponent: Record<
  * @param icon The icon to display, preceding the toast message
  * @param visibilityDuration The amount of time the toast will show before auto-closing, in ms.
  */
-export const useSweepsCorpToast = (): SweepsCorpToastFunction => {
+export const useEnigmaLakeToast = (): EnigmaLakeToastFunction => {
   const toast = useToast();
 
   return (
@@ -57,7 +57,7 @@ export const useSweepsCorpToast = (): SweepsCorpToastFunction => {
       },
       description: text ?? "",
       duration: visibilityDuration,
-      render: () => <SweepsCorpToast icon={icon} text={text ?? ""} />,
+      render: () => <EnigmaLakeToast icon={icon} text={text ?? ""} />,
     });
 };
 
@@ -65,20 +65,20 @@ export const useSweepsCorpToast = (): SweepsCorpToastFunction => {
  * A hook that displays one of a number of toast message presets.
  *
  * Usage:
- *   const toast = useSweepsCorpToastPreset();
+ *   const toast = useEnigmaLakeToastPreset();
  *   // display the toast message
  *   toast("I am a message", "success");
  *
  * @param text The string to display
  * @param toastType One of the preset toast types. Default is "info".
  */
-export const useSweepsCorpToastPreset = (options?: {
+export const useEnigmaLakeToastPreset = (options?: {
   preventOverlapping?: boolean;
   duration?: number;
   iconHeight?: number;
   iconWidth?: number;
   customIcon?: ReactNode;
-}): SweepsCorpToastPresetFunction => {
+}): EnigmaLakeToastPresetFunction => {
   const {
     preventOverlapping = false,
     duration = TOAST_VISIBILITY_DURATION,
