@@ -65,24 +65,8 @@ import { Filter } from "./icons/library/Filter";
 import { Info1 } from "./icons/library/Info1";
 import { Minus } from "./icons/library/Minus";
 import { Plus } from "./icons/library/Plus";
-import { RobotCharlie } from "./icons/library/RobotCharlie";
 import { Search } from "./icons/library/Search";
-import { TrendDecrease } from "./icons/library/TrendDecrease";
-import { TrendIncrease } from "./icons/library/TrendIncrease";
-import { StripeIcon } from "./icons/onramp/StripeIcon";
-import { StripeWordmark } from "./icons/onramp/StripeWordmark";
-import { Apple as ApplePodcast } from "./icons/podcast/Apple";
-import { Overcast as OvercastPodcast } from "./icons/podcast/Overcast";
-import { Apple } from "./icons/social/Apple";
-import { Discord } from "./icons/social/Discord";
-import { Facebook } from "./icons/social/Facebook";
-import { Google } from "./icons/social/Google";
-import { LinkedIn } from "./icons/social/LinkedIn";
-import { Android } from "./icons/platform/Android";
-import { Ios } from "./icons/platform/Ios";
-import { Mac } from "./icons/platform/Mac";
-import { Windows } from "./icons/platform/Windows";
-import { Web } from "./icons/platform/Web";
+
 import { Notification } from "./icons/library/Notification";
 import { Listing } from "./icons/library/Listing";
 import { ShoppingCard } from "./icons/library/ShoppingCard";
@@ -107,8 +91,6 @@ import {
   TextProps,
   TypographyVariant,
 } from "./components/Typography/TextProps";
-import { Mail } from "./icons/social/Mail";
-import { Mobile } from "./icons/social/Mobile";
 import { Ellipse } from "./icons/library/Ellipse";
 import { ChatIcon } from "./icons/library/ChatIcon";
 import { Shield } from "./icons/library/Shield";
@@ -116,8 +98,6 @@ import { Frame } from "./icons/library/Frame";
 import { NewSuccess } from "./icons/feedback/NewSuccess";
 
 export {
-  Apple,
-  ApplePodcast,
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
@@ -132,37 +112,20 @@ export {
   ChevronUp,
   Clock,
   CloseX,
-  Discord,
   End,
   Error,
   ExternalLink,
-  Facebook,
   Fail,
   Filter,
-  Google,
   Help,
   Info,
   Info1,
-  LinkedIn,
   Minus,
-  OvercastPodcast,
   Plus,
-  RobotCharlie,
   Search,
-  StripeIcon,
-  StripeWordmark,
   Success,
-  TrendDecrease,
-  TrendIncrease,
   Warning,
-  Mail,
-  Mobile,
   Ellipse,
-  Android,
-  Ios,
-  Mac,
-  Windows,
-  Web,
   Notification,
   Listing,
   ShoppingCard,
