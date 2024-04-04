@@ -1,10 +1,16 @@
+import { createRgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+
+import { config } from "./config";
 import { IncomingSocketEventPayload } from "./types";
 import { RiskTypes, RowNumbers } from "./game-round";
-import { createRgsService } from "./rgs-service/create-rgs-service";
 import { createRegisterUserPlayController } from "./controller/register-user-play";
 
 export const createTemplateGameControllers = () => {
-  const rgsService = createRgsService();
+  const rgsService = createRgsService({
+    rgsAPIHost: config.rgsAPIHost,
+    rgsGameId: config.rgsGameId.toString(),
+    rgsBearerToken: config.rgsBearerToken,
+  });
 
   const registerUserPlay = createRegisterUserPlayController({
     rgsService,

@@ -1,5 +1,6 @@
+import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+
 import { Play } from "../types";
-import { RgsService } from "../rgs-service/types";
 import { RiskTypes, RowNumbers } from "../game-round";
 
 export const registerUserPlay = async ({

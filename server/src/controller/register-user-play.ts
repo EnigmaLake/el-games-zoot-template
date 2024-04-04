@@ -1,6 +1,7 @@
-import { RiskTypes, RowNumbers } from "../game-round";
-import { RgsService } from "../rgs-service/types";
+import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+
 import { CoinType } from "../types";
+import { RiskTypes, RowNumbers } from "../game-round";
 import { registerUserPlay } from "../domain/register-user-play";
 
 export const createRegisterUserPlayController = ({
