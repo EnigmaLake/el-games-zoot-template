@@ -6,7 +6,7 @@ const rawEnv = process.env;
 export const config = {
   port: rawEnv.PORT ? Number(rawEnv.PORT) : 8080,
 
-  rgsGameId: rawEnv.RGS_GAME_ID ?? 2,
+  rgsGameId: rawEnv.RGS_GAME_ID ?? -1,
   rgsAPIHost: rawEnv.RGS_API_HOST ?? "https://rgs.enigmalakecasino.com",
   authAPIHost: rawEnv.AUTH_API_HOST ?? "https://auth.enigmalakecasino.com",
 

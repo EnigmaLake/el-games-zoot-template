@@ -1,7 +1,6 @@
 import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
 
 import { CoinType } from "../types";
-import { RiskTypes, RowNumbers } from "../game-round";
 import { registerUserPlay } from "../domain/register-user-play";
 
 export const createRegisterUserPlayController = ({
@@ -12,16 +11,12 @@ export const createRegisterUserPlayController = ({
   return async ({
     userId,
     userNickname,
-    risk,
-    rowNumber,
     playAmountInCents,
     coinType,
     accessToken,
   }: {
     userId?: number;
     userNickname?: string;
-    risk: RiskTypes;
-    rowNumber: RowNumbers;
     playAmountInCents?: number;
     coinType?: number;
     accessToken: string;
@@ -29,8 +24,6 @@ export const createRegisterUserPlayController = ({
     if (
       playAmountInCents === undefined ||
       userId === undefined ||
-      risk === undefined ||
-      rowNumber === undefined ||
       userNickname === undefined ||
       coinType === undefined ||
       accessToken === undefined
@@ -40,8 +33,6 @@ export const createRegisterUserPlayController = ({
           message: "Invalid request: missing fields",
           userId,
           userNickname,
-          risk,
-          rowNumber,
           playAmountInCents,
           coinType,
           accessToken,
@@ -49,21 +40,6 @@ export const createRegisterUserPlayController = ({
       );
     }
 
-    if (!Object.values(RiskTypes).includes(risk)) {
-      throw new Error(
-        JSON.stringify({
-          message: "Invalid request: risk value is invalid",
-        })
-      );
-    }
-
-    if (!Object.values(RowNumbers).includes(rowNumber)) {
-      throw new Error(
-        JSON.stringify({
-          message: "Invalid request: rowNumber is invalid",
-        })
-      );
-    }
     if (coinType !== CoinType.SWEEPS && coinType !== CoinType.GOLD) {
       throw new Error(
         JSON.stringify({
@@ -86,8 +62,6 @@ export const createRegisterUserPlayController = ({
       rgsService,
       userId,
       userNickname,
-      risk,
-      rowNumber,
       playAmountInCents,
       coinType,
       accessToken,

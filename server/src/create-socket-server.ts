@@ -1,5 +1,6 @@
 import { Server, Socket } from "socket.io";
 import * as http from "http";
+
 import { validateTokenRequest } from "./middlewares/user-authorization-wrapper";
 import {
   IncomingSocketEventPayload,

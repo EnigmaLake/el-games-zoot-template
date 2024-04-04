@@ -2,7 +2,6 @@ import { createRgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
 
 import { config } from "./config";
 import { IncomingSocketEventPayload } from "./types";
-import { RiskTypes, RowNumbers } from "./game-round";
 import { createRegisterUserPlayController } from "./controller/register-user-play";
 
 export const createTemplateGameControllers = () => {
@@ -35,8 +34,6 @@ export const createTemplateGameControllers = () => {
       userNickname: payload.userNickname,
       playAmountInCents: payload.playAmountInCents as number,
       coinType: payload.coinType as number,
-      rowNumber: payload.rowNumber as RowNumbers,
-      risk: payload.risk as RiskTypes,
       accessToken: payload.accessToken as string,
     });
   };
