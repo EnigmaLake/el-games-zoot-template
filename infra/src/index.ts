@@ -113,7 +113,7 @@ const taskDefinition = new aws.ecs.TaskDefinition(
     family: `TaskDefinition-${namespace}`,
     containerDefinitions: pulumi
       .all([logGroup.name, storedRgsBearerToken.secretString])
-      .apply(([awsLogGroupName, rdsDbPassword, rgsBearerToken]) =>
+      .apply(([awsLogGroupName, rgsBearerToken]) =>
         JSON.stringify([
           {
             name: "service",
