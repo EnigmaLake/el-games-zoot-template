@@ -1,6 +1,6 @@
 {
   "name": "@enigma-lake/el-games-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "El Games Zoot Template Game Server",
   "scripts": {
     "dev": "npx ts-node-dev -r dotenv/config src/index.ts",
