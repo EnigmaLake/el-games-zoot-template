@@ -99,12 +99,6 @@ const logResourcePolicy = new aws.cloudwatch.LogResourcePolicy(
   }
 );
 
-const storedRdsPassword = pulumi.output(
-  aws.secretsmanager.getSecretVersion({
-    secretId: cfg.require("rds_password_arn"),
-  })
-);
-
 const storedRgsBearerToken = pulumi.output(
   aws.secretsmanager.getSecretVersion({
     secretId: cfg.require("rgsBearerTokenArn"),
@@ -118,11 +112,7 @@ const taskDefinition = new aws.ecs.TaskDefinition(
   {
     family: `TaskDefinition-${namespace}`,
     containerDefinitions: pulumi
-      .all([
-        logGroup.name,
-        storedRdsPassword.secretString,
-        storedRgsBearerToken.secretString,
-      ])
+      .all([logGroup.name, storedRgsBearerToken.secretString])
       .apply(([awsLogGroupName, rdsDbPassword, rgsBearerToken]) =>
         JSON.stringify([
           {
