@@ -99,6 +99,12 @@ const logResourcePolicy = new aws.cloudwatch.LogResourcePolicy(
   }
 );
 
+const storedRdsPassword = pulumi.output(
+  aws.secretsmanager.getSecretVersion({
+    secretId: cfg.require("rds_password_arn"),
+  })
+);
+
 const storedRgsBearerToken = pulumi.output(
   aws.secretsmanager.getSecretVersion({
     secretId: cfg.require("rgsBearerTokenArn"),
@@ -112,8 +118,12 @@ const taskDefinition = new aws.ecs.TaskDefinition(
   {
     family: `TaskDefinition-${namespace}`,
     containerDefinitions: pulumi
-      .all([logGroup.name, storedRgsBearerToken.secretString])
-      .apply(([awsLogGroupName, rgsBearerToken]) =>
+      .all([
+        logGroup.name,
+        storedRdsPassword.secretString,
+        storedRgsBearerToken.secretString,
+      ])
+      .apply(([awsLogGroupName, rdsDbPassword, rgsBearerToken]) =>
         JSON.stringify([
           {
             name: "service",
@@ -224,7 +234,7 @@ const httpsListener = new aws.lb.Listener(`${namespace}-https-listener`, {
 // Create a CNAME record to point the subdomain to the ALB DNS name
 const _subdomainRecord = new aws.route53.Record(`${namespace}-subdomain`, {
   zoneId: cfg.require("hostZoneId"),
-  name: "zoot-template-game-api.enigmalakecasino.com",
+  name: `template-api.${cfg.require("hostZoneName")}`,
   type: "CNAME",
   ttl: 300,
   records: [loadBalancer.dnsName],

@@ -27,8 +27,7 @@ jobs:
         run: "echo Changes detected in packages: ${{ steps.filter.outputs.changes }}"
 
   build_and_deploy:
-    name: Auto-deploy to prod
-    environment: prod
+    name: Auto-deploy
     needs: changes
     strategy:
       fail-fast: false
@@ -43,21 +42,31 @@ jobs:
         uses: ./.github/actions/build
         with:
           packageName: ${{ matrix.package }}
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy ${{ matrix.package }}
+      - name: Deploy ${{ matrix.package }} to PROD
         uses: ./.github/actions/deploy
         with:
           packageName: ${{ matrix.package }}
           imageTag: ${{ steps.build.outputs.imageTag }}
           stack: prod
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID_DEV }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_CD }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_CD }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy ${{ matrix.package }} to DEV
+        uses: ./.github/actions/deploy
+        with:
+          packageName: ${{ matrix.package }}
+          imageTag: ${{ steps.build.outputs.imageTag }}
+          stack: dev
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
