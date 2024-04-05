@@ -9,8 +9,7 @@ import {
   SweepsCurrency,
   Text,
 } from "../../../../../design-system";
-
-const buttonWidth = "4.5rem";
+import { buttonWidth } from "./constants";
 
 interface CurrencySelectorProps {
   currency: string;

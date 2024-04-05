@@ -1,8 +1,8 @@
 import { Box, Flex, SystemStyleObject } from "@chakra-ui/react";
 import { FC, ReactNode } from "react";
-import Alert from "../../Icon/Alert";
-import CircleCheckMark from "../../Icon/CircleCheckMark";
-import CircleExclamationMark from "../../Icon/CircleExclamationMark";
+import Alert from "../../../design-system/icons/library/Alert";
+import CircleCheckMark from "../../../design-system/icons/library/CircleCheckMark";
+import CircleExclamationMark from "../../../design-system/icons/library/CircleExclamationMark";
 
 interface EnigmaLakeToastProps {
   text: string | ReactNode;

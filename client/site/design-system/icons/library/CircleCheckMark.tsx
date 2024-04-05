@@ -1,5 +1,5 @@
 import { createIcon } from "@chakra-ui/react";
-import { legacy_colors } from "../../style/sweeps_corp_legacy";
+import { legacy_colors } from "../../../style/sweeps_corp_legacy";
 
 const CircleCheckMark = createIcon({
   displayName: "CircleCheckMark",

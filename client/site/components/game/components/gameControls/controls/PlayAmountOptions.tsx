@@ -1,3 +1,4 @@
+import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 import { Ref, useEffect, useRef } from "react";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
@@ -6,13 +7,18 @@ import {
   SecondaryButton,
   Text,
 } from "../../../../../design-system";
-import { buttonWidth, minimumValue, maximumValue } from "./constants";
-import { useCurrency } from "../../../hooks/useCurrency";
+import {
+  buttonWidth,
+  minimumValue,
+  maximumValue,
+  getDefaultPlayValues,
+} from "./constants";
 
-import { usePlayAmount } from "../../../hooks/usePlayAmount";
-import { useBalance } from "../../../hooks/useBalance";
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 import { formatBigNumber } from "../../../utils/formatting";
+import { useBalanceAtom } from "../../../../../recoil/state/balance";
+import { useRecoilState } from "recoil";
+import { useCurrencyAtom } from "../../../../../recoil/state/walletCurrency";
+import { usePlayAmount } from "../../../../../hooks/usePlayAmount";
 
 interface PlayAmountOptionsProps {
   disabled?: boolean;
@@ -23,11 +29,10 @@ export const PlayAmountOptions = ({ disabled }: PlayAmountOptionsProps) => {
     useRef(null);
 
   const { playAmount, setPlayAmount } = usePlayAmount();
-  const { currency, defaultPlayValues } = useCurrency();
+  const [currency] = useRecoilState(useCurrencyAtom);
 
-  const {
-    balance: { sweepsBalance, goldBalance },
-  } = useBalance();
+  const defaultPlayValues = getDefaultPlayValues(currency);
+  const [{ sweepsBalance, goldBalance }] = useRecoilState(useBalanceAtom);
 
   const availableBalance =
     currency === Currency.SWEEPS ? sweepsBalance : goldBalance;

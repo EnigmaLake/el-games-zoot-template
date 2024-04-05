@@ -1,5 +1,5 @@
 import { createIcon } from "@chakra-ui/react";
-import { legacy_colors } from "../../style/sweeps_corp_legacy";
+import { legacy_colors } from "../../../style/sweeps_corp_legacy";
 // TO DO: Remove reference to theme like this when we transition to the design system
 
 const CircleExclamationMark = createIcon({

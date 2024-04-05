@@ -7,10 +7,11 @@ import {
   Text,
 } from "../../../../design-system";
 import { DateAndTime } from "./DateAndTime";
-import { useGameExpander } from "../../hooks/useGameExpander";
+import { useRecoilState } from "recoil";
+import { gameExpendedAtom } from "../../../../recoil/state/gameExpended";
 
 export const GameHeader = () => {
-  const { isGameExpanded, setIsGameExpanded } = useGameExpander();
+  const [isGameExpanded, setIsGameExpanded] = useRecoilState(gameExpendedAtom);
 
   const isMobile = useBreakpointValue({
     lg: false,
