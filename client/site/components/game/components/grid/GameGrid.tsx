@@ -1,4 +1,4 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 
 import { GameContainer } from "./GameContainer";
 
@@ -32,22 +32,23 @@ export const GameGrid = (_props: { socket?: Socket }) => {
   }
 
   return (
-    <Flex w="full" h="full" gap={4} direction="row" justifyItems="center">
-      <Flex
-        width={isGameExpanded ? "0%" : "25%"}
-        transition="width 0.15s"
-        h="full"
-      >
-        <Scoreboard />
-      </Flex>
+    <Flex w="full" h="full" gap={4} direction="column">
+      <Grid templateColumns="repeat(3, 12fr)" gap={4}>
+        {!isGameExpanded && (
+          <GridItem colSpan={1} h="fit-content">
+            <Scoreboard />
+          </GridItem>
+        )}
+        <GridItem colSpan={isGameExpanded ? 3 : 2} h="fit-content">
+          <GameContainer />
+        </GridItem>
+      </Grid>
 
-      <Flex
-        width={isGameExpanded ? "100%" : "75%"}
-        transition="width 0.15s"
-        h="full"
-      >
-        <GameContainer />
-      </Flex>
+      {isGameExpanded && (
+        <Flex w="full" pb={6} minH="200px">
+          <Scoreboard />
+        </Flex>
+      )}
     </Flex>
   );
 };

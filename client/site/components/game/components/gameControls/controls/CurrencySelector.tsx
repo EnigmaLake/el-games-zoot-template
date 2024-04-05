@@ -9,7 +9,7 @@ import {
   SweepsCurrency,
   Text,
 } from "../../../../../design-system";
-import { buttonWidth } from "./constants";
+import { buttonMaxWidth } from "./constants";
 
 interface CurrencySelectorProps {
   currency: string;
@@ -37,7 +37,7 @@ export const CurrencySelector = ({
   return (
     <Dropdown
       type="single-select"
-      width={buttonWidth}
+      width={buttonMaxWidth}
       showSelectedOption={false}
       onChange={(value) => {
         setCurrency(value as Currency);

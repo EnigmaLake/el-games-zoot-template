@@ -5,7 +5,17 @@ export const multiplyAmountOptions = [
   { label: "2x", multiplier: 2 },
 ];
 
-export const buttonWidth = "5.31rem";
+export const buttonMaxWidth = "5.31rem";
+export const buttonWidth = {
+  xxs: "4rem",
+  xs: "4rem",
+  sm: "4rem",
+  "2sm": "4rem",
+  md: buttonMaxWidth,
+  base: buttonMaxWidth,
+  lg: buttonMaxWidth,
+  xl: buttonMaxWidth,
+};
 
 export const minimumValue = 0.5;
 export const maximumValue = {

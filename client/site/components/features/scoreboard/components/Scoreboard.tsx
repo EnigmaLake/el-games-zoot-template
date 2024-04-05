@@ -11,7 +11,7 @@ export const Scoreboard = () => {
   return (
     <Flex
       direction="column"
-      w="100%"
+      w="full"
       h={SCOREBOARD_BODY_HEIGHT}
       borderRadius="lg"
       bg="background-level-2"

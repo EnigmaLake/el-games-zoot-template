@@ -4,6 +4,8 @@ import {
   Compress,
   Frame,
   SecondaryButton,
+  Shield,
+  Sound,
   Text,
 } from "../../../../design-system";
 import { DateAndTime } from "./DateAndTime";
@@ -14,11 +16,14 @@ export const GameHeader = () => {
   const [isGameExpanded, setIsGameExpanded] = useRecoilState(gameExpendedAtom);
 
   const isMobile = useBreakpointValue({
+    xl: false,
     lg: false,
-    xs: true,
-    sm: true,
+    md: false,
     base: false,
-    "2sm": true,
+    "2sm": false,
+    sm: true,
+    xs: true,
+    xxs: true,
   });
 
   return (
@@ -31,14 +36,16 @@ export const GameHeader = () => {
     >
       <DateAndTime />
       <Flex gap={2}>
-        {/*<SecondaryButton borderRadius="xxl">*/}
-        {/*  <Flex alignItems="center" gap={1}>*/}
-        {/*    <Shield color="secondary" />*/}
-        {/*    <Text variant="small" color="secondary">*/}
-        {/*      Game Fairness*/}
-        {/*    </Text>*/}
-        {/*  </Flex>*/}
-        {/*</SecondaryButton>*/}
+        <SecondaryButton borderRadius="xxl">
+          <Flex alignItems="center" gap={1}>
+            <Shield color="secondary" />
+            {!isMobile && (
+              <Text variant="small" color="secondary">
+                Game Fairness
+              </Text>
+            )}
+          </Flex>
+        </SecondaryButton>
         {!isMobile && (
           <SecondaryButton
             borderRadius="xxl"
@@ -52,16 +59,16 @@ export const GameHeader = () => {
             </Flex>
           </SecondaryButton>
         )}
-        {/*<SecondaryButton borderRadius="xxl">*/}
-        {/*  <Flex alignItems="center" gap={1}>*/}
-        {/*    <Sound />*/}
-        {/*    {!isMobile && (*/}
-        {/*      <Text variant="small" color="secondary">*/}
-        {/*        Mute*/}
-        {/*      </Text>*/}
-        {/*    )}*/}
-        {/*  </Flex>*/}
-        {/*</SecondaryButton>*/}
+        <SecondaryButton borderRadius="xxl">
+          <Flex alignItems="center" gap={1}>
+            <Sound />
+            {!isMobile && (
+              <Text variant="small" color="secondary">
+                Mute
+              </Text>
+            )}
+          </Flex>
+        </SecondaryButton>
       </Flex>
     </Flex>
   );
