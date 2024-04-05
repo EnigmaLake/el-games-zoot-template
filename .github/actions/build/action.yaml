@@ -8,9 +8,6 @@ inputs:
   preview:
     required: false
     description: Optionally tag the build as preview
-  AWS_ACCOUNT_ID:
-    required: true
-    description: AWS Access Key ID
   AWS_ACCESS_KEY_ID:
     required: true
     description: AWS Access Key ID
@@ -35,7 +32,7 @@ runs:
     - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
+    - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}

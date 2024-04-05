@@ -10,9 +10,6 @@ inputs:
   stack:
     required: true
     description: Stack where the preview is ran against
-  AWS_ACCOUNT_ID:
-    required: true
-    description: AWS Account ID
   AWS_ACCESS_KEY_ID:
     required: true
     description: AWS Access Key ID
@@ -55,7 +52,7 @@ runs:
     - uses: pulumi/actions@v3
       with:
         command: up
-        stack-name: EnigmaLake/prod
+        stack-name: EnigmaLake/${{ inputs.stack }}
         comment-on-pr: true
         github-token: ${{ inputs.GITHUB_TOKEN }}
         work-dir: ./infra

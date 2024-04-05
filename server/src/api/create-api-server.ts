@@ -1,10 +1,11 @@
-import express from "express";
 import cors from "cors";
-import * as bodyParser from "body-parser";
 import * as http from "http";
+import express from "express";
+import * as bodyParser from "body-parser";
+
+import { config } from "../config";
 import { errorHandler } from "./middlewars/error-handler";
 import { asyncWrapper } from "./middlewars/async-wrapper";
-import { config } from "../config";
 import { createHealthcheckRequestHandler } from "./controller/healthcheck";
 
 /**

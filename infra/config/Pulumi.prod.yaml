@@ -3,14 +3,14 @@ config:
 
   el-games-template:coreStackReference: EnigmaLake/el-infrastructure/prod
 
-  el-games-template:hostZoneId: "Z08323023QTWC4W2XDIM7"
-  el-games-template:hostZoneName: "enigmalakecasino.com"
+  el-games-template:hostZoneId: "Z012473425XPNZM2BWGF3"
+  el-games-template:hostZoneName: "games.enigmalakecasino.com"
 
-  el-games-template:acmCertificateArn: "arn:aws:acm:us-east-1:975050002907:certificate/d2ac37ec-a3e3-4d12-be99-f379a8fcd637"
+  el-games-template:acmCertificateArn: "arn:aws:acm:us-east-1:975050002907:certificate/368bd01a-8aca-4eb8-a7ee-333b14d70655"
 
   el-games-template:logsRetentionInDays: "1"
 
-  el-games-template:rgsGameId: 2
+  el-games-template:rgsGameId: -1
   el-games-template:rgsApiHost: "https://rgs.enigmalakecasino.com"
   el-games-template:rgsBearerTokenArn: arn:aws:secretsmanager:us-east-1:975050002907:secret:el-infrastructure-prod-el-rgs-bearer-token-HyAcOh
 

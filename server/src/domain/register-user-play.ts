@@ -1,13 +1,11 @@
+import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+
 import { Play } from "../types";
-import { RgsService } from "../rgs-service/types";
-import { RiskTypes, RowNumbers } from "../game-round";
 
 export const registerUserPlay = async ({
   rgsService,
   userId,
   userNickname,
-  risk,
-  rowNumber,
   playAmountInCents,
   coinType,
   accessToken,
@@ -15,8 +13,6 @@ export const registerUserPlay = async ({
   rgsService: RgsService;
   userId: number;
   userNickname: string;
-  risk: RiskTypes;
-  rowNumber: RowNumbers;
   playAmountInCents: number;
   coinType: number;
   accessToken: string;
@@ -36,8 +32,6 @@ export const registerUserPlay = async ({
     message: "Incoming registerUserPlay request",
     userId,
     userNickname,
-    risk,
-    rowNumber,
     playAmountInCents,
     coinType,
   });
