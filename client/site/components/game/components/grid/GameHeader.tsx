@@ -11,9 +11,10 @@ import {
 import { DateAndTime } from "./DateAndTime";
 import { useRecoilState } from "recoil";
 import { gameExpendedAtom } from "../../../../recoil/state/gameExpended";
+import { toggleGameViewEvent } from "@enigma-lake/zoot-game-integration-sdk";
 
 export const GameHeader = () => {
-  const [isGameExpanded, setIsGameExpanded] = useRecoilState(gameExpendedAtom);
+  const [isGameExpanded] = useRecoilState(gameExpendedAtom);
 
   const isMobile = useBreakpointValue({
     xl: false,
@@ -49,7 +50,7 @@ export const GameHeader = () => {
         {!isMobile && (
           <SecondaryButton
             borderRadius="xxl"
-            onClick={() => setIsGameExpanded(!isGameExpanded)}
+            onClick={() => toggleGameViewEvent({ expanded: !isGameExpanded })}
           >
             <Flex alignItems="center" gap={1}>
               {isGameExpanded ? <Compress /> : <Frame />}
