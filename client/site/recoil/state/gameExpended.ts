@@ -1,10 +1,6 @@
-import { atom, useRecoilState } from "recoil";
+import { atom } from "recoil";
 
-export const gameExpended = atom<boolean>({
+export const gameExpendedAtom = atom<boolean>({
   key: "isGameExpended",
   default: false,
 });
-
-export function useGameExpendedState() {
-  return useRecoilState(gameExpended);
-}

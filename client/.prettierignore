@@ -28,16 +28,11 @@ yarn-error.log*
 .env
 
 package-lock.json.next
-.aws-sam/
+
 /packages/**/dist/
 .yarn/**
 .vscode/**
 .yarnrc.yml
 **/package-lock.json
-/site/coverage
+
 *.json
-
-
-/site/storybook-static/*
-
-site/public/scripts/newrelic.js

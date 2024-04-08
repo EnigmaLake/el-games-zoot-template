@@ -61,7 +61,7 @@ export interface NumberInputProps extends DesignSystemBaseProps {
   /**
    * @description reference to underlying native element (to manage focus if needed)
    */
-  ref?: Ref<{ setValue: (value: number) => void }>;
+  ref?: Ref<{ setValue: (_value: number) => void }>;
   /**
    * @description If provided, the user won't be able to manually change the value and default value will be applied
    * */

@@ -49,8 +49,6 @@ function MyApp(props: MyAppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <link rel="shortcut icon" href="/favicon/favicon.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
         <meta
           name="msapplication-config"
           content="/favicon/browserconfig.xml"

@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactElement } from "react";
 
 import { NextPageWithLayout } from "./_app";
-import GamePage from "./game";
+import GamePage from "./games";
 
 const Home: NextPageWithLayout = (props) => {
   const [shouldRenderClient, setShouldRenderClient] = useState(false);

@@ -55,7 +55,7 @@ export const BaseButton: FC<ButtonProps> = (props) => {
     <ChakraButton
       sx={styles}
       variant="solid"
-      w={width}
+      width={width}
       onClick={onClick}
       isDisabled={disabled}
       leftIcon={leftIcon && cloneElement(leftIcon, { boxSize: iconSize })}

@@ -1,10 +1,10 @@
+import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 import { atom, useRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
-import { Currency } from "../../components/game/Currency";
 
 const { persistAtom } = recoilPersist();
 
-export const useCurrencyAtom = atom<string>({
+export const useCurrencyAtom = atom<Currency>({
   key: "currency",
   default: Currency.SWEEPS,
   effects: [persistAtom],

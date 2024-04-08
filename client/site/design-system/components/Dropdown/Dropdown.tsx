@@ -8,13 +8,14 @@ import {
   useMultiStyleConfig,
 } from "@chakra-ui/react";
 import React, { FC, ReactElement, cloneElement, useState } from "react";
-import { ChevronDown } from "../../icons/library/ChevronDown";
-import { ChevronUp } from "../../icons/library/ChevronUp";
+
 import { Error } from "../../icons/library/Error";
 import { Size } from "../../types/shared";
 import { Text } from "../Typography/Text";
 import { InternalDropdownOption } from "./DropdownOption";
 import type { DropdownOptionProps, DropdownProps } from "./DropdownProps";
+import ChevronUp from "../../icons/library/ChevronUp";
+import ChevronDown from "../../icons/library/ChevronDown";
 
 const ButtonText = ({
   text,
