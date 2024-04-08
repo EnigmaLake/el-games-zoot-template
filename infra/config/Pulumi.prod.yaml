@@ -1,17 +1,17 @@
 config:
   aws:region: us-east-1
 
-  el-games-template:coreStackReference: EnigmaLake/el-infrastructure/prod
+  el-games-tmp:coreStackReference: EnigmaLake/el-infrastructure/prod
 
-  el-games-template:hostZoneId: "Z012473425XPNZM2BWGF3"
-  el-games-template:hostZoneName: "games.enigmalakecasino.com"
+  el-games-tmp:hostZoneId: "Z012473425XPNZM2BWGF3"
+  el-games-tmp:hostZoneName: "games.enigmalakecasino.com"
 
-  el-games-template:acmCertificateArn: "arn:aws:acm:us-east-1:975050002907:certificate/368bd01a-8aca-4eb8-a7ee-333b14d70655"
+  el-games-tmp:acmCertificateArn: "arn:aws:acm:us-east-1:975050002907:certificate/368bd01a-8aca-4eb8-a7ee-333b14d70655"
 
-  el-games-template:logsRetentionInDays: "1"
+  el-games-tmp:logsRetentionInDays: "1"
 
-  el-games-template:rgsGameId: -1
-  el-games-template:rgsApiHost: "https://rgs.enigmalakecasino.com"
-  el-games-template:rgsBearerTokenArn: arn:aws:secretsmanager:us-east-1:975050002907:secret:el-infrastructure-prod-el-rgs-bearer-token-HyAcOh
+  el-games-tmp:rgsGameId: -1
+  el-games-tmp:rgsApiHost: "https://rgs.enigmalakecasino.com"
+  el-games-tmp:rgsBearerTokenArn: arn:aws:secretsmanager:us-east-1:975050002907:secret:el-infrastructure-prod-el-rgs-bearer-token-HyAcOh
 
-  el-games-template:authApiHost: "https://auth.enigmalakecasino.com"
+  el-games-tmp:authApiHost: "https://auth.enigmalakecasino.com"

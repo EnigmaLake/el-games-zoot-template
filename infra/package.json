@@ -1,5 +1,5 @@
 {
-  "name": "@infra/el-games-template",
+  "name": "@infra/el-games-tmp",
   "main": "src/index.ts",
   "devDependencies": {
     "@tsconfig/node14": "^14.1.0",
