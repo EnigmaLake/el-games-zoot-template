@@ -13,5 +13,3 @@ config:
   el-games-tmp:rgsGameId: -1
   el-games-tmp:rgsApiHost: "https://rgs.enigmalakecasino.com"
   el-games-tmp:rgsBearerTokenArn: arn:aws:secretsmanager:us-east-1:975050002907:secret:el-infrastructure-prod-el-rgs-bearer-token-HyAcOh
-
-  el-games-tmp:authApiHost: "https://auth.enigmalakecasino.com"

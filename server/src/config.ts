@@ -8,7 +8,6 @@ export const config = {
 
   rgsGameId: rawEnv.RGS_GAME_ID ?? -1,
   rgsAPIHost: rawEnv.RGS_API_HOST ?? "https://rgs.enigmalakecasino.com",
-  authAPIHost: rawEnv.AUTH_API_HOST ?? "https://auth.enigmalakecasino.com",
 
   rgsBearerToken: rawEnv.RGS_BEARER_TOKEN ?? "secret-123",
 };
