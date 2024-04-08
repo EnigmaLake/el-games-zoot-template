@@ -20,7 +20,7 @@ export const Scoreboard = () => {
       <Flex
         direction="column"
         px={4}
-        h={`calc(100% - ${SCOREBOARD_HEADER_HEIGHT / 2 + 10})`}
+        h={`calc(100% - ${SCOREBOARD_HEADER_HEIGHT /2 + 10})`}
         w="full"
         gap={2}
       >
