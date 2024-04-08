@@ -1,11 +1,11 @@
-import { Flex, useStyleConfig } from "@chakra-ui/react";
+import { Flex, Spinner, useStyleConfig } from "@chakra-ui/react";
 import type { FC, PropsWithChildren } from "react";
 import { Fail } from "../../icons/feedback/Fail";
 import { Info } from "../../icons/feedback/Info";
 import { Success } from "../../icons/feedback/Success";
 import { Warning } from "../../icons/feedback/Warning";
 import { PrimaryButton } from "../Button/PrimaryButton";
-import { Spinner } from "../Spinner/Spinner";
+
 import { AlertBannerProps } from "./AlertBannerProps";
 
 const BannerIcons: Record<

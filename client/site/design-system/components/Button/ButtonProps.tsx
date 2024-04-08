@@ -15,7 +15,7 @@ export interface ButtonProps extends DesignSystemBaseProps {
    * @default fit
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  width?: ResponsiveValue<ButtonWidth> | string |  any;
+  width?: ResponsiveValue<ButtonWidth> | string | any;
   /**
    * @description The height of the button
    * @default fit
