@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import { Flex } from "@chakra-ui/react";
-import { Text } from "../../../../design-system";
+import { Text } from "../../design-system";
 import { useEffect, useState } from "react";
 
 export const DateAndTime = () => {

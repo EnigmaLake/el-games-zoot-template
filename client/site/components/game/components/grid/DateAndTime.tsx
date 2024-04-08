@@ -9,13 +9,13 @@ export const DateAndTime = () => {
     moment(new Date()).format("MM/DD/YYYY")
   );
   const [currentTime, setCurrentTime] = useState(
-    moment(new Date()).format("HH:MM")
+    moment(new Date()).format("HH:mm")
   );
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDate(moment(new Date()).format("MM/DD/YYYY"));
-      setCurrentTime(moment(new Date()).format("HH:mm:ss"));
+      setCurrentTime(moment(new Date()).format("HH:mm"));
     }, 1000);
 
     return function cleanup() {
@@ -25,7 +25,7 @@ export const DateAndTime = () => {
 
   return (
     <Flex direction="column" alignItems="flex-start">
-      <Text variant="base-bold">Game Name</Text>
+      <Text variant="base-bold">{process.env.NEXT_PUBLIC_GAME_NAME}</Text>
       <Flex gap={2}>
         <Text variant="small-callout">{currentTime}</Text>
         <Text variant="small-callout">{currentDate}</Text>

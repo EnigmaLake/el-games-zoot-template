@@ -1,20 +1,15 @@
-import { DebouncedState } from "use-debounce";
-
-export interface IBetAmountHookState {
-  betAmount: number;
-  setBetAmount: (amount: number) => void;
-  resetBetAmount: () => void;
-  lastBetAmount: number;
-  currency: string;
-  setLastBetAmount: (amount: number) => void;
+export interface IPlayAmountHookState {
+  playAmount: number;
+  setPlayAmount: (amount: number) => void;
+  setLastPlayAmount: () => void;
 }
 
-export interface ICurrencyHookState {
-  currency: string;
-  setCurrency: (currency: string) => void;
-  defaultBetValues: number[];
+export enum Currency {
+  SWEEPS = "sweeps",
+  GOLD = "gold",
 }
 
-export interface IBetControllerHookState {
-  handlePlaceBet: DebouncedState<() => Promise<void>>;
+export enum CoinType {
+  "sweeps" = 0,
+  "gold",
 }
