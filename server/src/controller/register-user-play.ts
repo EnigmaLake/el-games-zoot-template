@@ -8,6 +8,7 @@ export const createRegisterUserPlayController = ({
 }: {
   rgsService: RgsService;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   return async ({
     userId,
     userNickname,

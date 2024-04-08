@@ -11,7 +11,11 @@ import { createHealthcheckRequestHandler } from "./controller/healthcheck";
 /**
  * Creates the web server.
  */
-export const createApiServer = () => {
+export const createApiServer = (): {
+  server: http.Server;
+  start: () => void;
+  stop: () => void;
+} => {
   const port = config.port;
 
   const app = express();

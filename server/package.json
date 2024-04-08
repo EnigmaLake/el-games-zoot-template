@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "npx ts-node-dev -r dotenv/config src/index.ts",
     "build": "tsc -b tsconfig.json",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "eslint": "eslint --cache --fix .",
+    "eslint:check": "eslint ."
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
@@ -16,11 +18,11 @@
     "@types/node": "^15.0.1",
     "@types/pg": "^8.6.5",
     "@types/sinon": "^10.0.11",
-    "@typescript-eslint/eslint-plugin": "^4.19.0",
-    "@typescript-eslint/parser": "^4.19.0",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "esbuild": "^0.11.11",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.10.0",
     "prettier": "2.8.4",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.35",
@@ -37,6 +39,9 @@
     "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.34.1",
     "express": "^4.17.3",
     "get-random-values": "^3.0.0",
     "mocha": "^9.2.2",

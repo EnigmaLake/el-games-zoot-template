@@ -16,7 +16,7 @@ export const registerUserPlay = async ({
   playAmountInCents: number;
   coinType: number;
   accessToken: string;
-}) => {
+}): Promise<Play> => {
   const { gameRoundUuid, startTimestamp } =
     await rgsService.initiateGameRound();
 
@@ -79,7 +79,7 @@ export const registerUserPlay = async ({
     gameRoundEndTimeInMs: Date.now(),
   });
 
-  const playResult: Play = {
+  return {
     gameRoundUuid,
     playId: play.playId,
     userId,
@@ -87,8 +87,6 @@ export const registerUserPlay = async ({
     playAmountInCents,
     winAmountInCents,
     winMultiplier: winMultiplier.toString(),
-    coinType: coinType,
+    coinType,
   };
-
-  return playResult;
 };

@@ -4,6 +4,7 @@ import { config } from "./config";
 import { IncomingSocketEventPayload } from "./types";
 import { createRegisterUserPlayController } from "./controller/register-user-play";
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createTemplateGameControllers = () => {
   const rgsService = createRgsService({
     rgsAPIHost: config.rgsAPIHost,

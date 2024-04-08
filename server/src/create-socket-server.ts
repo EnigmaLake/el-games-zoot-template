@@ -17,6 +17,7 @@ const MAX_CACHE_SIZE = 100;
 /**
  * Attach socket.io server to the express server to run on the same port.
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const attachSocketToServer = ({
   server,
   path,
@@ -57,7 +58,7 @@ export const attachSocketToServer = ({
 
     if (userId === GUEST_USER_ID) {
       console.log("Guest user connected, no access token validation required");
-      await next();
+      next();
       return;
     }
 

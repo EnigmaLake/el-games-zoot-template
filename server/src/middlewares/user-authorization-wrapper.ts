@@ -13,7 +13,7 @@ export const userAuthorizationWrapper = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   const { userId } = req.body as {
     userId?: number;
   };
@@ -46,7 +46,7 @@ export const validateTokenRequest = async ({
   userId: number;
   authorization: string;
   next: NextFunction | ((err?: ExtendedError | undefined) => void);
-}) => {
+}): Promise<void> => {
   const requestConfig: AxiosRequestConfig = {
     url: `${config.authAPIHost}/users/verify-token/${userId}`,
     method: "GET",
@@ -60,7 +60,7 @@ export const validateTokenRequest = async ({
   );
 
   if (response.data.isValid) {
-    await next();
+    next();
   } else {
     throw new Error("Invalid bearer token");
   }
