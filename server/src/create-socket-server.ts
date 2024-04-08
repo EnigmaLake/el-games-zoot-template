@@ -1,7 +1,6 @@
 import { Server, Socket } from "socket.io";
 import * as http from "http";
 
-import { validateTokenRequest } from "./middlewares/user-authorization-wrapper";
 import {
   IncomingSocketEventPayload,
   Play,
@@ -60,12 +59,6 @@ export const attachSocketToServer = ({
       console.log("Guest user connected, no access token validation required");
       next();
       return;
-    }
-
-    try {
-      await validateTokenRequest({ userId, authorization, next });
-    } catch (e) {
-      next(new Error("Invalid bearer token"));
     }
   });
 
