@@ -17,11 +17,13 @@ import { identity } from "../../recoil/state/identity";
 import { GUEST_ACCESS_TOKEN, GUEST_USER_ID } from "./utils/guestUserData";
 import { useBalanceAtom } from "../../recoil/state/balance";
 import { useCurrencyAtom } from "../../recoil/state/walletCurrency";
+import { gameExpendedAtom } from "../../recoil/state/gameExpended";
 
 const BasicGamePage = () => {
   const [socket, setSocket] =
     useState<Socket<ServerToClientEvents & ClientToServerEvents>>();
 
+  const [, setIsGameExpanded] = useRecoilState(gameExpendedAtom);
   const [, setBalance] = useRecoilState(useBalanceAtom);
   const [, setCurrency] = useRecoilState(useCurrencyAtom);
   const [loginInfo, setLoginInfo] = useRecoilState(identity);
@@ -64,6 +66,13 @@ const BasicGamePage = () => {
           sweepsBalance: event.data.data?.sweepsBalance ?? 0,
           goldBalance: event.data.data?.goldBalance ?? 0,
         });
+      }
+      if (event.data.event_id === EVENTS.EL_GET_EXPANDED_GAME_VIEW) {
+        if (!event?.data?.data) {
+          return;
+        }
+
+        setIsGameExpanded(event.data.data.expanded);
       }
       if (event.data.event_id === EVENTS.EL_USER_INFORMATION) {
         if (!event.data.data) {
