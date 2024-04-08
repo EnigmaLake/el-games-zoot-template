@@ -41,7 +41,7 @@ runs:
         aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ inputs.AWS_REGION }}
 
-    - run: echo \ \ el-games-template:imageTag:\ ${{ inputs.imageTag }} >> ./config/Pulumi.${{ inputs.stack }}.yaml
+    - run: echo \ \ el-games-tmp:imageTag:\ ${{ inputs.imageTag }} >> ./config/Pulumi.${{ inputs.stack }}.yaml
       shell: bash
       working-directory: ./infra
 

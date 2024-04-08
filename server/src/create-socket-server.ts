@@ -1,5 +1,5 @@
-import { Server, Socket } from "socket.io";
 import * as http from "http";
+import { Server, Socket } from "socket.io";
 
 import {
   IncomingSocketEventPayload,

@@ -153,10 +153,6 @@ const taskDefinition = new aws.ecs.TaskDefinition(
                 name: "RGS_BEARER_TOKEN",
                 value: rgsBearerToken,
               },
-              {
-                name: "AUTH_API_HOST",
-                value: cfg.require("authApiHost"),
-              },
             ],
           },
         ])
