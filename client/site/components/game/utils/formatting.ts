@@ -9,3 +9,5 @@ export const format2Decimals = (x: number) =>
   parseFloat(x.toString()).toFixed(2);
 
 export const formatBigNumber = (price: number) => price.toLocaleString("en-GB");
+
+export const IN_CENTS = 100;

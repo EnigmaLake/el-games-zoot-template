@@ -8,17 +8,22 @@ import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
 import { useRecoilState } from "recoil";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 
-export const GameActions = () => {
+export const GameActions = ({ disabled }: { disabled: boolean }) => {
   const [currency, setCurrency] = useRecoilState(useCurrencyAtom);
   const { setLastPlayAmount } = usePlayAmount();
 
   return (
     <Flex gap={{ xs: 1, base: 2 }} alignItems="center">
-      <CurrencySelector setCurrency={setCurrency} currency={currency} />
+      <CurrencySelector
+        disabled={disabled}
+        setCurrency={setCurrency}
+        currency={currency}
+      />
       <SecondaryButton
         width={buttonWidth}
         onClick={setLastPlayAmount}
         borderRadius="xxl"
+        disabled={disabled}
       >
         <Reload />
       </SecondaryButton>
