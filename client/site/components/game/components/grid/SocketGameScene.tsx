@@ -25,17 +25,17 @@ import { IN_CENTS } from "../../utils/formatting";
 import { identity } from "../../../../recoil/state/identity";
 import { useGameSocket } from "../../websocket/useGameSocket";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
-import { useBalanceAtom } from "../../../../recoil/state/balance";
 import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
-import { registerUserPlay } from "../../../../requests/register-user-play";
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 
-export const GameScene = ({ socket }: { socket: Socket }) => {
+export const SocketGameScene = ({ socket }: { socket: Socket }) => {
   const loginInfo = useRecoilValue(identity);
-  const [_balance] = useRecoilState(useBalanceAtom);
-  const [currency, _setCurrency] = useRecoilState(useCurrencyAtom);
+  const [currency] = useRecoilState(useCurrencyAtom);
   const [disableController, setDisableController] = useState(false);
+
   const { playAmount } = usePlayAmount();
+  const { registerPlay } = useGameSocket({ socket });
+  const toast = useEnigmaLakeToastPreset();
 
   const userInformation = {
     userId: loginInfo?.id ?? GUEST_USER_ID,
@@ -43,45 +43,6 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
     pictureUrl: loginInfo?.avatar ?? GUEST_AVATAR,
     accessToken: loginInfo?.accessToken ?? GUEST_ACCESS_TOKEN,
   };
-
-  const onPlayClick = async () => {
-    try {
-      setDisableController(true);
-      await registerUserPlay({
-        playAmountInCents: playAmount,
-        userId: userInformation.userId,
-        userNickname: userInformation.userNickname,
-        userAccessToken: userInformation.accessToken,
-        coinType: CoinType[currency],
-      });
-      setDisableController(false);
-    } catch (e) {
-      console.error(e);
-      let reason = "General error";
-      let toastType: ToastType = "error";
-
-      if (e.response.data.message) {
-        reason = e.response.data.message;
-      }
-
-      if (reason === ERRORS.INSUFFICIENT_FUNDS) {
-        purchaseCoinsEvent();
-        reason = "Failed to play - insufficient coins";
-      }
-
-      if (reason === ERRORS.NEEDS_TO_LOGIN) {
-        loginUserEvent();
-        reason = "Register & receive free bonus coins to play Crash Game!";
-        toastType = "info";
-      }
-      toast(reason, toastType);
-      setDisableController(false);
-    }
-  };
-
-  const { registerPlay } = useGameSocket({ socket });
-
-  const toast = useEnigmaLakeToastPreset();
 
   const onPlay = useDebouncedCallback(
     () => {
@@ -126,6 +87,7 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
       trailing: false,
     }
   );
+
   return (
     <Flex direction="column" w="full">
       <Flex
@@ -137,7 +99,7 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
         justifyItems="center"
       >
         <Text align="center" width="full">
-          Here comes the game!
+          Here comes the game connected with RGS socket!
         </Text>
       </Flex>
       <GameControlsContainer
