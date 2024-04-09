@@ -1,28 +1,14 @@
-import { Ref, useRef } from "react";
 import { useRecoilState } from "recoil";
-import { Box, Flex } from "@chakra-ui/react";
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { Flex } from "@chakra-ui/react";
 
-import {
-  buttonWidth,
-  getDefaultPlayValues,
-  maximumValue,
-  minimumValue,
-  roundedButtonWidth,
-} from "./utils";
-import {
-  GreenButton,
-  NumberInput,
-  Reload,
-  SecondaryButton,
-  Text,
-} from "../../../../design-system";
-import { CurrencySelector } from "./CurrencySelector";
-import { formatBigNumber } from "../../utils/formatting";
-import { PlayAmountMultiplier } from "./PlayAmountMultiplier";
-import { usePlayAmount } from "../../../../hooks/usePlayAmount";
-import { useBalanceAtom } from "../../../../recoil/state/balance";
+import { getDefaultPlayValues } from "./utils";
+import { PlayButton } from "./part-components/PlayButton";
+import { AmountInput } from "./part-components/AmountInput";
+import { ReloadButton } from "./part-components/ReloadButton";
+import { CurrencySelector } from "./part-components/CurrencySelector";
 import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
+import { PlayAmountMultiplier } from "./part-components/PlayAmountMultiplier";
+import { DefaultValuesButtons } from "./part-components/DefaultValuesButtons";
 
 interface GameControlsDesktopProps {
   onClick: () => void;
@@ -33,18 +19,9 @@ export const GameControlsDesktop = ({
   onClick,
   disableControllers,
 }: GameControlsDesktopProps) => {
-  const inputRef: Ref<{ setValue: (_value: number) => void }> | undefined =
-    useRef(null);
-
-  const { playAmount, setPlayAmount, setLastPlayAmount } = usePlayAmount();
   const [currency, setCurrency] = useRecoilState(useCurrencyAtom);
 
   const defaultPlayValues = getDefaultPlayValues(currency);
-  const [{ sweepsBalance, goldBalance }] = useRecoilState(useBalanceAtom);
-
-  const availableBalance =
-    currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
-  const maximumPlayAmount = maximumValue[currency];
 
   const half_length = Math.ceil(defaultPlayValues?.length / 2);
 
@@ -64,60 +41,17 @@ export const GameControlsDesktop = ({
     >
       <Flex gap={2}>
         <Flex gap={2}>
-          {leftSide?.map((option: number) => (
-            <SecondaryButton
-              key={`${currency}-${option}`}
-              width={buttonWidth}
-              disabled={disableControllers}
-              onClick={() => setPlayAmount(option)}
-              borderRadius="xxl"
-            >
-              <Text color="white" variant="small-callout">
-                {formatBigNumber(option)}
-              </Text>
-            </SecondaryButton>
-          ))}
-        </Flex>
-        <Box width="250px">
-          <NumberInput
-            ref={inputRef}
-            defaultValue={playAmount}
-            min={minimumValue}
-            max={
-              maximumPlayAmount > availableBalance
-                ? availableBalance
-                : maximumPlayAmount
-            }
-            onChange={(newValue) => {
-              if (!disableControllers) {
-                if (newValue > maximumPlayAmount) {
-                  setPlayAmount(
-                    maximumPlayAmount > availableBalance
-                      ? availableBalance
-                      : maximumPlayAmount
-                  );
-                } else {
-                  setPlayAmount(newValue);
-                }
-              }
-            }}
-            disabled={disableControllers}
+          <DefaultValuesButtons
+            disableControllers={disableControllers}
+            defaultPlayValues={leftSide}
           />
-        </Box>
+        </Flex>
+        <AmountInput disableControllers={disableControllers} />
         <Flex gap={2}>
-          {rightSide?.map((option: number) => (
-            <SecondaryButton
-              key={`${currency}-${option}`}
-              width={buttonWidth}
-              disabled={disableControllers}
-              onClick={() => setPlayAmount(option)}
-              borderRadius="xxl"
-            >
-              <Text color="white" variant="small-callout">
-                {formatBigNumber(option)}
-              </Text>
-            </SecondaryButton>
-          ))}
+          <DefaultValuesButtons
+            defaultPlayValues={rightSide}
+            disableControllers={disableControllers}
+          />
         </Flex>
       </Flex>
       <Flex gap={2} justifyContent="space-between" w="100%">
@@ -127,25 +61,9 @@ export const GameControlsDesktop = ({
             setCurrency={setCurrency}
             currency={currency}
           />
-          <SecondaryButton
-            width={roundedButtonWidth}
-            onClick={setLastPlayAmount}
-            borderRadius="xxl"
-            disabled={disableControllers}
-          >
-            <Reload />
-          </SecondaryButton>
+          <ReloadButton disableControllers={disableControllers} />
         </Flex>
-        <Box width="230px">
-          <GreenButton
-            width="full"
-            borderRadius="xxl"
-            onClick={onClick}
-            disabled={disableControllers}
-          >
-            <Text variant="base-callout">Play now</Text>
-          </GreenButton>
-        </Box>
+        <PlayButton onClick={onClick} disableControllers={disableControllers} />
         <PlayAmountMultiplier disabled={disableControllers} />
       </Flex>
     </Flex>
