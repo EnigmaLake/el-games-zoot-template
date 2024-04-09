@@ -1,17 +1,16 @@
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
+import {
+  EVENTS,
+  requestInitData,
+} from "@enigma-lake/zoot-game-integration-sdk";
 
 import {
   ClientToServerEvents,
   ServerToClientEvents,
   ServerToClientEventsList,
 } from "./websocket/socket";
-
-import {
-  EVENTS,
-  requestInitData,
-} from "@enigma-lake/zoot-game-integration-sdk";
 import { GameGrid } from "./components/grid/GameGrid";
 import { identity } from "../../recoil/state/identity";
 import { GUEST_ACCESS_TOKEN, GUEST_USER_ID } from "./utils/guestUserData";

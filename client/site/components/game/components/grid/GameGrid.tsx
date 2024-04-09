@@ -1,11 +1,11 @@
+import { Socket } from "socket.io-client";
+import { useRecoilValue } from "recoil";
 import { Flex, Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 
 import { GameContainer } from "./GameContainer";
 
 import { Scoreboard } from "../../../features/scoreboard/components/Scoreboard";
-import { Socket } from "socket.io-client";
 import { gameExpendedAtom } from "../../../../recoil/state/gameExpended";
-import { useRecoilValue } from "recoil";
 
 export const GameGrid = (_props: { socket?: Socket }) => {
   const isGameExpanded = useRecoilValue(gameExpendedAtom);

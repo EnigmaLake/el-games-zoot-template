@@ -3,7 +3,6 @@ import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect } from "react";
 
-import { IPlayAmountHookState } from "../components/game/utils/interfaces";
 import {
   DEFAULT_GOLD_BET_AMOUNT,
   DEFAULT_SWEEPS_BET_AMOUNT,
@@ -12,6 +11,12 @@ import {
 } from "../recoil/state/playAmount";
 import { useCurrencyAtom } from "../recoil/state/walletCurrency";
 import { useBalanceAtom } from "../recoil/state/balance";
+
+interface IPlayAmountHookState {
+  playAmount: number;
+  setPlayAmount: (amount: number) => void;
+  setLastPlayAmount: () => void;
+}
 
 export const usePlayAmount = (): IPlayAmountHookState => {
   const [balance] = useRecoilState(useBalanceAtom);

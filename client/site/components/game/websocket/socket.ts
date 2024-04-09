@@ -1,4 +1,4 @@
-import { CoinType } from "../utils/interfaces";
+import { CoinType } from "../utils/types";
 
 export interface ServerToClientEvents {
   WELCOME_FROM_SERVER: (payload: ServerToClientSocketEventPayload) => void;
