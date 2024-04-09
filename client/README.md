@@ -1,32 +1,28 @@
-# EL Games Zoot Template Game Client
+# EL Zoot Game Client Template
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The Zoot Game Client Template project is a Nextjs project designed to seamlessly integrate games into the Enigma Lake Zoot platform.
+
+This template provides developers with the necessary tools to integrate new games, offering a full setup for rendering games, managing play controls, accessing our RGS API and socket, and facilitating communication with our platform for accessing user information and session data
 
 ## Getting Started
 
-First, run the development server:
+To begin, install all the dependencies:
 
 ```bash
-npm run dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next, create a copy of `.env.example` in the client directory named `.env` and set up the game name:
+```bash
+NEXT_PUBLIC_DISPLAY_GAME_NAME=Your Game Name
+NEXT_PUBLIC_GAME_NAME=your-game-name
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then, execute the npm run dev command to run the application locally, and open [http://localhost:3000](http://localhost:3000) in your browser to view the result.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can begin editing the page by modifying ./site/components/game/BasicGamePage. The page will automatically update as you make changes to the file.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+BasicGamePage facilitates communication with our platform by listening to EL events and configuring user information, user session, user balance, and currency. Furthermore, it allows you to request layout adjustments and expand the game view from our platform.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Moreover, it establishes a connection to the RGS socket if this type of communication is necessary; otherwise, you can remove it.

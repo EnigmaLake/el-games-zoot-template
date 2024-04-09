@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
-import { Text } from "../../../../design-system";
 import { useDebouncedCallback } from "use-debounce";
+import { Text } from "../../../../design-system";
 
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 import {
@@ -25,17 +25,21 @@ import { useState } from "react";
 import { ERRORS } from "../../utils/errors";
 import { Socket } from "socket.io-client";
 import { useGameSocket } from "../../websocket/useGameSocket";
+import { IN_CENTS } from "../../utils/formatting";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
+import { CoinType } from "../../utils/types";
 
 export const GameScene = ({ socket }: { socket: Socket }) => {
   const loginInfo = useRecoilValue(identity);
   const [_balance] = useRecoilState(useBalanceAtom);
-  const [_currency, _setCurrency] = useRecoilState(useCurrencyAtom);
+  const [currency, _setCurrency] = useRecoilState(useCurrencyAtom);
   const [disableController, setDisableController] = useState(false);
+  const { playAmount } = usePlayAmount();
 
-  const _userInformation = {
+  const userInformation = {
     userId: loginInfo?.id ?? GUEST_USER_ID,
     userNickname: loginInfo?.nickname ?? GUEST_NICKNAME,
-    userAvatar: loginInfo?.avatar ?? GUEST_AVATAR,
+    pictureUrl: loginInfo?.avatar ?? GUEST_AVATAR,
     accessToken: loginInfo?.accessToken ?? GUEST_ACCESS_TOKEN,
   };
 
@@ -44,21 +48,18 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
   const toast = useEnigmaLakeToastPreset();
 
   const onPlay = useDebouncedCallback(
-    () => {
+     () => {
       try {
         setDisableController(true);
-        registerPlay({
+
+         registerPlay({
           playDetails: {
-            playAmountInCents: 500,
-            coinType: 1,
+            playAmountInCents: playAmount * IN_CENTS,
+            coinType: CoinType[currency],
           },
-          userInformation: {
-            nickname: loginInfo?.nickname ?? GUEST_NICKNAME,
-            id: loginInfo?.id ?? GUEST_USER_ID,
-            avatar: loginInfo?.avatar ?? GUEST_AVATAR,
-            accessToken: loginInfo?.accessToken ?? GUEST_ACCESS_TOKEN,
-          },
+          userInformation,
         });
+
         setDisableController(false);
       } catch (e) {
         console.error(e);

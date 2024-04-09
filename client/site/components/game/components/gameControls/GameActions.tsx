@@ -23,6 +23,7 @@ export const GameActions = ({ disabled }: { disabled: boolean }) => {
         width={buttonWidth}
         onClick={setLastPlayAmount}
         borderRadius="xxl"
+        disabled={disabled}
       >
         <Reload />
       </SecondaryButton>

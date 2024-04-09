@@ -1,6 +1,5 @@
 import { Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "./socket";
-import { UserInformation } from "@enigma-lake/zoot-game-integration-sdk";
 import { CoinType } from "../utils/types";
 
 export interface GameGridProps {
@@ -18,5 +17,10 @@ export interface RegisterUserPlay {
     playAmountInCents: number;
     coinType: CoinType;
   };
-  userInformation: UserInformation;
+  userInformation: {
+    pictureUrl: string;
+    accessToken: string;
+    userId: number;
+    userNickname: string;
+  };
 }

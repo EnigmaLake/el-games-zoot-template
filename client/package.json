@@ -36,7 +36,6 @@
     "deepmerge": "^4.3.1",
     "eslint-config-next": "13.2.4",
     "moment": "^2.30.1",
-    "use-debounce":"10.0.0",
     "next": "14.0.4",
     "next-transpile-modules": "^10.0.0",
     "prettier": "2.8.4",
@@ -47,6 +46,7 @@
     "recoil-nexus": "^0.4.0",
     "recoil-persist": "^4.2.0",
     "socket.io-client": "^4.7.4",
+    "use-debounce": "^9.0.3",
     "webpack-dev-server": "^4.15.0"
   },
   "peerDependencies": {
@@ -64,11 +64,11 @@
     "@typescript-eslint/parser": "^6.18.1",
     "babel-loader": "^9.1.0",
     "buffer": "^6.0.3",
+    "deepmerge": "^4.3.1",
     "eslint": "8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-promise": "^6.1.1",
-    "deepmerge": "^4.3.1",
     "eslint-plugin-react": "^7.33.2",
     "next-router-mock": "^0.9.7",
     "node-mocks-http": "^1.12.1",
