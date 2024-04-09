@@ -46,6 +46,7 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
 
   const onPlayClick = async () => {
     try {
+      setDisableController(true);
       await registerUserPlay({
         playAmountInCents: playAmount,
         userId: userInformation.userId,
@@ -53,6 +54,7 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
         userAccessToken: userInformation.accessToken,
         coinType: CoinType[currency],
       });
+      setDisableController(false);
     } catch (e) {
       console.error(e);
       let reason = "General error";
@@ -73,6 +75,7 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
         toastType = "info";
       }
       toast(reason, toastType);
+      setDisableController(false);
     }
   };
 
