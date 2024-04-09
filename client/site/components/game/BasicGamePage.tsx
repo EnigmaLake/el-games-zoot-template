@@ -54,56 +54,6 @@ const BasicGamePage = () => {
     }
   }, [socket]);
 
-<<<<<<< Updated upstream
-  useEffect(() => {
-    requestInitData();
-    window.addEventListener("message", async (event) => {
-      if (event.data.event_id === EVENTS.EL_GET_USER_CURRENCY) {
-        if (!event.data.data) {
-          return;
-        }
-        setCurrency(event.data.data?.currency);
-      }
-      if (event.data.event_id === EVENTS.EL_USER_BALANCE) {
-        if (!event.data.data) {
-          return;
-        }
-        setBalance({
-          sweepsBalance: event.data.data?.sweepsBalance ?? 0,
-          goldBalance: event.data.data?.goldBalance ?? 0,
-        });
-      }
-      if (event.data.event_id === EVENTS.EL_GET_EXPANDED_GAME_VIEW) {
-        if (!event?.data?.data) {
-          return;
-        }
-
-        setIsGameExpanded(event.data.data.expanded);
-      }
-      if (event.data.event_id === EVENTS.EL_USER_INFORMATION) {
-        if (!event.data.data) {
-          return;
-        }
-        setLoginInfo({
-          ...event.data.data,
-        });
-
-        if (
-          socket &&
-          (event.data.data.accessToken !== loginInfo?.accessToken ||
-            event.data.data.userId !== loginInfo?.id)
-        ) {
-          disconnectAllEvents();
-        } else {
-          connectToSocket({
-            accessToken: event.data.data?.accessToken ?? GUEST_ACCESS_TOKEN,
-            userId: event.data.data?.id ?? GUEST_USER_ID,
-          });
-        }
-      }
-    });
-    return () => disconnectAllEvents();
-=======
   const handleWindowMessage = useCallback((event) => {
     if (!event.data.data) {
       return;
@@ -137,7 +87,6 @@ const BasicGamePage = () => {
       window.removeEventListener("message", handleWindowMessage);
       disconnectAllEvents();
     };
->>>>>>> Stashed changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

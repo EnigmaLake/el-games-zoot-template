@@ -1,16 +1,11 @@
 import { Socket } from "socket.io-client";
 import { ServerToClientEvents, ClientToServerEvents } from "./socket";
-<<<<<<< Updated upstream
-=======
 import { UserInformation } from "@enigma-lake/zoot-game-integration-sdk";
 import { CoinType } from "../utils/types";
->>>>>>> Stashed changes
 
 export interface GameGridProps {
   socket: Socket<ServerToClientEvents & ClientToServerEvents>;
 }
-<<<<<<< Updated upstream
-=======
 
 export enum SOCKET_EVENT {
   CONNECT = "connect",
@@ -25,4 +20,3 @@ export interface RegisterUserPlay {
   };
   userInformation: UserInformation;
 }
->>>>>>> Stashed changes

@@ -1,9 +1,5 @@
 import { Flex } from "@chakra-ui/react";
 import { Text } from "../../../../design-system";
-<<<<<<< Updated upstream
-
-import { GameControlsContainer } from "../gameControls/GameControlsContainer";
-=======
 import { useDebouncedCallback } from "use-debounce";
 
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
@@ -29,7 +25,6 @@ import { useState } from "react";
 import { ERRORS } from "../../utils/errors";
 import { Socket } from "socket.io-client";
 import { useGameSocket } from "../../websocket/useGameSocket";
->>>>>>> Stashed changes
 
 export const GameScene = ({ socket }: { socket: Socket }) => {
   const loginInfo = useRecoilValue(identity);
@@ -46,13 +41,6 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
 
   const { registerPlay } = useGameSocket({ socket });
 
-<<<<<<< Updated upstream
-export const GameScene = () => {
-  const onPlayClick = () => {
-    null;
-  };
-
-=======
   const toast = useEnigmaLakeToastPreset();
 
   const onPlay = useDebouncedCallback(
@@ -101,7 +89,6 @@ export const GameScene = () => {
       trailing: false,
     }
   );
->>>>>>> Stashed changes
   return (
     <Flex direction="column" w="full">
       <Flex
@@ -116,14 +103,10 @@ export const GameScene = () => {
           Here comes the game!
         </Text>
       </Flex>
-<<<<<<< Updated upstream
-      <GameControlsContainer onClick={onPlayClick} />
-=======
       <GameControlsContainer
         onClick={onPlay}
         disableControllers={disableController}
       />
->>>>>>> Stashed changes
     </Flex>
   );
 };
