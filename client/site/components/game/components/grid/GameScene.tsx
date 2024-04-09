@@ -1,33 +1,34 @@
+import { useState } from "react";
 import { Flex } from "@chakra-ui/react";
-import { useDebouncedCallback } from "use-debounce";
-import { Text } from "../../../../design-system";
-
-import { GameControlsContainer } from "../gameControls/GameControlsContainer";
-import {
-  ToastType,
-  useEnigmaLakeToastPreset,
-} from "../../../../hooks/useEnigmaLakeToast";
+import { Socket } from "socket.io-client";
 import {
   purchaseCoinsEvent,
   loginUserEvent,
 } from "@enigma-lake/zoot-game-integration-sdk";
+import { useDebouncedCallback } from "use-debounce";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { identity } from "../../../../recoil/state/identity";
+
 import {
   GUEST_USER_ID,
   GUEST_NICKNAME,
   GUEST_AVATAR,
   GUEST_ACCESS_TOKEN,
 } from "../../utils/guestUserData";
-import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
-import { useBalanceAtom } from "../../../../recoil/state/balance";
-import { useState } from "react";
 import { ERRORS } from "../../utils/errors";
-import { Socket } from "socket.io-client";
-import { useGameSocket } from "../../websocket/useGameSocket";
-import { IN_CENTS } from "../../utils/formatting";
-import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 import { CoinType } from "../../utils/types";
+import {
+  ToastType,
+  useEnigmaLakeToastPreset,
+} from "../../../../hooks/useEnigmaLakeToast";
+import { Text } from "../../../../design-system";
+import { IN_CENTS } from "../../utils/formatting";
+import { identity } from "../../../../recoil/state/identity";
+import { useGameSocket } from "../../websocket/useGameSocket";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
+import { useBalanceAtom } from "../../../../recoil/state/balance";
+import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
+import { registerUserPlay } from "../../../../requests/register-user-play";
+import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 
 export const GameScene = ({ socket }: { socket: Socket }) => {
   const loginInfo = useRecoilValue(identity);
@@ -41,6 +42,41 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
     userNickname: loginInfo?.nickname ?? GUEST_NICKNAME,
     pictureUrl: loginInfo?.avatar ?? GUEST_AVATAR,
     accessToken: loginInfo?.accessToken ?? GUEST_ACCESS_TOKEN,
+  };
+
+  const onPlayClick = async () => {
+    try {
+      setDisableController(true);
+      await registerUserPlay({
+        playAmountInCents: playAmount,
+        userId: userInformation.userId,
+        userNickname: userInformation.userNickname,
+        userAccessToken: userInformation.accessToken,
+        coinType: CoinType[currency],
+      });
+      setDisableController(false);
+    } catch (e) {
+      console.error(e);
+      let reason = "General error";
+      let toastType: ToastType = "error";
+
+      if (e.response.data.message) {
+        reason = e.response.data.message;
+      }
+
+      if (reason === ERRORS.INSUFFICIENT_FUNDS) {
+        purchaseCoinsEvent();
+        reason = "Failed to play - insufficient coins";
+      }
+
+      if (reason === ERRORS.NEEDS_TO_LOGIN) {
+        loginUserEvent();
+        reason = "Register & receive free bonus coins to play Crash Game!";
+        toastType = "info";
+      }
+      toast(reason, toastType);
+      setDisableController(false);
+    }
   };
 
   const { registerPlay } = useGameSocket({ socket });

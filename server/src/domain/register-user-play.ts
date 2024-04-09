@@ -1,5 +1,4 @@
 import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
-
 import { Play } from "../types";
 
 export const registerUserPlay = async ({
@@ -16,7 +15,15 @@ export const registerUserPlay = async ({
   playAmountInCents: number;
   coinType: number;
   userAccessToken: string;
-}): Promise<Play> => {
+}) => {
+  console.log({
+    message: "Incoming registerUserPlay request",
+    userId,
+    userNickname,
+    playAmountInCents,
+    coinType,
+  });
+
   const { gameRoundUuid, startTimestamp } =
     await rgsService.initiateGameRound();
 
@@ -27,14 +34,6 @@ export const registerUserPlay = async ({
       })
     );
   }
-
-  console.log({
-    message: "Incoming registerUserPlay request",
-    userId,
-    userNickname,
-    playAmountInCents,
-    coinType,
-  });
 
   const play = await rgsService.registerUserPlay({
     userId,
@@ -54,34 +53,35 @@ export const registerUserPlay = async ({
   const playWinTimestamp = Date.now();
   const gameRoundCurrentProgressInMs = Date.now() - startTimestamp;
 
-  console.log({
-    playAmountInCents,
-    winMultiplier,
-    winAmountInCents,
-    startTimestamp,
-    playWinTimestamp,
-    gameRoundCurrentProgressInMs,
-  });
-
-  await rgsService.registerPlayWin({
-    userId,
-    userNickname,
-    gameRoundUuid,
-    winAmountInCents,
-    winMultiplier: winMultiplier.toString(),
-    playWinTimestamp,
-    gameRoundCurrentProgressInMs,
-  });
+  if (winAmountInCents < 0 || winAmountInCents === 0) {
+    await rgsService.registerPlayLose({
+      userId,
+      userNickname,
+      gameRoundUuid,
+      gameRoundEndTimeInMs: Date.now(),
+    });
+  } else {
+    await rgsService.registerPlayWin({
+      userId,
+      userNickname,
+      gameRoundUuid,
+      winAmountInCents,
+      winMultiplier: winMultiplier.toString(),
+      playWinTimestamp,
+      gameRoundCurrentProgressInMs,
+    });
+  }
 
   await rgsService.completeGameRound({
     gameRoundUuid,
+    winMultiplier: winMultiplier.toString(),
     payload: {
       crashNumber: winMultiplier,
       gameRoundEndTimeInMs: Date.now(),
     },
   });
 
-  return {
+  const playResult: Play = {
     gameRoundUuid,
     playId: play.playId,
     userId,
@@ -91,4 +91,6 @@ export const registerUserPlay = async ({
     winMultiplier: winMultiplier.toString(),
     coinType,
   };
+
+  return playResult;
 };
