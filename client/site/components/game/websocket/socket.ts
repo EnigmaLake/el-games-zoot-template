@@ -1,3 +1,4 @@
+import { ERRORS } from "../utils/errors";
 import { CoinType } from "../utils/types";
 
 export interface ServerToClientEvents {
@@ -102,6 +103,6 @@ export interface ServerToClientSocketEventPayload {
   pictureUrl?: string;
   coinType: CoinType;
   timestamp: number;
-  reason?: RgsErrors;
+  reason?: ERRORS;
   playPayload?: Record<string, unknown>;
 }
