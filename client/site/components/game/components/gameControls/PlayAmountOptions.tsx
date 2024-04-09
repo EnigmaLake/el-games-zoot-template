@@ -98,6 +98,7 @@ export const PlayAmountOptions = ({ disabled }: PlayAmountOptionsProps) => {
             }
           }
         }}
+        disabled={disabled}
       />
       <Flex gap={2}>
         {isMobile &&

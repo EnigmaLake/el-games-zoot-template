@@ -49,10 +49,7 @@ export const useGameSocket = ({
   const registerPlay = useCallback(
     ({ playDetails, userInformation }: RegisterUserPlay) => {
       socket?.emit(CLIENT_TO_SERVER_EVENTS.BET_REGISTER, {
-        userId: userInformation.id,
-        userNickname: userInformation.nickname,
-        pictureUrl: userInformation.avatar,
-        accessToken: userInformation.accessToken,
+        ...userInformation,
         ...playDetails,
       });
     },
@@ -121,10 +118,9 @@ export const useGameSocket = ({
         toastType = "info";
       }
       toast(reason, toastType);
-
-      toast(reason, toastType);
     });
-  }, [socket, socket.id, toast]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [socket.id]);
 
   useEffect(() => {
     return () => disconnectAllEvents();

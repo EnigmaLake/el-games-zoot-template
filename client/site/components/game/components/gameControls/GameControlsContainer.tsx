@@ -8,11 +8,15 @@ import { PlayAmountOptions } from "./PlayAmountOptions";
 
 interface GameControlsProps {
   onClick: () => void;
+  disableControllers: boolean;
 }
 
 const PLAY_CONTROLLER_HEIGHT = 225;
 
-export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
+export const GameControlsContainer = ({
+  onClick,
+  disableControllers,
+}: GameControlsProps) => {
   const isMobile = useBreakpointValue({
     lg: false,
     xs: true,
@@ -31,7 +35,12 @@ export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
         justifyContent="center"
       >
         <Flex alignItems="center" justifyContent="center">
-          <GreenButton width="fit-content" borderRadius="xxl" onClick={onClick}>
+          <GreenButton
+            width="fit-content"
+            borderRadius="xxl"
+            onClick={onClick}
+            disabled={disableControllers}
+          >
             <Text variant="base-callout"> Play now </Text>
           </GreenButton>
         </Flex>
@@ -42,10 +51,10 @@ export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
           justifyContent="center"
           gap={{ xs: 1, base: 2 }}
         >
-          <GameActions />
-          <PlayAmountMultiplier />
+          <GameActions disabled={disableControllers} />
+          <PlayAmountMultiplier disabled={disableControllers} />
         </Flex>
-        <PlayAmountOptions />
+        <PlayAmountOptions disabled={disableControllers} />
       </Flex>
     );
   }
@@ -58,10 +67,15 @@ export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
       gap={{ xs: 2, base: 4 }}
       justifyContent="center"
     >
-      <PlayAmountOptions />
+      <PlayAmountOptions disabled={disableControllers} />
       <Flex alignItems="center" justifyContent="center">
-        <GreenButton width="fit-content" borderRadius="xxl" onClick={onClick}>
-          <Text variant="base-callout"> Play now </Text>
+        <GreenButton
+          width="fit-content"
+          borderRadius="xxl"
+          onClick={onClick}
+          disabled={disableControllers}
+        >
+          <Text variant="base-callout">Play now</Text>
         </GreenButton>
       </Flex>
       <Flex
@@ -70,8 +84,8 @@ export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
         justifyContent="center"
         gap={{ xs: 1, base: 2 }}
       >
-        <GameActions />
-        <PlayAmountMultiplier />
+        <GameActions disabled={disableControllers} />
+        <PlayAmountMultiplier disabled={disableControllers} />
       </Flex>
     </Flex>
   );

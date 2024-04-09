@@ -1,32 +1,38 @@
-# EL Games Zoot Template Game Client
+# EL Zoot Game Client Template
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The **Zoot Game Client Template** project is a **Nextjs** project designed to seamlessly integrate games into the **_Zoot_** platform.
+
+This template equips developers with the necessary tools to integrate new games, providing a comprehensive setup for rendering games, managing play controls, accessing our **RGS API and socket**, and facilitating communication with our platform to access user information and session data.
 
 ## Getting Started
 
-First, run the development server:
+To get started, install all the dependencies:
 
 ```bash
-npm run dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next, create a copy of `.env.example` in the client directory named `.env` and set up the game environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```js
+NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL=wss://zoot-template-game-api.enigmalakecasino.com/
+NEXT_PUBLIC_EL_ZOOT_GAME_SERVER_URL=http://zoot-template-game-api.enigmalakecasino.com/
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+NEXT_PUBLIC_DISPLAY_GAME_NAME=Your Game Name
+NEXT_PUBLIC_GAME_NAME=your-game-name
+```
 
-## Learn More
+Then, execute the command to run the application locally, and open [http://localhost:3000](http://localhost:3000) in your browser to view the result.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+ npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You can begin editing the page by modifying `./site/components/game/BasicGamePage`. The page will automatically update as you make changes to the file.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The **BasicGamePage** component facilitates communication with our platform by listening to EL events and configuring user information, user session, user balance, and currency. Furthermore, it allows you to request layout adjustments and expand the game view from our platform.
+All events are handled by our [Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)
 
-## Deploy on Vercel
+Moreover, it establishes a connection to the RGS socket if this type of communication is necessary; otherwise, you can remove it and utilize the `useRequest` hook from `./site/hooks/useRequest.ts` to register play events to the RGS API instead.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can render your game view in `/site/components/game/components/grid/GameScene` and update the game state accordingly.

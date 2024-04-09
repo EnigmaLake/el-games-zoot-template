@@ -4,7 +4,7 @@ import { SecondaryButton } from "../../../../design-system";
 import { buttonWidth, minimumValue, multiplyAmountOptions } from "./utils";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 
-export const PlayAmountMultiplier = ({ disabled }: { disabled?: boolean }) => {
+export const PlayAmountMultiplier = ({ disabled }: { disabled: boolean }) => {
   const { playAmount, setPlayAmount } = usePlayAmount();
 
   return (
