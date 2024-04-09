@@ -1,13 +1,33 @@
+import { useRecoilValue } from "recoil";
 import { Flex } from "@chakra-ui/react";
-import { Text } from "../../../../design-system";
 
+import { CoinType } from "../../utils/types";
+import { Text } from "../../../../design-system";
+import { identity } from "../../../../recoil/state/identity";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
+import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
+import { registerUserPlay } from "../../../../requests/register-user-play";
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 
 const GAME_SCENE_HEIGHT = "32rem";
 
 export const GameScene = () => {
-  const onPlayClick = () => {
-    null;
+  const { playAmount } = usePlayAmount();
+  const loginInfo = useRecoilValue(identity);
+  const currency = useRecoilValue(useCurrencyAtom);
+
+  const onPlayClick = async () => {
+    try {
+      await registerUserPlay({
+        playAmountInCents: playAmount,
+        userId: loginInfo?.id,
+        userNickname: loginInfo?.nickname,
+        userAccessToken: loginInfo?.accessToken,
+        coinType: CoinType[currency],
+      });
+    } catch (e) {
+      console.log("Error: ", e);
+    }
   };
 
   return (

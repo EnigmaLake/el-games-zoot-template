@@ -1,6 +1,7 @@
 import { RequestHandler } from "express";
-import { CoinType, RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
 
+import { CoinType } from "../../types";
 import { registerUserPlay } from "../../domain/register-user-play";
 
 export const createRegisterUserPlayRequestHandler = ({
@@ -61,19 +62,26 @@ export const createRegisterUserPlayRequestHandler = ({
       );
     }
 
-    const play = await registerUserPlay({
-      rgsService,
-      userId,
-      userNickname,
-      playAmountInCents,
-      coinType,
-      userAccessToken,
-    });
+    try {
+      const play = await registerUserPlay({
+        rgsService,
+        userId,
+        userNickname,
+        playAmountInCents,
+        coinType,
+        userAccessToken,
+      });
 
-    res.send({
-      success: true,
-      message: "User play registered",
-      play,
-    });
+      res.send({
+        success: true,
+        message: "User play registered",
+        play,
+      });
+    } catch (e) {
+      res.send({
+        success: false,
+        message: e.message,
+      });
+    }
   };
 };
