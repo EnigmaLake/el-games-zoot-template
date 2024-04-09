@@ -41,6 +41,6 @@ Then, execute the command to run the application locally, and open [http://local
 
 You can begin editing the page by modifying `./site/components/game/components/grid/APIGameScene.tsx` or `./site/components/game/components/grid/SocketGameScene.tsx` to suit your needs. The page will automatically update as you make changes to the file.
 
-The `./site/components/gameBasicGamePage` component facilitates communication with our platform by listening to EL events and configuring user information, user session, user balance, and currency. Furthermore, it allows you to request layout adjustments and expand the game view from our platform. All events are handled by our[Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)
+The `./site/components/gameBasicGamePage` component facilitates communication with our platform by listening to EL events and configuring user information, user session, user balance, and currency. Furthermore, it allows you to request layout adjustments and expand the game view from our platform. All events are handled by our [Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)
 
 You can render your game view in `APIGameScene` or `SocketGameScene` and update the game state accordingly.
