@@ -24,7 +24,9 @@ export const DateAndTime = () => {
 
   return (
     <Flex direction="column" alignItems="flex-start">
-      <Text variant="base-bold">{process.env.NEXT_PUBLIC_GAME_NAME}</Text>
+      <Text variant="base-bold">
+        {process.env.NEXT_PUBLIC_DISPLAY_GAME_NAME}
+      </Text>
       <Flex gap={2}>
         <Text variant="small-callout">{currentTime}</Text>
         <Text variant="small-callout">{currentDate}</Text>

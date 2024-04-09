@@ -34,6 +34,13 @@ const queryClient = new QueryClient({
 if (!process.env.NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL) {
   throw new Error("Env variable NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL missing");
 }
+if (!process.env.NEXT_PUBLIC_GAME_NAME) {
+  throw new Error("Env variable NEXT_PUBLIC_GAME_NAME missing");
+}
+
+if (!process.env.NEXT_PUBLIC_DISPLAY_GAME_NAME) {
+  throw new Error("Env variable NEXT_PUBLIC_DISPLAY_GAME_NAME missing");
+}
 
 function MyApp(props: MyAppProps) {
   const { Component, pageProps, router } = props;

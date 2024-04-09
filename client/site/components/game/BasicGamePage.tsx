@@ -30,20 +30,23 @@ const BasicGamePage = () => {
   const [, setCurrency] = useRecoilState(useCurrencyAtom);
   const [loginInfo, setLoginInfo] = useRecoilState(identity);
 
-  const connectToSocket = useCallback(
-    ({ accessToken, userId }: { accessToken: string; userId: number }) => {
-      return setSocket(
-        io(process.env.NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL ?? "non-empty", {
-          auth: {
-            authorization: `Bearer ${accessToken}`,
-            userId,
-          },
-          path: `/${process.env.NEXT_PUBLIC_GAME_NAME}`,
-        })
-      );
-    },
-    []
-  );
+  const connectToSocket = ({
+    accessToken,
+    userId,
+  }: {
+    accessToken: string;
+    userId: number;
+  }) => {
+    return setSocket(
+      io(process.env.NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL ?? "non-empty", {
+        auth: {
+          authorization: `Bearer ${accessToken}`,
+          userId,
+        },
+        path: `/${process.env.NEXT_PUBLIC_GAME_NAME}`,
+      })
+    );
+  };
 
   const disconnectAllEvents = useCallback(() => {
     for (const event of ServerToClientEventsList) {
@@ -51,6 +54,7 @@ const BasicGamePage = () => {
     }
   }, [socket]);
 
+<<<<<<< Updated upstream
   useEffect(() => {
     requestInitData();
     window.addEventListener("message", async (event) => {
@@ -99,8 +103,56 @@ const BasicGamePage = () => {
       }
     });
     return () => disconnectAllEvents();
+=======
+  const handleWindowMessage = useCallback((event) => {
+    if (!event.data.data) {
+      return;
+    }
+    if (event.data.event_id === EVENTS.EL_GET_USER_CURRENCY) {
+      setCurrency(event.data.data?.currency);
+    }
+    if (event.data.event_id === EVENTS.EL_USER_BALANCE) {
+      setBalance({
+        sweepsBalance: event.data.data?.sweepsBalance ?? 0,
+        goldBalance: event.data.data?.goldBalance ?? 0,
+      });
+    }
+    if (event.data.event_id === EVENTS.EL_GET_EXPANDED_GAME_VIEW) {
+      setIsGameExpanded(event.data.data.expanded);
+    }
+    if (event.data.event_id === EVENTS.EL_USER_INFORMATION) {
+      setLoginInfo({
+        ...event.data.data,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    requestInitData();
+
+    window.addEventListener("message", handleWindowMessage);
+
+    return () => {
+      window.removeEventListener("message", handleWindowMessage);
+      disconnectAllEvents();
+    };
+>>>>>>> Stashed changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    disconnectAllEvents();
+    connectToSocket({
+      accessToken: loginInfo?.accessToken ?? GUEST_ACCESS_TOKEN,
+      userId: loginInfo?.id ?? GUEST_USER_ID,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginInfo?.accessToken, loginInfo?.id]);
+
+  if (!socket) {
+    return null;
+  }
 
   return (
     <Flex
@@ -111,7 +163,7 @@ const BasicGamePage = () => {
       h="full"
     >
       <GameHeader />
-      <GameScene />
+      <GameScene socket={socket} />
     </Flex>
   );
 };

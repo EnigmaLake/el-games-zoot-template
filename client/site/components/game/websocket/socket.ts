@@ -105,8 +105,3 @@ export interface ServerToClientSocketEventPayload {
   reason?: RgsErrors;
   playPayload?: Record<string, unknown>;
 }
-
-export enum RgsErrors {
-  WalletGeneralError = "WalletGeneralError",
-  WalletInsufficientFunds = "WalletInsufficientFunds",
-}
