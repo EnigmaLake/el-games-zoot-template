@@ -11,5 +11,3 @@ export const config = {
 
   rgsBearerToken: rawEnv.RGS_BEARER_TOKEN ?? "secret-123",
 };
-
-console.log({ config });

@@ -14,20 +14,20 @@ export const createRegisterUserPlayController = ({
     userNickname,
     playAmountInCents,
     coinType,
-    accessToken,
+    userAccessToken,
   }: {
     userId?: number;
     userNickname?: string;
     playAmountInCents?: number;
     coinType?: number;
-    accessToken: string;
+    userAccessToken: string;
   }) => {
     if (
       playAmountInCents === undefined ||
       userId === undefined ||
       userNickname === undefined ||
       coinType === undefined ||
-      accessToken === undefined
+      userAccessToken === undefined
     ) {
       throw new Error(
         JSON.stringify({
@@ -36,7 +36,7 @@ export const createRegisterUserPlayController = ({
           userNickname,
           playAmountInCents,
           coinType,
-          accessToken,
+          userAccessToken,
         })
       );
     }
@@ -65,7 +65,7 @@ export const createRegisterUserPlayController = ({
       userNickname,
       playAmountInCents,
       coinType,
-      accessToken,
+      userAccessToken,
     });
   };
 };

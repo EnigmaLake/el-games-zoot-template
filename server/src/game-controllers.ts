@@ -35,7 +35,7 @@ export const createTemplateGameControllers = () => {
       userNickname: payload.userNickname,
       playAmountInCents: payload.playAmountInCents as number,
       coinType: payload.coinType as number,
-      accessToken: payload.accessToken as string,
+      userAccessToken: payload.accessToken as string,
     });
   };
 

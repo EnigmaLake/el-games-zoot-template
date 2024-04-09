@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@enigma-lake/zoot-game-integration-sdk": "^1.0.3",
-    "@enigma-lake/zoot-game-rgs-service-sdk": "^1.0.3",
+    "@enigma-lake/zoot-game-rgs-service-sdk": "^1.0.5",
     "@types/crypto-js": "^4.2.1",
     "@types/uuid": "^9.0.7",
     "axios": "^0.26.1",
