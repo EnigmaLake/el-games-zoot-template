@@ -1,15 +1,16 @@
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 import { GreenButton, Text } from "../../../../design-system";
 
-import { GameActions } from "./controls/GameActions";
+import { GameActions } from "./GameActions";
 
-import { PlayAmountMultiplier } from "./controls/PlayAmountMultiplier";
-import { PlayAmountOptions } from "./controls/PlayAmountOptions";
-import { PLAY_CONTROLLER_HEIGHT } from "./constants";
+import { PlayAmountMultiplier } from "./PlayAmountMultiplier";
+import { PlayAmountOptions } from "./PlayAmountOptions";
 
 interface GameControlsProps {
   onClick: () => void;
 }
+
+const PLAY_CONTROLLER_HEIGHT = 225;
 
 export const GameControlsContainer = ({ onClick }: GameControlsProps) => {
   const isMobile = useBreakpointValue({

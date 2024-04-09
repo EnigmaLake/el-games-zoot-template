@@ -1,2 +1,0 @@
-export const SCOREBOARD_HEADER_HEIGHT = 42;
-export const SCOREBOARD_BODY_HEIGHT = 805;

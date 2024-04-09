@@ -2,7 +2,8 @@ import { Flex } from "@chakra-ui/react";
 import { Text } from "../../../../design-system";
 
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
-import { GAME_SCENE_HEIGHT } from "./constants";
+
+const GAME_SCENE_HEIGHT = "32rem";
 
 export const GameScene = () => {
   const onPlayClick = () => {

@@ -11,12 +11,15 @@ import {
   ServerToClientEvents,
   ServerToClientEventsList,
 } from "./websocket/socket";
-import { GameGrid } from "./components/grid/GameGrid";
+
 import { identity } from "../../recoil/state/identity";
 import { GUEST_ACCESS_TOKEN, GUEST_USER_ID } from "./utils/guestUserData";
 import { useBalanceAtom } from "../../recoil/state/balance";
 import { useCurrencyAtom } from "../../recoil/state/walletCurrency";
 import { gameExpendedAtom } from "../../recoil/state/gameExpended";
+import { Flex } from "@chakra-ui/react";
+import { GameScene } from "./components/grid/GameScene";
+import { GameHeader } from "./components/grid/GameHeader";
 
 const BasicGamePage = () => {
   const [socket, setSocket] =
@@ -99,7 +102,18 @@ const BasicGamePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <GameGrid socket={socket} />;
+  return (
+    <Flex
+      bg="background-level-2"
+      borderRadius="lg"
+      flexDir="column"
+      w="full"
+      h="full"
+    >
+      <GameHeader />
+      <GameScene />
+    </Flex>
+  );
 };
 
 export default BasicGamePage;
