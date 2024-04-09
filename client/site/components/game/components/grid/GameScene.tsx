@@ -48,11 +48,11 @@ export const GameScene = ({ socket }: { socket: Socket }) => {
   const toast = useEnigmaLakeToastPreset();
 
   const onPlay = useDebouncedCallback(
-     () => {
+    () => {
       try {
         setDisableController(true);
 
-         registerPlay({
+        registerPlay({
           playDetails: {
             playAmountInCents: playAmount * IN_CENTS,
             coinType: CoinType[currency],
