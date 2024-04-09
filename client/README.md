@@ -21,7 +21,7 @@ If you need the socket version, you can configure it like this:
 NEXT_PUBLIC_USE_SOCKET= false
 NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL=wss://zoot-template-game-api.enigmalakecasino.com
 NEXT_PUBLIC_DISPLAY_GAME_NAME=Game Name
-NEXT_PUBLIC_GAME_NAME=game-name
+NEXT_PUBLIC_SOCKET_PATH=game-name
 ```
 
 If you need the API version, you can configure it like this:
