@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react";
 import { format2Decimals } from "../../../game/utils/formatting";
 import { GoldCurrency, SweepsCurrency, Text } from "../../../../design-system";
 import { ServerToClientSocketEventPayload } from "../../../game/websocket/socket";
-import { CoinType } from "../../../game/utils/interfaces";
+import { CoinType } from "../../../game/utils/types";
 
 export const ScoreboardRow = ({
   entry,

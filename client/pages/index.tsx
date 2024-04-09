@@ -1,13 +1,15 @@
-import { useEffect, useState, type ReactElement } from "react";
+import dynamic from "next/dynamic";
+import { type ReactElement } from "react";
 
 import { NextPageWithLayout } from "./_app";
-import GamePage from "./games";
+
+const BasicGamePage = dynamic(
+  () => import("../site/components/game/BasicGamePage"),
+  { ssr: false }
+);
 
 const Home: NextPageWithLayout = (props) => {
-  const [shouldRenderClient, setShouldRenderClient] = useState(false);
-  useEffect(() => setShouldRenderClient(true), []);
-
-  return shouldRenderClient ? <GamePage {...props} /> : null;
+  return <BasicGamePage {...props} />;
 };
 
 Home.getLayout = (page: ReactElement) => {

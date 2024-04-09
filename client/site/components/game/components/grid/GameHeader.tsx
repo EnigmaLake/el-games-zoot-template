@@ -1,17 +1,15 @@
+import { toggleGameViewEvent } from "@enigma-lake/zoot-game-integration-sdk";
+import { useRecoilState } from "recoil";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
 import {
   Compress,
   Frame,
   SecondaryButton,
-  Shield,
-  Sound,
   Text,
 } from "../../../../design-system";
 import { DateAndTime } from "./DateAndTime";
-import { useRecoilState } from "recoil";
 import { gameExpendedAtom } from "../../../../recoil/state/gameExpended";
-import { toggleGameViewEvent } from "@enigma-lake/zoot-game-integration-sdk";
 
 export const GameHeader = () => {
   const [isGameExpanded] = useRecoilState(gameExpendedAtom);
@@ -37,7 +35,7 @@ export const GameHeader = () => {
     >
       <DateAndTime />
       <Flex gap={2}>
-        <SecondaryButton borderRadius="xxl">
+        {/* <SecondaryButton borderRadius="xxl">
           <Flex alignItems="center" gap={1}>
             <Shield color="secondary" />
             {!isMobile && (
@@ -46,7 +44,7 @@ export const GameHeader = () => {
               </Text>
             )}
           </Flex>
-        </SecondaryButton>
+        </SecondaryButton> */}
         {!isMobile && (
           <SecondaryButton
             borderRadius="xxl"
@@ -60,7 +58,7 @@ export const GameHeader = () => {
             </Flex>
           </SecondaryButton>
         )}
-        <SecondaryButton borderRadius="xxl">
+        {/* <SecondaryButton borderRadius="xxl">
           <Flex alignItems="center" gap={1}>
             <Sound />
             {!isMobile && (
@@ -69,7 +67,7 @@ export const GameHeader = () => {
               </Text>
             )}
           </Flex>
-        </SecondaryButton>
+        </SecondaryButton> */}
       </Flex>
     </Flex>
   );
