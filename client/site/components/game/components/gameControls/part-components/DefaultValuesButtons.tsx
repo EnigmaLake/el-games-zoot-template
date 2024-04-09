@@ -24,7 +24,7 @@ export const DefaultValuesButtons = ({
       {defaultPlayValues?.map((option: number) => (
         <SecondaryButton
           key={`${currency}-${option}`}
-          width={buttonWidth}
+          width={{ base: "100%", lg: buttonWidth, xl: buttonWidth }}
           disabled={disableControllers}
           onClick={() => setPlayAmount(option)}
           borderRadius="xxl"
