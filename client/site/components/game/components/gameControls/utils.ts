@@ -5,6 +5,7 @@ export const multiplyAmountOptions = [
   { label: "2x", multiplier: 2 },
 ];
 
+export const roundedButtonWidth = "43px";
 export const buttonMaxWidth = "5.31rem";
 export const buttonWidth = {
   xxs: "4rem",

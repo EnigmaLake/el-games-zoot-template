@@ -1,10 +1,7 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
-import { GreenButton, Text } from "../../../../design-system";
+import { Flex } from "@chakra-ui/react";
 
-import { GameActions } from "./GameActions";
-
-import { PlayAmountMultiplier } from "./PlayAmountMultiplier";
-import { PlayAmountOptions } from "./PlayAmountOptions";
+import { GameControlsMobile } from "./GameControlsMobile";
+import { GameControlsDesktop } from "./GameControlsDesktop";
 
 interface GameControlsProps {
   onClick: () => void;
@@ -17,75 +14,45 @@ export const GameControlsContainer = ({
   onClick,
   disableControllers,
 }: GameControlsProps) => {
-  const isMobile = useBreakpointValue({
-    lg: false,
-    xs: true,
-    sm: true,
-    base: false,
-    "2sm": true,
-  });
-
-  if (isMobile) {
-    return (
-      <Flex
-        w="full"
-        h={PLAY_CONTROLLER_HEIGHT}
-        direction="column"
-        gap={{ xs: 2, base: 4 }}
-        justifyContent="center"
-      >
-        <Flex alignItems="center" justifyContent="center">
-          <GreenButton
-            width="fit-content"
-            borderRadius="xxl"
-            onClick={onClick}
-            disabled={disableControllers}
-          >
-            <Text variant="base-callout"> Play now </Text>
-          </GreenButton>
-        </Flex>
-
-        <Flex
-          alignItems="center"
-          w="full"
-          justifyContent="center"
-          gap={{ xs: 1, base: 2 }}
-        >
-          <GameActions disabled={disableControllers} />
-          <PlayAmountMultiplier disabled={disableControllers} />
-        </Flex>
-        <PlayAmountOptions disabled={disableControllers} />
-      </Flex>
-    );
-  }
-
   return (
-    <Flex
-      w="full"
-      h={PLAY_CONTROLLER_HEIGHT}
-      direction="column"
-      gap={{ xs: 2, base: 4 }}
-      justifyContent="center"
-    >
-      <PlayAmountOptions disabled={disableControllers} />
-      <Flex alignItems="center" justifyContent="center">
-        <GreenButton
-          width="fit-content"
-          borderRadius="xxl"
+    <Flex h={PLAY_CONTROLLER_HEIGHT}>
+      <Flex
+        display={{
+          lg: "none",
+          xl: "none",
+          xs: "flex",
+          sm: "flex",
+          base: "flex",
+          "2sm": "flex",
+        }}
+        w="full"
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <GameControlsMobile
           onClick={onClick}
-          disabled={disableControllers}
-        >
-          <Text variant="base-callout">Play now</Text>
-        </GreenButton>
+          disableControllers={disableControllers}
+        />
       </Flex>
       <Flex
-        alignItems="center"
+        display={{
+          lg: "flex",
+          xl: "flex",
+          xs: "none",
+          sm: "none",
+          base: "none",
+          "2sm": "none",
+        }}
         w="full"
+        direction="column"
         justifyContent="center"
-        gap={{ xs: 1, base: 2 }}
+        alignItems="center"
       >
-        <GameActions disabled={disableControllers} />
-        <PlayAmountMultiplier disabled={disableControllers} />
+        <GameControlsDesktop
+          onClick={onClick}
+          disableControllers={disableControllers}
+        />
       </Flex>
     </Flex>
   );
