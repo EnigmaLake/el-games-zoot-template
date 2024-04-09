@@ -8,8 +8,8 @@ import {
   GoldCurrency,
   SweepsCurrency,
   Text,
-} from "../../../../../design-system";
-import { buttonMaxWidth } from "./constants";
+} from "../../../../design-system";
+import { buttonMaxWidth } from "./utils";
 
 interface CurrencySelectorProps {
   currency: string;

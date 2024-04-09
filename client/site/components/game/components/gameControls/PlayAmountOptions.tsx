@@ -2,23 +2,19 @@ import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 import { Ref, useEffect, useRef } from "react";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
-import {
-  NumberInput,
-  SecondaryButton,
-  Text,
-} from "../../../../../design-system";
+import { NumberInput, SecondaryButton, Text } from "../../../../design-system";
 import {
   buttonWidth,
   minimumValue,
   maximumValue,
   getDefaultPlayValues,
-} from "./constants";
+} from "./utils";
 
-import { formatBigNumber } from "../../../utils/formatting";
-import { useBalanceAtom } from "../../../../../recoil/state/balance";
+import { formatBigNumber } from "../../utils/formatting";
+import { useBalanceAtom } from "../../../../recoil/state/balance";
 import { useRecoilState } from "recoil";
-import { useCurrencyAtom } from "../../../../../recoil/state/walletCurrency";
-import { usePlayAmount } from "../../../../../hooks/usePlayAmount";
+import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 
 interface PlayAmountOptionsProps {
   disabled?: boolean;

@@ -1,8 +1,8 @@
 import { Flex, Text } from "@chakra-ui/react";
 
-import { SecondaryButton } from "../../../../../design-system";
-import { buttonWidth, minimumValue, multiplyAmountOptions } from "./constants";
-import { usePlayAmount } from "../../../../../hooks/usePlayAmount";
+import { SecondaryButton } from "../../../../design-system";
+import { buttonWidth, minimumValue, multiplyAmountOptions } from "./utils";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 
 export const PlayAmountMultiplier = ({ disabled }: { disabled?: boolean }) => {
   const { playAmount, setPlayAmount } = usePlayAmount();

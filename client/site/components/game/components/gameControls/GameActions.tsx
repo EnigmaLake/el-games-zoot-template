@@ -2,11 +2,11 @@ import { Flex } from "@chakra-ui/react";
 
 import { CurrencySelector } from "./CurrencySelector";
 
-import { Reload, SecondaryButton } from "../../../../../design-system";
-import { buttonWidth } from "./constants";
-import { useCurrencyAtom } from "../../../../../recoil/state/walletCurrency";
+import { Reload, SecondaryButton } from "../../../../design-system";
+import { buttonWidth } from "./utils";
+import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
 import { useRecoilState } from "recoil";
-import { usePlayAmount } from "../../../../../hooks/usePlayAmount";
+import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 
 export const GameActions = () => {
   const [currency, setCurrency] = useRecoilState(useCurrencyAtom);
