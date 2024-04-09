@@ -14,7 +14,9 @@ npm install
 
 Next, create a copy of `.env.example` in the client directory named `.env` and set up the game environment variables.
 
-If you need the socket version, you can configure it like this:
+### Game with RGS socket
+
+If your game use the socket, you can configure it like this:
 
 ```js
 # SOCKET version
@@ -24,7 +26,15 @@ NEXT_PUBLIC_DISPLAY_GAME_NAME=Game Name
 NEXT_PUBLIC_SOCKET_PATH=game-name
 ```
 
-If you need the API version, you can configure it like this:
+You can begin editing the page by modifying `./site/components/game/components/grid/SocketGameScene.tsx` to suit your needs. The page will automatically update as you make changes to the file.
+
+You can render your game view in `SocketGameScene` and update the game state accordingly.
+
+Feel free to add additional information to the `registerPlay` payload.
+
+### Game with RGS API
+
+If your games use the API, you can configure it like this:
 
 ```js
 
@@ -33,14 +43,24 @@ NEXT_PUBLIC_EL_ZOOT_GAME_SERVER_URL=http://zoot-template-game-api.enigmalakecasi
 NEXT_PUBLIC_DISPLAY_GAME_NAME=Game Name
 ```
 
+You can begin editing the page by modifying `./site/components/game/components/grid/APIGameScene.tsx` to suit your needs. The page will automatically update as you make changes to the file.
+
+You can render your game view in `APIGameScene` and update the game state accordingly.
+
+Feel free to add additional information to the `registerPlay` payload.
+
+### Start the client server
+
 Then, execute the command to run the application locally, and open [http://localhost:3000](http://localhost:3000) in your browser to view the result.
 
 ```bash
  npm run dev
 ```
 
-You can begin editing the page by modifying `./site/components/game/components/grid/APIGameScene.tsx` or `./site/components/game/components/grid/SocketGameScene.tsx` to suit your needs. The page will automatically update as you make changes to the file.
+### Zoot Game Integration SDK
 
-The `./site/components/gameBasicGamePage` component facilitates communication with our platform by listening to EL events and configuring user information, user session, user balance, and currency. Furthermore, it allows you to request layout adjustments and expand the game view from our platform. All events are handled by our [Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)
+The `./site/components/game/BasicGamePage.tsx` component facilitates communication with our platform by listening to EL events and configuring **user information**, **user session**, **user balance**, and **currency**.
 
-You can render your game view in `APIGameScene` or `SocketGameScene` and update the game state accordingly.
+Furthermore, it allows you to request layout adjustments and **expand / collapse** the game view on our platform.
+
+All events are handled by our **[Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)**

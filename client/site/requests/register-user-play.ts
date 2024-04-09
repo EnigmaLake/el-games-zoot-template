@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 import { CoinType, PlayResult } from "../components/game/utils/types";
 
-export const registerUserPlay = async ({
+export const registerPlay = async ({
   playAmountInCents,
   userId,
   userNickname,

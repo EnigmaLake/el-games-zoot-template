@@ -23,7 +23,7 @@ import { IN_CENTS } from "../../utils/formatting";
 import { identity } from "../../../../recoil/state/identity";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
-import { registerUserPlay } from "../../../../requests/register-user-play";
+import { registerPlay } from "../../../../requests/register-user-play";
 import { GameControlsContainer } from "../gameControls/GameControlsContainer";
 
 export const APIGameScene = () => {
@@ -43,7 +43,7 @@ export const APIGameScene = () => {
   const onPlayClick = async () => {
     try {
       setDisableController(true);
-      await registerUserPlay({
+      await registerPlay({
         playAmountInCents: playAmount * IN_CENTS,
         userId: userInformation.userId,
         userNickname: userInformation.userNickname,
