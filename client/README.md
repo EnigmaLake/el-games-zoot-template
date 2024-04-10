@@ -1,4 +1,4 @@
-# EL Zoot Game Client Template
+# Zoot Game Client Template
 
 The **Zoot Game Client Template** project is a **Nextjs** project designed to seamlessly integrate games into the **_Zoot_** platform.
 
