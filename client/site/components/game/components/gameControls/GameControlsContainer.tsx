@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 
 import { GameControlsMobile } from "./GameControlsMobile";
 import { GameControlsDesktop } from "./GameControlsDesktop";
+import React, { useEffect, useState } from "react";
 
 interface GameControlsProps {
   onClick: () => void;
@@ -14,46 +15,38 @@ export const GameControlsContainer = ({
   onClick,
   disableControllers,
 }: GameControlsProps) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Flex h={PLAY_CONTROLLER_HEIGHT}>
-      <Flex
-        display={{
-          lg: "none",
-          xl: "none",
-          xs: "flex",
-          sm: "flex",
-          base: "flex",
-          "2sm": "flex",
-        }}
-        w="full"
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <GameControlsMobile
-          onClick={onClick}
-          disableControllers={disableControllers}
-        />
-      </Flex>
-      <Flex
-        display={{
-          lg: "flex",
-          xl: "flex",
-          xs: "none",
-          sm: "none",
-          base: "none",
-          "2sm": "none",
-        }}
-        w="full"
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+    <Flex
+      h={PLAY_CONTROLLER_HEIGHT}
+      w="full"
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      {screenWidth > 900 ? (
         <GameControlsDesktop
           onClick={onClick}
           disableControllers={disableControllers}
         />
-      </Flex>
+      ) : (
+        <GameControlsMobile
+          onClick={onClick}
+          disableControllers={disableControllers}
+        />
+      )}
     </Flex>
   );
 };
