@@ -1,4 +1,4 @@
-# @enigma-lake/el-games-template
+# Zoot Game Server Template
 
 ### To start the server
 
