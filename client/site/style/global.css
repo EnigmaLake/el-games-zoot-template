@@ -90,3 +90,9 @@ a {
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
+
+.game-container {
+  height: calc(100vh - 295px) !important;
+  width: 100%;
+  background-color: #10243f;
+}
