@@ -78,9 +78,7 @@ export const APIGameScene = () => {
   return (
     <Flex direction="column" w="full">
       <Flex
-        w="full"
-        h="40vh"
-        bg="black850"
+        className="game-container"
         px={10}
         alignItems="center"
         justifyItems="center"
