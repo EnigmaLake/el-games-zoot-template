@@ -1,10 +1,8 @@
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
-import { GreenButton, Text } from "../../../../design-system";
+import { Flex } from "@chakra-ui/react";
 
-import { GameActions } from "./GameActions";
-
-import { PlayAmountMultiplier } from "./PlayAmountMultiplier";
-import { PlayAmountOptions } from "./PlayAmountOptions";
+import { GameControlsMobile } from "./GameControlsMobile";
+import { GameControlsDesktop } from "./GameControlsDesktop";
+import React, { useEffect, useState } from "react";
 
 interface GameControlsProps {
   onClick: () => void;
@@ -17,76 +15,38 @@ export const GameControlsContainer = ({
   onClick,
   disableControllers,
 }: GameControlsProps) => {
-  const isMobile = useBreakpointValue({
-    lg: false,
-    xs: true,
-    sm: true,
-    base: false,
-    "2sm": true,
-  });
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
 
-  if (isMobile) {
-    return (
-      <Flex
-        w="full"
-        h={PLAY_CONTROLLER_HEIGHT}
-        direction="column"
-        gap={{ xs: 2, base: 4 }}
-        justifyContent="center"
-      >
-        <Flex alignItems="center" justifyContent="center">
-          <GreenButton
-            width="fit-content"
-            borderRadius="xxl"
-            onClick={onClick}
-            disabled={disableControllers}
-          >
-            <Text variant="base-callout"> Play now </Text>
-          </GreenButton>
-        </Flex>
+    window.addEventListener("resize", handleResize);
 
-        <Flex
-          alignItems="center"
-          w="full"
-          justifyContent="center"
-          gap={{ xs: 1, base: 2 }}
-        >
-          <GameActions disabled={disableControllers} />
-          <PlayAmountMultiplier disabled={disableControllers} />
-        </Flex>
-        <PlayAmountOptions disabled={disableControllers} />
-      </Flex>
-    );
-  }
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Flex
-      w="full"
       h={PLAY_CONTROLLER_HEIGHT}
+      w="full"
       direction="column"
-      gap={{ xs: 2, base: 4 }}
       justifyContent="center"
+      alignItems="center"
     >
-      <PlayAmountOptions disabled={disableControllers} />
-      <Flex alignItems="center" justifyContent="center">
-        <GreenButton
-          width="fit-content"
-          borderRadius="xxl"
+      {screenWidth > 900 ? (
+        <GameControlsDesktop
           onClick={onClick}
-          disabled={disableControllers}
-        >
-          <Text variant="base-callout">Play now</Text>
-        </GreenButton>
-      </Flex>
-      <Flex
-        alignItems="center"
-        w="full"
-        justifyContent="center"
-        gap={{ xs: 1, base: 2 }}
-      >
-        <GameActions disabled={disableControllers} />
-        <PlayAmountMultiplier disabled={disableControllers} />
-      </Flex>
+          disableControllers={disableControllers}
+        />
+      ) : (
+        <GameControlsMobile
+          onClick={onClick}
+          disableControllers={disableControllers}
+        />
+      )}
     </Flex>
   );
 };
