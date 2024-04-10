@@ -1,4 +1,4 @@
-# El Games Zoot Template
+# Zoot Game Template
 
-- [Client Template ReadMe](./client/README.md)
-- [Server Template ReadMe](./server/README.md)
+- [README: Zoot Client Template](./client/README.md)
+- [README: Zoot Server Template](./server/README.md)
