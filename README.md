@@ -1,4 +1,4 @@
 # Zoot Game Template
 
-- [README: Zoot Client Template](./client/README.md)
-- [README: Zoot Server Template](./server/README.md)
+- [README: Zoot Game Client Template](./client/README.md)
+- [README: Zoot Game Server Template](./server/README.md)
