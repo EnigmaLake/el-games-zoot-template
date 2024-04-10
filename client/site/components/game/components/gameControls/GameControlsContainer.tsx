@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 
 import { GameControlsMobile } from "./GameControlsMobile";
 import { GameControlsDesktop } from "./GameControlsDesktop";
-import React, { useEffect, useState } from "react";
 
 interface GameControlsProps {
   onClick: () => void;

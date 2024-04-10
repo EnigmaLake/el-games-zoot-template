@@ -1,6 +1,6 @@
-import { Ref, useRef } from "react";
 import { Box } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
+import { Ref, useEffect, useRef } from "react";
 import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
 
 import { maximumValue, minimumValue } from "../utils";
@@ -25,6 +25,10 @@ export const AmountInput = ({
   const availableBalance =
     currency === Currency.SWEEPS ? sweepsBalance : goldBalance;
   const maximumPlayAmount = maximumValue[currency];
+
+  useEffect(() => {
+    inputRef.current?.setValue(playAmount);
+  }, [playAmount]);
 
   return (
     <Box width={{ base: "150px", lg: "250px" }}>
