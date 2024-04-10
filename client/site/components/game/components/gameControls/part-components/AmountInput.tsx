@@ -27,7 +27,7 @@ export const AmountInput = ({
   const maximumPlayAmount = maximumValue[currency];
 
   return (
-    <Box width={{ base: "200px", lg: "250px" }}>
+    <Box width={{ base: "150px", lg: "250px" }}>
       <NumberInput
         ref={inputRef}
         defaultValue={playAmount}

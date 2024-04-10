@@ -9,7 +9,7 @@ export const PlayButton = ({
   disableControllers: boolean;
 }) => {
   return (
-    <Box width="230px">
+    <Box width={{ base: "180px", lg: "230px" }}>
       <GreenButton
         width="full"
         borderRadius="xxl"
