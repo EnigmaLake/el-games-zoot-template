@@ -6,10 +6,9 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
  * forwards the error to the error handler middleware
  */
 export const asyncWrapper = (requestHandler: RequestHandler) => {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      requestHandler(req, res, next);
+      await requestHandler(req, res, next);
     } catch (e) {
       next(e);
     }

@@ -62,26 +62,19 @@ export const createRegisterUserPlayRequestHandler = ({
       );
     }
 
-    try {
-      const play = await registerUserPlay({
-        rgsService,
-        userId,
-        userNickname,
-        playAmountInCents,
-        coinType,
-        userAccessToken,
-      });
+    const play = await registerUserPlay({
+      rgsService,
+      userId,
+      userNickname,
+      playAmountInCents,
+      coinType,
+      userAccessToken,
+    });
 
-      res.send({
-        success: true,
-        message: "User play registered",
-        play,
-      });
-    } catch (e) {
-      res.send({
-        success: false,
-        message: e.message,
-      });
-    }
+    res.send({
+      success: true,
+      message: "User play registered",
+      play,
+    });
   };
 };

@@ -48,7 +48,7 @@ export const registerUserPlay = async ({
     gameRoundUuid,
   });
 
-  const winMultiplier = 0;
+  const winMultiplier = 1;
   const winAmountInCents = Math.round(playAmountInCents * winMultiplier);
   const playWinTimestamp = Date.now();
   const gameRoundCurrentProgressInMs = Date.now() - startTimestamp;

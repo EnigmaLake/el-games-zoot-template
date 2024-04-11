@@ -12,7 +12,7 @@ export const errorHandler = (
   _req: Request,
   res: Response,
   _next: NextFunction
-): void => {
+) => {
   console.error("error", err);
 
   res.status(500).send({
