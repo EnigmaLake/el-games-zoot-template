@@ -2,7 +2,7 @@ import cors from "cors";
 import * as http from "http";
 import express from "express";
 import * as bodyParser from "body-parser";
-import { createRgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+import { createRgsService } from "@enigma-lake/zoot-rgs-sdk";
 
 import { config } from "../config";
 import { errorHandler } from "./middlewars/error-handler";

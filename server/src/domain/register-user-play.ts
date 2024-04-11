@@ -1,4 +1,4 @@
-import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+import { RgsService } from "@enigma-lake/zoot-rgs-sdk";
 import { Play } from "../types";
 
 export const registerUserPlay = async ({
