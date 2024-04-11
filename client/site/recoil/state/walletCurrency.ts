@@ -1,4 +1,4 @@
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { Currency } from "@enigma-lake/zoot-platform-sdk";
 import { atom, useRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
 

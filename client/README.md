@@ -63,4 +63,4 @@ The `./site/components/game/BasicGamePage.tsx` component facilitates communicati
 
 Furthermore, it allows you to request layout adjustments and **expand / collapse** the game view on our platform.
 
-All events are handled by our **[Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-game-integration-sdk)**
+All events are handled by our **[Enigma Lake Zoot - Game Integration SDK](https://www.npmjs.com/package/@enigma-lake/zoot-platform-sdk)**

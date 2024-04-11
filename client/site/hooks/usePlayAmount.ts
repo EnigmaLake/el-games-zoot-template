@@ -1,4 +1,4 @@
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { Currency } from "@enigma-lake/zoot-platform-sdk";
 
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect } from "react";

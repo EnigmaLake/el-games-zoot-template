@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 import {
   EVENTS,
   requestInitData,
-} from "@enigma-lake/zoot-game-integration-sdk";
+} from "@enigma-lake/zoot-platform-sdk";
 
 import { identity } from "../../recoil/state/identity";
 import { useBalanceAtom } from "../../recoil/state/balance";

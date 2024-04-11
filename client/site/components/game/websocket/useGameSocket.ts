@@ -4,7 +4,7 @@ import {
   loginUserEvent,
   purchaseCoinsEvent,
   UserInformation,
-} from "@enigma-lake/zoot-game-integration-sdk";
+} from "@enigma-lake/zoot-platform-sdk";
 
 import {
   CLIENT_TO_SERVER_EVENTS,

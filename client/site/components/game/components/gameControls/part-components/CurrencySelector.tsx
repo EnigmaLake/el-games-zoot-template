@@ -1,7 +1,7 @@
 import {
   Currency,
   sendSetUserCurrencyEvent,
-} from "@enigma-lake/zoot-game-integration-sdk";
+} from "@enigma-lake/zoot-platform-sdk";
 import {
   Dropdown,
   DropdownOption,

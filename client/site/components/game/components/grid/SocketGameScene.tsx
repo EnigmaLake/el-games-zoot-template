@@ -4,7 +4,7 @@ import { Socket } from "socket.io-client";
 import {
   purchaseCoinsEvent,
   loginUserEvent,
-} from "@enigma-lake/zoot-game-integration-sdk";
+} from "@enigma-lake/zoot-platform-sdk";
 import { useDebouncedCallback } from "use-debounce";
 import { useRecoilState, useRecoilValue } from "recoil";
 

@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { useRecoilState } from "recoil";
 import { Ref, useEffect, useRef } from "react";
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { Currency } from "@enigma-lake/zoot-platform-sdk";
 
 import { maximumValue, minimumValue } from "../utils";
 import { NumberInput } from "../../../../../design-system";

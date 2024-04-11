@@ -1,4 +1,4 @@
-import { toggleGameViewEvent } from "@enigma-lake/zoot-game-integration-sdk";
+import { toggleGameViewEvent } from "@enigma-lake/zoot-platform-sdk";
 import { useRecoilState } from "recoil";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 

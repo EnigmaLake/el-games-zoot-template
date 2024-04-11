@@ -1,4 +1,4 @@
-import { Currency } from "@enigma-lake/zoot-game-integration-sdk";
+import { Currency } from "@enigma-lake/zoot-platform-sdk";
 
 export const multiplyAmountOptions = [
   { label: "1/2", multiplier: 0.5 },

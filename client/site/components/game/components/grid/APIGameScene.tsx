@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react";
 import {
   purchaseCoinsEvent,
   loginUserEvent,
-} from "@enigma-lake/zoot-game-integration-sdk";
+} from "@enigma-lake/zoot-platform-sdk";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import {
