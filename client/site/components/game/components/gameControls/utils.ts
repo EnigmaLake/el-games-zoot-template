@@ -8,10 +8,10 @@ export const multiplyAmountOptions = [
 export const roundedButtonWidth = "43px";
 export const buttonMaxWidth = "5.31rem";
 export const buttonWidth = {
-  xxs: "4rem",
-  xs: "4rem",
-  sm: "4rem",
-  "2sm": "4rem",
+  xxs: "100%",
+  xs: "100%",
+  sm: "100%",
+  "2sm": "100%",
   md: buttonMaxWidth,
   base: buttonMaxWidth,
   lg: buttonMaxWidth,
