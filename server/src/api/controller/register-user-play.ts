@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { RgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+import { RgsService } from "@enigma-lake/zoot-rgs-sdk";
 
 import { CoinType } from "../../types";
 import { registerUserPlay } from "../../domain/register-user-play";

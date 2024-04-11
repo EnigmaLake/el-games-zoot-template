@@ -1,4 +1,4 @@
-import { createRgsService } from "@enigma-lake/zoot-game-rgs-service-sdk";
+import { createRgsService } from "@enigma-lake/zoot-rgs-sdk";
 
 import { config } from "./config";
 import { IncomingSocketEventPayload } from "./types";
