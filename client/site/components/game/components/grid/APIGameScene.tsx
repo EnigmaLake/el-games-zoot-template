@@ -61,7 +61,6 @@ export const APIGameScene = () => {
 
       setDisableController(false);
     } catch (e) {
-      console.error(e);
       let reason = "General error";
       let toastType: ToastType = "error";
 

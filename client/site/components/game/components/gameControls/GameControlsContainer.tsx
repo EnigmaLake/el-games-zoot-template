@@ -36,7 +36,7 @@ export const GameControlsContainer = ({
       justifyContent="center"
       alignItems="center"
     >
-      {screenWidth > 800 ? (
+      {screenWidth > 700 ? (
         <GameControlsDesktop
           onClick={onClick}
           disableControllers={disableControllers}
