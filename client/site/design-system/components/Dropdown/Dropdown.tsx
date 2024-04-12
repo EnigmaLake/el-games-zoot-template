@@ -189,7 +189,9 @@ export const Dropdown: FC<DropdownProps> = (props) => {
                 )}
               </Flex>
             </MenuButton>
-            <MenuList sx={styles.list}>
+            <MenuList
+              sx={{ ...styles.list, maxHeight: "200px", overflowY: "auto" }}
+            >
               <MenuOptionGroup type={isMultiSelect ? "checkbox" : "radio"}>
                 {React.Children.map(
                   children as unknown as DropdownOptionProps[],
