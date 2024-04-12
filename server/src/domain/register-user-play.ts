@@ -1,5 +1,7 @@
 import { RgsService } from "@enigma-lake/zoot-rgs-sdk";
+
 import { Play } from "../types";
+import { generateRoundMultiplier } from "../rng/generate-round-multiplier";
 
 export const registerUserPlay = async ({
   rgsService,
@@ -48,8 +50,8 @@ export const registerUserPlay = async ({
     gameRoundUuid,
   });
 
-  const winMultiplier = 1;
-  const winAmountInCents = Math.round(playAmountInCents * winMultiplier);
+  const { roundMultiplier } = generateRoundMultiplier();
+  const winAmountInCents = Math.round(playAmountInCents * roundMultiplier);
   const playWinTimestamp = Date.now();
   const gameRoundCurrentProgressInMs = Date.now() - startTimestamp;
 
@@ -66,7 +68,7 @@ export const registerUserPlay = async ({
       userNickname,
       gameRoundUuid,
       winAmountInCents,
-      winMultiplier: winMultiplier.toString(),
+      winMultiplier: roundMultiplier.toString(),
       playWinTimestamp,
       gameRoundCurrentProgressInMs,
     });
@@ -74,9 +76,9 @@ export const registerUserPlay = async ({
 
   await rgsService.completeGameRound({
     gameRoundUuid,
-    winMultiplier: winMultiplier.toString(),
+    winMultiplier: roundMultiplier.toString(),
     payload: {
-      crashNumber: winMultiplier,
+      crashNumber: roundMultiplier,
       gameRoundEndTimeInMs: Date.now(),
     },
   });
@@ -88,7 +90,7 @@ export const registerUserPlay = async ({
     userNickname,
     playAmountInCents,
     winAmountInCents,
-    winMultiplier: winMultiplier.toString(),
+    winMultiplier: roundMultiplier.toString(),
     coinType,
   };
 
