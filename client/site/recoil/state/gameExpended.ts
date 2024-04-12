@@ -1,6 +1,12 @@
 import { atom } from "recoil";
 
-export const gameExpendedAtom = atom<boolean>({
+export const gameExpendedAtom = atom<{
+  expanded: boolean;
+  isMobileView: boolean;
+}>({
   key: "isGameExpended",
-  default: false,
+  default: {
+    expanded: false,
+    isMobileView: false,
+  },
 });

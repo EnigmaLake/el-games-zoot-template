@@ -28,7 +28,7 @@
     "@chakra-ui/theme-tools": "^2.0.15",
     "@chakra-ui/utils": "^2.0.13",
     "@emotion/react": "^11.11.3",
-    "@enigma-lake/zoot-platform-sdk": "^1.0.0",
+    "@enigma-lake/zoot-platform-sdk": "^1.0.1",
     "@sentry/nextjs": "^7.38.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/auth0-js": "^9.14.7",
