@@ -1,9 +1,6 @@
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect } from "react";
-import {
-  EVENTS,
-  requestInitData,
-} from "@enigma-lake/zoot-platform-sdk";
+import { EVENTS, requestInitData } from "@enigma-lake/zoot-platform-sdk";
 
 import { identity } from "../../recoil/state/identity";
 import { useBalanceAtom } from "../../recoil/state/balance";
@@ -37,7 +34,7 @@ const BasicGamePage = () => {
       });
     }
     if (event.data.event_id === EVENTS.EL_GET_EXPANDED_GAME_VIEW) {
-      setIsGameExpanded(event.data.data.expanded);
+      setIsGameExpanded(event.data.data);
     }
     if (event.data.event_id === EVENTS.EL_USER_INFORMATION) {
       setLoginInfo({
