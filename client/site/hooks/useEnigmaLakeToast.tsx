@@ -1,4 +1,4 @@
-import { useToast } from "@chakra-ui/react";
+import { ToastPosition, useToast } from "@chakra-ui/react";
 import { FC, ReactNode, useCallback } from "react";
 import {
   EnigmaLakeToastPresetProps,
@@ -16,7 +16,8 @@ type EnigmaLakeToastFunction = (
 ) => void;
 export type EnigmaLakeToastPresetFunction = (
   text: string | ReactNode | null,
-  toastType?: ToastType
+  toastType?: ToastType,
+  position?: ToastPosition
 ) => void;
 
 const TOAST_VISIBILITY_DURATION = 3000;
@@ -89,7 +90,11 @@ export const useEnigmaLakeToastPreset = (options?: {
   const toast = useToast();
 
   return useCallback(
-    (text: string | ReactNode | null, toastType: ToastType = "info") => {
+    (
+      text: string | ReactNode | null,
+      toastType: ToastType = "info",
+      position: ToastPosition = "bottom"
+    ) => {
       const PresetComponent = toastTypeToPresetComponent[toastType];
       const id = `${text}-${toastType}`;
 
@@ -104,6 +109,7 @@ export const useEnigmaLakeToastPreset = (options?: {
         },
         description: text ?? "",
         duration,
+        position: position,
         render: () => (
           <PresetComponent
             key={`${text}-${toastType}`}

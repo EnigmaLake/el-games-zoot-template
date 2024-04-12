@@ -1,3 +1,5 @@
+import { Currency } from "@enigma-lake/zoot-platform-sdk";
+
 export const formatMultiplier = (timePassedInMs: number, prefixed = false) => {
   if (prefixed) {
     return `x${format2Decimals(timePassedInMs)}`;
@@ -10,4 +12,11 @@ export const format2Decimals = (x: number) =>
 
 export const formatBigNumber = (price: number) => price.toLocaleString("en-GB");
 
+export const getCurrencyText = (currency: Currency) => {
+  if (currency === Currency.SWEEPS) {
+    return "SC";
+  } else {
+    return "GC";
+  }
+};
 export const IN_CENTS = 100;

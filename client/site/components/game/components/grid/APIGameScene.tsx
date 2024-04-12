@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, ToastPosition } from "@chakra-ui/react";
 import {
   purchaseCoinsEvent,
   loginUserEvent,
@@ -19,7 +19,7 @@ import {
   useEnigmaLakeToastPreset,
 } from "../../../../hooks/useEnigmaLakeToast";
 import { Text } from "../../../../design-system";
-import { IN_CENTS } from "../../utils/formatting";
+import { getCurrencyText, IN_CENTS } from "../../utils/formatting";
 import { identity } from "../../../../recoil/state/identity";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
 import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
@@ -43,6 +43,7 @@ export const APIGameScene = () => {
   const onPlayClick = async () => {
     try {
       setDisableController(true);
+
       await registerPlay({
         playAmountInCents: playAmount * IN_CENTS,
         userId: userInformation.userId,
@@ -50,6 +51,14 @@ export const APIGameScene = () => {
         userAccessToken: userInformation.accessToken,
         coinType: CoinType[currency],
       });
+
+      const toastType: ToastType = "success";
+      const toastPosition: ToastPosition = "top";
+      const toastMessage: string = `Play registered: ${playAmount} ${getCurrencyText(
+        currency
+      )}`;
+      toast(toastMessage, toastType, toastPosition);
+
       setDisableController(false);
     } catch (e) {
       console.error(e);

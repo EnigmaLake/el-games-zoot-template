@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, ToastPosition } from "@chakra-ui/react";
 import { Socket } from "socket.io-client";
 import {
   purchaseCoinsEvent,
@@ -21,7 +21,7 @@ import {
   useEnigmaLakeToastPreset,
 } from "../../../../hooks/useEnigmaLakeToast";
 import { Text } from "../../../../design-system";
-import { IN_CENTS } from "../../utils/formatting";
+import { getCurrencyText, IN_CENTS } from "../../utils/formatting";
 import { identity } from "../../../../recoil/state/identity";
 import { useGameSocket } from "../../websocket/useGameSocket";
 import { usePlayAmount } from "../../../../hooks/usePlayAmount";
@@ -56,6 +56,13 @@ export const SocketGameScene = ({ socket }: { socket: Socket }) => {
           },
           userInformation,
         });
+
+        const toastType: ToastType = "success";
+        const toastPosition: ToastPosition = "top";
+        const toastMessage: string = `Play registered: ${playAmount} ${getCurrencyText(
+          currency
+        )}`;
+        toast(toastMessage, toastType, toastPosition);
 
         setDisableController(false);
       } catch (e) {
