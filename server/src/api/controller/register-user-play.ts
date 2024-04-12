@@ -62,19 +62,29 @@ export const createRegisterUserPlayRequestHandler = ({
       );
     }
 
-    const play = await registerUserPlay({
-      rgsService,
-      userId,
-      userNickname,
-      playAmountInCents,
-      coinType,
-      userAccessToken,
-    });
+    try {
+      const play = await registerUserPlay({
+        rgsService,
+        userId,
+        userNickname,
+        playAmountInCents,
+        coinType,
+        userAccessToken,
+      });
 
-    res.send({
-      success: true,
-      message: "User play registered",
-      play,
-    });
+      res.send({
+        success: true,
+        message: "User play registered",
+        play,
+      });
+    } catch (e) {
+      if (e?.response.status === 403) {
+        throw new Error(
+          JSON.stringify({ message: "Guest users cannot play game rounds" })
+        );
+      }
+
+      throw new Error(JSON.stringify({ message: e.response.data.message }));
+    }
   };
 };

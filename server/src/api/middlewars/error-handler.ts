@@ -13,10 +13,10 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  console.error("error", err);
+  const error = JSON.parse(err.message);
 
   res.status(500).send({
     errorCode: 1,
-    message: JSON.parse(err.message),
+    message: error.message,
   });
 };

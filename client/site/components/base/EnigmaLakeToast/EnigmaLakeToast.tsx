@@ -17,7 +17,7 @@ export interface EnigmaLakeToastPresetProps {
 }
 
 const style: SystemStyleObject = {
-  bgColor: "background-level-1",
+  bgColor: "toast-bg-primary",
   borderColor: "rgba(30, 51, 82, 0.48)",
   borderRadius: "smBase",
   borderStyle: "solid",

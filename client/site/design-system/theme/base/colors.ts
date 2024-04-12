@@ -91,6 +91,8 @@ const colors = {
   "success-background": "var(--chakra-colors-green900)",
   "success-primary": "var(--chakra-colors-green300)",
 
+  "toast-bg-primary": "var(--chakra-colors-blue600)",
+
   "currency-eth": "#CBA9F6",
   "currency-gods": "#F3DBA3",
   "currency-usdc": "#6FAAEF",
