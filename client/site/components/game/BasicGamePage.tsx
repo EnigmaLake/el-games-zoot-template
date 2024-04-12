@@ -1,9 +1,6 @@
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect } from "react";
-import {
-  EVENTS,
-  requestInitData,
-} from "@enigma-lake/zoot-platform-sdk";
+import { EVENTS, requestInitData } from "@enigma-lake/zoot-platform-sdk";
 
 import { identity } from "../../recoil/state/identity";
 import { useBalanceAtom } from "../../recoil/state/balance";

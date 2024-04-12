@@ -1,6 +1,6 @@
 import { toggleGameViewEvent } from "@enigma-lake/zoot-platform-sdk";
 import { useRecoilState } from "recoil";
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 import {
   Compress,
@@ -13,17 +13,6 @@ import { gameExpendedAtom } from "../../../../recoil/state/gameExpended";
 
 export const GameHeader = () => {
   const [isGameExpanded] = useRecoilState(gameExpendedAtom);
-
-  const isMobile = useBreakpointValue({
-    xl: false,
-    lg: false,
-    md: false,
-    base: false,
-    "2sm": false,
-    sm: true,
-    xs: true,
-    xxs: true,
-  });
 
   return (
     <Flex
@@ -45,15 +34,20 @@ export const GameHeader = () => {
             )}
           </Flex>
         </SecondaryButton> */}
-        {!isMobile && (
+        {!isGameExpanded.isMobileView && (
           <SecondaryButton
             borderRadius="xxl"
-            onClick={() => toggleGameViewEvent({ expanded: !isGameExpanded })}
+            onClick={() =>
+              toggleGameViewEvent({
+                ...isGameExpanded,
+                expanded: !isGameExpanded.expanded,
+              })
+            }
           >
             <Flex alignItems="center" gap={1}>
-              {isGameExpanded ? <Compress /> : <Frame />}
+              {isGameExpanded.expanded ? <Compress /> : <Frame />}
               <Text variant="small" color="secondary">
-                {isGameExpanded ? "Compress" : "Expand"}
+                {isGameExpanded.expanded ? "Compress" : "Expand"}
               </Text>
             </Flex>
           </SecondaryButton>
