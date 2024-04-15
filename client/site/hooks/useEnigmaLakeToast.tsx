@@ -79,6 +79,7 @@ export const useEnigmaLakeToastPreset = (options?: {
   iconHeight?: number;
   iconWidth?: number;
   customIcon?: ReactNode;
+  uniqueToast?: boolean;
 }): EnigmaLakeToastPresetFunction => {
   const {
     preventOverlapping = false,
@@ -86,6 +87,7 @@ export const useEnigmaLakeToastPreset = (options?: {
     iconHeight = 4,
     iconWidth = 4,
     customIcon,
+    uniqueToast = false,
   } = options ?? {};
   const toast = useToast();
 
@@ -97,6 +99,10 @@ export const useEnigmaLakeToastPreset = (options?: {
     ) => {
       const PresetComponent = toastTypeToPresetComponent[toastType];
       const id = `${text}-${toastType}`;
+
+      if (uniqueToast) {
+        toast.closeAll();
+      }
 
       if (toast.isActive(id) && preventOverlapping) {
         return null;

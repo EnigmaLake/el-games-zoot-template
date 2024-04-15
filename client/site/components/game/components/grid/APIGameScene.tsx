@@ -31,7 +31,7 @@ export const APIGameScene = () => {
   const [currency] = useRecoilState(useCurrencyAtom);
   const [disableController, setDisableController] = useState(false);
   const { playAmount } = usePlayAmount();
-  const toast = useEnigmaLakeToastPreset();
+  const toast = useEnigmaLakeToastPreset({ uniqueToast: true });
 
   const userInformation = {
     userId: loginInfo?.id ?? GUEST_USER_ID,
@@ -44,13 +44,14 @@ export const APIGameScene = () => {
     try {
       setDisableController(true);
 
-      await registerPlay({
+      const response = await registerPlay({
         playAmountInCents: playAmount * IN_CENTS,
         userId: userInformation.userId,
         userNickname: userInformation.userNickname,
         userAccessToken: userInformation.accessToken,
         coinType: CoinType[currency],
       });
+      console.log("response", response);
 
       const toastType: ToastType = "success";
       const toastPosition: ToastPosition = "top";
@@ -58,6 +59,13 @@ export const APIGameScene = () => {
         currency
       )}`;
       toast(toastMessage, toastType, toastPosition);
+
+      setTimeout(() => {
+        const winToastMessage = `You have won ${
+          response.play.winAmountInCents / IN_CENTS
+        } ${getCurrencyText(currency)}`;
+        toast(winToastMessage, toastType, toastPosition);
+      }, 1000);
 
       setDisableController(false);
     } catch (e) {
