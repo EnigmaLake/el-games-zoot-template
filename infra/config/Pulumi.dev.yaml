@@ -1,0 +1,14 @@
+config:
+  aws:region: us-east-1
+
+  el-games-tmp:coreStackReference: EnigmaLake/el-infrastructure/dev
+
+  el-rgs:hostZoneId: "Z027522511XJ2KFUBBU5T"
+  el-rgs:hostZoneName: "dev.enigmalakecasino.com"
+  el-rgs:acmCertificateArn: "arn:aws:acm:us-east-1:975050265930:certificate/75161930-29bc-4d3b-b3b7-61ce8d011912"
+
+  el-games-tmp:logsRetentionInDays: "1"
+
+  el-games-tmp:rgsGameId: -1
+  el-games-tmp:rgsApiHost: "https://rgs.dev.enigmalakecasino.com"
+  el-games-tmp:rgsBearerTokenArn: arn:aws:secretsmanager:us-east-1:975050002907:secret:el-infrastructure-prod-el-rgs-bearer-token-HyAcOh
