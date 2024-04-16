@@ -16,7 +16,7 @@ jobs:
           node-version: 18.x
 
       - name: Run ESLint on Client
-        run: cd client && npm run eslint:check
+        run: cd client && npm install && npm run eslint:check
 #        working-directory: ./client
 #
 #      - name: [Client] Run Prettier
