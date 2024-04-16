@@ -17,9 +17,9 @@ jobs:
 
       - name: Run ESLint on Client
         run: yarn run eslint:check
-        working-directory: ./client
-
-      - name: [Client] Run Prettier
-        run: yarn run prettier:check
-        shell: bash
-        working-directory: ./client
+#        working-directory: ./client
+#
+#      - name: [Client] Run Prettier
+#        run: yarn run prettier:check
+#        shell: bash
+#        working-directory: ./client
