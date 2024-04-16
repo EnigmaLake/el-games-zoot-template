@@ -1,4 +1,4 @@
-name: shared
+name: Lint
 on:
   push:
     branches:
@@ -8,9 +8,9 @@ on:
 jobs:
   build:
     name: Code quality checks
-    runs-on: ubuntu-latest-8-cores
+    runs-on: ubuntu-latest
     concurrency:
-      group: ci-${{ github.head_ref }}-shared
+      group: ci-${{ github.head_ref }}
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
