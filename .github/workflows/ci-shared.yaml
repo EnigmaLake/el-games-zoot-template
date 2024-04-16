@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: cd client && npm i
+      - run: pwd && cd client && npm i
       - name: [Client] Run ESLint
         run: cd client && npm run eslint:check
       - name: [Client] Run Prettier
