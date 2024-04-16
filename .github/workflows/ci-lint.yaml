@@ -23,3 +23,12 @@ jobs:
 
       - name: Run Prettier on Client
         run: cd client && npm run prettier:check
+
+      - name: Install Dependencies for Server
+        run: cd server && npm install
+
+      - name: Run ESLint on Client
+        run: cd server && npm run eslint:check
+
+      - name: Run Prettier on Client
+        run: cd server && npm run prettier:check
