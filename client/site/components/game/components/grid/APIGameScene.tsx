@@ -51,7 +51,6 @@ export const APIGameScene = () => {
         userAccessToken: userInformation.accessToken,
         coinType: CoinType[currency],
       });
-      console.log("response", response);
 
       const toastType: ToastType = "success";
       const toastPosition: ToastPosition = "top";
