@@ -6,6 +6,7 @@
     "dev": "npx ts-node-dev -r dotenv/config src/index.ts",
     "build": "tsc -b tsconfig.json",
     "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "eslint": "eslint --cache --fix .",
     "eslint:check": "eslint ."
   },
