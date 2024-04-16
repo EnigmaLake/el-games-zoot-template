@@ -9,22 +9,14 @@ jobs:
   build:
     name: Code quality checks
     runs-on: ubuntu-latest
-    concurrency:
-      group: ci-${{ github.head_ref }}
-      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18.x
 
-      - run: yarn install
-        shell: bash
-        working-directory: ./infra
-
-      - name: [Client] Run ESLint
+      - name: Run ESLint on Client
         run: yarn run eslint:check
-        shell: bash
         working-directory: ./client
 
       - name: [Client] Run Prettier
