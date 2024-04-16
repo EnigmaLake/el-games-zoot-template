@@ -17,11 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "npm"
-          cache-dependency-path: |
-            package-lock.json
-            */package-lock.json
-      - run: npm
+      - run: npm i
       - name: Run ESLint
         run: npm run eslint:check
       - name: Prettier
