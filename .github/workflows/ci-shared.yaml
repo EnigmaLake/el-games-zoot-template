@@ -10,7 +10,7 @@ jobs:
     name: Code quality checks
     runs-on: ubuntu-latest
     concurrency:
-      group: ci-${{ github.head_ref }}-lint
+      group: ci-${{ github.head_ref }}
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
