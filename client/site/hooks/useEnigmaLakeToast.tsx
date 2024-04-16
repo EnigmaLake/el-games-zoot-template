@@ -127,6 +127,14 @@ export const useEnigmaLakeToastPreset = (options?: {
         ),
       });
     },
-    [customIcon, duration, iconHeight, iconWidth, preventOverlapping, toast]
+    [
+      customIcon,
+      duration,
+      iconHeight,
+      iconWidth,
+      preventOverlapping,
+      toast,
+      uniqueToast,
+    ]
   );
 };

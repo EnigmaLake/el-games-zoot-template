@@ -1,0 +1,34 @@
+name: Lint
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    name: Code quality checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies for Client
+        run: cd client && npm install
+
+      - name: Run ESLint on Client
+        run: cd client && npm run eslint:check
+
+      - name: Run Prettier on Client
+        run: cd client && npm run prettier:check
+
+      - name: Install Dependencies for Server
+        run: cd server && npm install
+
+      - name: Run ESLint on Server
+        run: cd server && npm run eslint:check
+
+      - name: Run Prettier on Server
+        run: cd server && npm run prettier:check
