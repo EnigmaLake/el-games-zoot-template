@@ -27,8 +27,8 @@ jobs:
       - name: Install Dependencies for Server
         run: cd server && npm install
 
-      - name: Run ESLint on Client
+      - name: Run ESLint on Server
         run: cd server && npm run eslint:check
 
-      - name: Run Prettier on Client
+      - name: Run Prettier on Server
         run: cd server && npm run prettier:check

@@ -8,6 +8,7 @@ import { Request, Response, NextFunction, RequestHandler } from "express";
 export const asyncWrapper = (requestHandler: RequestHandler) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/await-thenable
       await requestHandler(req, res, next);
     } catch (e) {
       next(e);
