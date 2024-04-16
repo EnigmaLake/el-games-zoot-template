@@ -44,15 +44,6 @@ module.exports = {
     // Rules beyond eslint recommended
     "no-unused-vars": "off",
     "no-nested-ternary": ["error"],
-    "@typescript-eslint/no-restricted-imports": [
-      "error",
-
-      {
-        name: "AQUA",
-        patterns: ["@aquaxyz/*/*"],
-        message: "Do not import from subdirectories of aqua modules",
-      },
-    ],
     "@typescript-eslint/prefer-nullish-coalescing": ["error"],
     "no-unneeded-ternary": ["error"],
     "prefer-object-spread": ["warn"],
