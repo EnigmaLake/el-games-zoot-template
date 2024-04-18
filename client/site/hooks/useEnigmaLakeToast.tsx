@@ -115,7 +115,7 @@ export const useEnigmaLakeToastPreset = (options?: {
         },
         description: text ?? "",
         duration,
-        position: position,
+        position,
         render: () => (
           <PresetComponent
             key={`${text}-${toastType}`}

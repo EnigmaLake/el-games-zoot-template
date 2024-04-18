@@ -16,11 +16,12 @@ export const GameControlsContainer = ({
   disableControllers,
 }: GameControlsProps) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
+  const handleResize = () => {
+    setScreenWidth(window.innerWidth);
+  };
 
+  useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {

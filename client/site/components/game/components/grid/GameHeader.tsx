@@ -34,24 +34,22 @@ export const GameHeader = () => {
             )}
           </Flex>
         </SecondaryButton> */}
-        {!isGameExpanded.isMobileView && (
-          <SecondaryButton
-            borderRadius="xxl"
-            onClick={() =>
-              toggleGameViewEvent({
-                ...isGameExpanded,
-                expanded: !isGameExpanded.expanded,
-              })
-            }
-          >
-            <Flex alignItems="center" gap={1}>
-              {isGameExpanded.expanded ? <Compress /> : <Frame />}
-              <Text variant="small" color="secondary">
-                {isGameExpanded.expanded ? "Compress" : "Expand"}
-              </Text>
-            </Flex>
-          </SecondaryButton>
-        )}
+        <SecondaryButton
+          borderRadius="xxl"
+          onClick={() =>
+            toggleGameViewEvent({
+              ...isGameExpanded,
+              expanded: !isGameExpanded.expanded,
+            })
+          }
+        >
+          <Flex alignItems="center" gap={1}>
+            {isGameExpanded.expanded ? <Compress /> : <Frame />}
+            <Text variant="small" color="secondary">
+              {isGameExpanded.expanded ? "Compress" : "Expand"}
+            </Text>
+          </Flex>
+        </SecondaryButton>
         {/* <SecondaryButton borderRadius="xxl">
           <Flex alignItems="center" gap={1}>
             <Sound />
