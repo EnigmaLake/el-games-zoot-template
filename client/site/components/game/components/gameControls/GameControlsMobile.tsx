@@ -24,7 +24,7 @@ export const GameControlsMobile = ({
   const defaultPlayValues = getDefaultPlayValues(currency);
 
   return (
-    <Flex justifyContent="center" gap={4} flexDir="column" alignItems="center">
+    <Flex justifyContent="center" gap={2} flexDir="column" alignItems="center">
       <Flex gap={2} justifyContent="space-between" w="100%">
         <DefaultValuesButtons
           disableControllers={disableControllers}

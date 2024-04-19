@@ -9,7 +9,7 @@ interface GameControlsProps {
   disableControllers: boolean;
 }
 
-const PLAY_CONTROLLER_HEIGHT = 225;
+const PLAY_CONTROLLER_HEIGHT = 155;
 
 export const GameControlsContainer = ({
   onClick,
