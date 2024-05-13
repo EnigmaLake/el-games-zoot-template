@@ -92,7 +92,8 @@ a {
 }
 
 .game-container {
-  height: calc(100vh - 225px) !important;
+  /*155px is PLAY_CONTROLLER_HEIGHT */
+  height: calc(100vh - 155px) !important;
   width: 100%;
   background-color: #10243f;
 }
