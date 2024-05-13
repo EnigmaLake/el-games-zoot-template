@@ -6,7 +6,7 @@ import { identity } from "../../recoil/state/identity";
 import { useBalanceAtom } from "../../recoil/state/balance";
 import { useCurrencyAtom } from "../../recoil/state/walletCurrency";
 import { gameExpendedAtom } from "../../recoil/state/gameExpended";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { ExpandButton } from "./components/grid/ExpandButton";
 import { APIGameScene } from "./components/grid/APIGameScene";
 import SocketGameWrapper from "./components/wrappers/SocketGameWrapper";
@@ -64,7 +64,9 @@ const BasicGamePage = () => {
       h="full"
       pos="relative"
     >
-      <ExpandButton />
+      <Box pos="absolute" top={4} right={4}>
+        <ExpandButton />
+      </Box>
       {withSocket ? <SocketGameWrapper /> : <APIGameScene />}
     </Flex>
   );
