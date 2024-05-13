@@ -7,7 +7,7 @@ import { useBalanceAtom } from "../../recoil/state/balance";
 import { useCurrencyAtom } from "../../recoil/state/walletCurrency";
 import { gameExpendedAtom } from "../../recoil/state/gameExpended";
 import { Flex } from "@chakra-ui/react";
-import { GameHeader } from "./components/grid/GameHeader";
+import { ExpandButton } from "./components/grid/ExpandButton";
 import { APIGameScene } from "./components/grid/APIGameScene";
 import SocketGameWrapper from "./components/wrappers/SocketGameWrapper";
 
@@ -62,8 +62,9 @@ const BasicGamePage = () => {
       flexDir="column"
       w="full"
       h="full"
+      pos="relative"
     >
-      <GameHeader />
+      <ExpandButton />
       {withSocket ? <SocketGameWrapper /> : <APIGameScene />}
     </Flex>
   );
