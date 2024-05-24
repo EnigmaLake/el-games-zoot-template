@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { GameControlsMobile } from "./GameControlsMobile";
 import { GameControlsDesktop } from "./GameControlsDesktop";
+import { useSetPlayLimitsState } from "../../../../recoil/state/playLimits";
 
 interface GameControlsProps {
   onClick: () => void;
@@ -16,6 +17,8 @@ export const GameControlsContainer = ({
   disableControllers,
 }: GameControlsProps) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [playLimits] = useSetPlayLimitsState();
+
   const handleResize = () => {
     setScreenWidth(window.innerWidth);
   };
@@ -37,16 +40,22 @@ export const GameControlsContainer = ({
       justifyContent="center"
       alignItems="center"
     >
-      {screenWidth > 700 ? (
-        <GameControlsDesktop
-          onClick={onClick}
-          disableControllers={disableControllers}
-        />
-      ) : (
-        <GameControlsMobile
-          onClick={onClick}
-          disableControllers={disableControllers}
-        />
+      {playLimits && (
+        <>
+          {screenWidth > 700 ? (
+            <GameControlsDesktop
+              onClick={onClick}
+              disableControllers={disableControllers}
+              playLimits={playLimits}
+            />
+          ) : (
+            <GameControlsMobile
+              onClick={onClick}
+              disableControllers={disableControllers}
+              playLimits={playLimits}
+            />
+          )}
+        </>
       )}
     </Flex>
   );

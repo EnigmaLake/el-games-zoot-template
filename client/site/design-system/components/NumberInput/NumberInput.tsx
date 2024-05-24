@@ -32,7 +32,7 @@ export const NumberInput: FC<NumberInputProps> = forwardRef(
       onChange: onChangeProp,
       defaultValue,
       placeholder,
-      precision = 0,
+      precision = 2,
       step = 1,
       readOnlyInput,
       error,

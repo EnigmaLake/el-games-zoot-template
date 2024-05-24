@@ -1,7 +1,6 @@
 import { useRecoilState } from "recoil";
 import { Flex } from "@chakra-ui/react";
 
-import { getDefaultPlayValues } from "./utils";
 import { PlayButton } from "./part-components/PlayButton";
 import { AmountInput } from "./part-components/AmountInput";
 import { ReloadButton } from "./part-components/ReloadButton";
@@ -9,27 +8,27 @@ import { CurrencySelector } from "./part-components/CurrencySelector";
 import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
 import { PlayAmountMultiplier } from "./part-components/PlayAmountMultiplier";
 import { DefaultValuesButtons } from "./part-components/DefaultValuesButtons";
+import { PlayLimits } from "@enigma-lake/zoot-platform-sdk";
 
 interface GameControlsDesktopProps {
   onClick: () => void;
   disableControllers: boolean;
+  playLimits: PlayLimits;
 }
 
 export const GameControlsDesktop = ({
   onClick,
   disableControllers,
+  playLimits,
 }: GameControlsDesktopProps) => {
   const [currency, setCurrency] = useRecoilState(useCurrencyAtom);
 
-  const defaultPlayValues = getDefaultPlayValues(currency);
+  const { defaultValues, limits } = playLimits[currency];
 
-  const half_length = Math.ceil(defaultPlayValues?.length / 2);
+  const half_length = Math.ceil(defaultValues.length / 2);
 
-  const leftSide = defaultPlayValues?.slice(0, half_length);
-  const rightSide = defaultPlayValues?.slice(
-    half_length,
-    defaultPlayValues?.length
-  );
+  const leftSide = defaultValues.slice(0, half_length);
+  const rightSide = defaultValues.slice(half_length, defaultValues?.length);
 
   return (
     <Flex
@@ -46,7 +45,7 @@ export const GameControlsDesktop = ({
             defaultPlayValues={leftSide}
           />
         </Flex>
-        <AmountInput disableControllers={disableControllers} />
+        <AmountInput disableControllers={disableControllers} limits={limits} />
         <Flex gap={2}>
           <DefaultValuesButtons
             defaultPlayValues={rightSide}
@@ -64,7 +63,7 @@ export const GameControlsDesktop = ({
           <ReloadButton disableControllers={disableControllers} />
         </Flex>
         <PlayButton onClick={onClick} disableControllers={disableControllers} />
-        <PlayAmountMultiplier disabled={disableControllers} />
+        <PlayAmountMultiplier disabled={disableControllers} limits={limits} />
       </Flex>
     </Flex>
   );
