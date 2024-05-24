@@ -10,12 +10,15 @@ import { Box, Flex } from "@chakra-ui/react";
 import { ExpandButton } from "./components/grid/ExpandButton";
 import { APIGameScene } from "./components/grid/APIGameScene";
 import SocketGameWrapper from "./components/wrappers/SocketGameWrapper";
+import { useSetPlayLimitsState } from "../../recoil/state/playLimits";
 
 const BasicGamePage = () => {
   const [, setIsGameExpanded] = useRecoilState(gameExpendedAtom);
   const [, setBalance] = useRecoilState(useBalanceAtom);
   const [, setCurrency] = useRecoilState(useCurrencyAtom);
   const [, setLoginInfo] = useRecoilState(identity);
+  const [, setPlayLimits] = useSetPlayLimitsState();
+
   const withSocket =
     process.env.NEXT_PUBLIC_USE_SOCKET &&
     process.env.NEXT_PUBLIC_USE_SOCKET === "true";
@@ -38,6 +41,11 @@ const BasicGamePage = () => {
     }
     if (event.data.event_id === EVENTS.EL_USER_INFORMATION) {
       setLoginInfo({
+        ...event.data.data,
+      });
+    }
+    if (event.data.event_id === EVENTS.EL_SET_PLAY_LIMITS) {
+      setPlayLimits({
         ...event.data.data,
       });
     }

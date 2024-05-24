@@ -3,24 +3,22 @@ import { Currency } from "@enigma-lake/zoot-platform-sdk";
 import { useRecoilState } from "recoil";
 import { useCallback, useEffect } from "react";
 
-import {
-  DEFAULT_GOLD_BET_AMOUNT,
-  DEFAULT_SWEEPS_BET_AMOUNT,
-  useLastPlayAtom,
-  usePlayAtom,
-} from "../recoil/state/playAmount";
+import { useLastPlayAtom, usePlayAtom } from "../recoil/state/playAmount";
 import { useCurrencyAtom } from "../recoil/state/walletCurrency";
 import { useBalanceAtom } from "../recoil/state/balance";
+import { useSetPlayLimitsState } from "../recoil/state/playLimits";
 
 interface IPlayAmountHookState {
   playAmount: number;
   setPlayAmount: (amount: number) => void;
   setLastPlayAmount: () => void;
+  availableBalance: number;
 }
 
 export const usePlayAmount = (): IPlayAmountHookState => {
   const [balance] = useRecoilState(useBalanceAtom);
   const [currency] = useRecoilState(useCurrencyAtom);
+  const [playLimits] = useSetPlayLimitsState();
 
   const availableBalance =
     currency === Currency.SWEEPS ? balance.sweepsBalance : balance.goldBalance;
@@ -34,28 +32,36 @@ export const usePlayAmount = (): IPlayAmountHookState => {
     }
   };
 
+  useEffect(() => {
+    if (playLimits) {
+      setPlayAmount(playLimits[currency].limits.min);
+      setLastPlayAmount(playLimits[currency].limits.min);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playLimits, currency]);
+
   const handleSetLastPlayAmount = () => {
     if (lastPlayAmount <= availableBalance) {
       setLastPlayAmount(lastPlayAmount);
-    } else {
-      setLastPlayAmount(availableBalance);
+    } else if (playLimits) {
+      setLastPlayAmount(playLimits[currency].limits.min);
     }
   };
 
-  const resetPlayAmount = useCallback(() => {
-    setPlayAmount(
-      currency === Currency.SWEEPS
-        ? DEFAULT_SWEEPS_BET_AMOUNT
-        : DEFAULT_GOLD_BET_AMOUNT
-    );
-  }, [currency, setPlayAmount]);
-
   useEffect(() => {
     resetPlayAmount();
-  }, [resetPlayAmount]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const resetPlayAmount = useCallback(() => {
+    if (playLimits) {
+      setPlayAmount(playLimits[currency].limits.min);
+    }
+  }, [currency, playLimits, setPlayAmount]);
 
   return {
     playAmount,
+    availableBalance,
     setPlayAmount: handleSetPlayAmount,
     setLastPlayAmount: handleSetLastPlayAmount,
   };

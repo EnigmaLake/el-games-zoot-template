@@ -22,7 +22,6 @@ If your game use the socket, you can configure it like this:
 # SOCKET version
 NEXT_PUBLIC_USE_SOCKET= false
 NEXT_PUBLIC_EL_ZOOT_GAME_SOCKET_URL=wss://zoot-template-game-api.enigmalakecasino.com
-NEXT_PUBLIC_DISPLAY_GAME_NAME=Game Name
 NEXT_PUBLIC_SOCKET_PATH=game-name
 ```
 
@@ -40,7 +39,6 @@ If your games use the API, you can configure it like this:
 
 # HTTP version
 NEXT_PUBLIC_EL_ZOOT_GAME_SERVER_URL=http://zoot-template-game-api.enigmalakecasino.com
-NEXT_PUBLIC_DISPLAY_GAME_NAME=Game Name
 ```
 
 You can begin editing the page by modifying `./site/components/game/components/grid/APIGameScene.tsx` to suit your needs. The page will automatically update as you make changes to the file.
