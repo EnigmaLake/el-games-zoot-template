@@ -43,7 +43,11 @@ export const GameControlsMobile = ({
           setCurrency={setCurrency}
           currency={currency}
         />
-        <PlayButton onClick={onClick} disableControllers={disableControllers} />
+        <PlayButton
+          onClick={onClick}
+          disableControllers={disableControllers}
+          currency={currency}
+        />
         <Box />
       </Flex>
     </Flex>

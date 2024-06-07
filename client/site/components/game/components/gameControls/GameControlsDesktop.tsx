@@ -62,7 +62,11 @@ export const GameControlsDesktop = ({
           />
           <ReloadButton disableControllers={disableControllers} />
         </Flex>
-        <PlayButton onClick={onClick} disableControllers={disableControllers} />
+        <PlayButton
+          onClick={onClick}
+          disableControllers={disableControllers}
+          currency={currency}
+        />
         <PlayAmountMultiplier disabled={disableControllers} limits={limits} />
       </Flex>
     </Flex>
