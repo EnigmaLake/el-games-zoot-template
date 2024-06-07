@@ -1,9 +1,6 @@
 // Components
 import { AlertBanner } from "./components/AlertBanner/AlertBanner";
 
-import { YellowButton } from "./components/Button/YellowButton";
-import { GreenButton } from "./components/Button/GreenButton";
-
 import { PrimaryButton } from "./components/Button/PrimaryButton";
 import { SecondaryButton } from "./components/Button/SecondaryButton";
 
@@ -50,6 +47,7 @@ import {
 
 import { Shield } from "./icons/library/Shield";
 import { Frame } from "./icons/library/Frame";
+import { BaseButton } from "./components/Button/BaseButton";
 
 export {
   Check1,
@@ -71,8 +69,7 @@ export {
 
 export {
   AlertBanner,
-  GreenButton,
-  YellowButton,
+  BaseButton,
   Dropdown,
   DropdownOption,
   Header,

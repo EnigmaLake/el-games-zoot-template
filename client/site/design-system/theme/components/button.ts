@@ -84,35 +84,48 @@ export const Button = defineStyleConfig({
     primary,
     secondary,
     tertiary,
-    success: {
-      bgGradient: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
-      bgColor: "#11C46B",
+    green: {
+      bgColor: "#10BE68",
       color: "text-primary",
       _hover: {
-        bgColor: "#11C46B",
+        bgColor: "#1AE380",
       },
       _active: {
-        bgColor: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
+        bgColor: "#1AE380",
       },
       _disabled: {
         _hover: {
-          bgColor: "linear-gradient(89.78deg, #11C46B 0.19%, #0B8F4E 99.84%)",
+          bgColor: "#1AE380",
         },
       },
     },
-    warning: {
-      bgGradient: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
-      bgColor: "#F9C611",
+    yellow: {
+      bgColor: "#BF9E21",
       color: "text-primary",
       _hover: {
-        bgColor: "#F9C611",
+        bgColor: "#F0C72C",
       },
       _active: {
-        bgColor: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
+        bgColor: "#F0C72C",
       },
       _disabled: {
         _hover: {
-          bgColor: "linear-gradient(90deg, #F9C611 -1.22%, #A78E28 100%)",
+          bgColor: "#F0C72C",
+        },
+      },
+    },
+    purple: {
+      bgColor: "#7F44C3",
+      color: "text-primary",
+      _hover: {
+        bgColor: "#9F5EEB",
+      },
+      _active: {
+        bgColor: "#9F5EEB",
+      },
+      _disabled: {
+        _hover: {
+          bgColor: "#9F5EEB",
         },
       },
     },

@@ -6,6 +6,7 @@ import { SyntheticEvent } from "react";
 type ButtonWidth = "fit-content" | "full" | "xxs" | "xs" | "sm" | "md" | "lg";
 
 export interface ButtonProps extends DesignSystemBaseProps {
+  id?: string;
   /**
    * @description The callback for when the button is clicked
    */
@@ -14,8 +15,7 @@ export interface ButtonProps extends DesignSystemBaseProps {
    * @description The width of the button
    * @default fit
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  width?: ResponsiveValue<ButtonWidth> | string | any;
+  width?: ResponsiveValue<ButtonWidth> | string;
   /**
    * @description The height of the button
    * @default fit
@@ -62,7 +62,10 @@ export interface ButtonProps extends DesignSystemBaseProps {
     | "success"
     | "warning"
     | "ghost"
-    | "dark";
+    | "dark"
+    | "green"
+    | "yellow"
+    | "purple";
   /**
    * @description The button's text color
    */
@@ -94,4 +97,9 @@ export interface ButtonProps extends DesignSystemBaseProps {
    * @default undefined
    */
   borderRadius?: "sm" | "md" | "lg" | "xl" | "xxl";
+  /**
+   * @description Button horizontal padding/text margin.
+   * @default undefined
+   */
+  noHorizontalPadding?: boolean;
 }
