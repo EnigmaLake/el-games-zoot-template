@@ -36,9 +36,8 @@ export const GameControlsDesktop = ({
       gap={4}
       flexDir="column"
       alignItems="center"
-      w="620px"
     >
-      <Flex gap={2} w="full">
+      <Flex gap={2}>
         <Flex gap={2}>
           <DefaultValuesButtons
             disableControllers={disableControllers}
