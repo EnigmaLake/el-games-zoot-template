@@ -97,7 +97,7 @@ export interface ButtonProps extends DesignSystemBaseProps {
    * @description Button border radius.
    * @default undefined
    */
-  borderRadius?: "sm" | "md" | "lg" | "xl" | "xxl";
+  borderRadius?: "sm" | "md" | "lg" | "xl" | "xxl" | number;
   /**
    * @description Button horizontal padding/text margin.
    * @default undefined

@@ -62,7 +62,6 @@ export const NumberInput: FC<NumberInputProps> = forwardRef(
     };
     const numberInputStyle = {
       ...inputStyles,
-      borderRadius: showButtons ? 0 : "xxl",
       backgroundColor: "bg-transparent-01",
       color: "white",
     };
@@ -136,6 +135,7 @@ export const NumberInput: FC<NumberInputProps> = forwardRef(
             sx={numberInputStyle}
             {...rest}
             ref={inputRef}
+            borderRadius={0}
           />
           {showButtons && (
             <Button

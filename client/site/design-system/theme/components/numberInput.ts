@@ -117,15 +117,15 @@ export const NumberInputButton = defineStyleConfig({
 export const baseNumberInputStyle = {
   container: {
     // backgroundColor: "background-level-2",
-    borderRadius: "md",
+    borderRadius: "0",
     borderColor: "transparent",
     borderWidth: "1px",
     _focus: {
-      borderRadius: "xxl",
+      borderRadius: "0",
       borderColor: "inter-primary-default",
     },
     _focusWithin: {
-      borderRadius: "xxl",
+      borderRadius: "0",
       borderColor: "inter-primary-default",
     },
     _focusVisible: {
@@ -134,7 +134,7 @@ export const baseNumberInputStyle = {
     _disabled: {
       borderWidth: "1px",
       // backgroundColor: "background-level-2",
-      borderRadius: "xxl",
+      borderRadius: "0",
       borderColor: "transparent",
       cursor: "not-allowed",
       color: "text-disabled",
@@ -148,7 +148,7 @@ export const baseNumberInputStyle = {
     _invalid: {
       borderWidth: "1px",
       // backgroundColor: "background-level-2",
-      borderRadius: "md",
+      borderRadius: "0",
       borderColor: "error-primary",
     },
     _placeholder: {

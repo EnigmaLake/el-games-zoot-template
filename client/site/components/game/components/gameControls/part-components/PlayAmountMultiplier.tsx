@@ -24,7 +24,7 @@ export const PlayAmountMultiplier = ({
   };
 
   return (
-    <Flex gap={2} alignItems="center">
+    <Flex alignItems="center" id="zoot-game-amount-multiplier">
       {multiplyAmountOptions.map(
         ({ label, multiplier }: { label: string; multiplier: number }) => (
           <SecondaryButton
@@ -34,7 +34,9 @@ export const PlayAmountMultiplier = ({
               setPlayAmount(Number((playAmount * multiplier).toFixed(2)))
             }
             disabled={isDisabled(multiplier)}
-            borderRadius="xxl"
+            borderRadius={0}
+            borderRightRadius={label === "2x" ? "xl" : "0"}
+            ml={0.5}
           >
             <Text color="secondary" variant="small-callout">
               {label}

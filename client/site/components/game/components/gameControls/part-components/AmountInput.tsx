@@ -25,9 +25,10 @@ export const AmountInput = ({
   }, [playAmount]);
 
   return (
-    <Box width={{ base: "150px", lg: "250px" }}>
+    <Box>
       <NumberInput
         ref={inputRef}
+        showButtons={false}
         defaultValue={playAmount}
         min={min}
         max={max > availableBalance ? availableBalance : max}

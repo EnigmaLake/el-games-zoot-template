@@ -46,8 +46,9 @@ export const CurrencySelector = ({
       customSelectedComponent={customSelectedComponent}
       disabled={disabled}
       customButtonStyle={{
-        borderRadius: "xxl",
+        borderRadius: "xs",
         backgroundColor: "inter-secondary-default",
+        borderLeftRadius: "xl",
       }}
       menuPlacement="end-end"
     >

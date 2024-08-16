@@ -1,9 +1,13 @@
 import { Flex } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
 
-import { GameControlsMobile } from "./GameControlsMobile";
-import { GameControlsDesktop } from "./GameControlsDesktop";
 import { useSetPlayLimitsState } from "../../../../recoil/state/playLimits";
+import { AmountInput } from "./part-components/AmountInput";
+import { CurrencySelector } from "./part-components/CurrencySelector";
+import { PlayAmountMultiplier } from "./part-components/PlayAmountMultiplier";
+import { PlayButton } from "./part-components/PlayButton";
+import { useCurrencyAtom } from "../../../../recoil/state/walletCurrency";
 
 interface GameControlsProps {
   onClick: () => void;
@@ -16,21 +20,8 @@ export const GameControlsContainer = ({
   onClick,
   disableControllers,
 }: GameControlsProps) => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [playLimits] = useSetPlayLimitsState();
-
-  const handleResize = () => {
-    setScreenWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [currency, setCurrency] = useRecoilState(useCurrencyAtom);
 
   return (
     <Flex
@@ -39,23 +30,36 @@ export const GameControlsContainer = ({
       direction="column"
       justifyContent="center"
       alignItems="center"
+      px={4}
     >
       {playLimits && (
-        <>
-          {screenWidth > 700 ? (
-            <GameControlsDesktop
-              onClick={onClick}
-              disableControllers={disableControllers}
-              playLimits={playLimits}
+        <Flex
+          justifyContent="center"
+          gap={3}
+          flexDir="column"
+          alignItems="center"
+        >
+          <Flex alignItems="center" justifyContent="center">
+            <CurrencySelector
+              disabled={disableControllers}
+              setCurrency={setCurrency}
+              currency={currency}
             />
-          ) : (
-            <GameControlsMobile
-              onClick={onClick}
+            <AmountInput
               disableControllers={disableControllers}
-              playLimits={playLimits}
+              limits={playLimits[currency].limits}
             />
-          )}
-        </>
+            <PlayAmountMultiplier
+              disabled={disableControllers}
+              limits={playLimits[currency].limits}
+            />
+          </Flex>
+          <PlayButton
+            onClick={onClick}
+            disableControllers={disableControllers}
+            currency={currency}
+          />
+        </Flex>
       )}
     </Flex>
   );
