@@ -66,7 +66,7 @@ const BasicGamePage = () => {
   return (
     <Flex
       bg="background-level-2"
-      borderRadius="lg"
+      borderRadius={{ xxs: 0, xs: 0, sm: 0, base: "lg", lg: "lg" }}
       flexDir="column"
       w="full"
       h="full"
