@@ -6,7 +6,7 @@ import { computeMaxMultiplier } from "../../rng/compute-max-multiplier";
 export type MaxMultiplierResponse = {
   rtp: number;
   maxMultiplier: number;
-  gameId: number | string;
+  gameId?: number;
   details?: Record<string, unknown>;
 };
 
@@ -46,10 +46,12 @@ export const createMaxMultiplierRequestHandler = (): RequestHandler => {
 
     const { maxMultiplier, details } = computeMaxMultiplier(rtp);
 
+    // A number or omitted — never a string, NaN or 0.
+    const gameId = Number(config.rgsGameId);
     const body: MaxMultiplierResponse = {
       rtp,
       maxMultiplier,
-      gameId: config.rgsGameId,
+      ...(Number.isSafeInteger(gameId) && gameId > 0 ? { gameId } : {}),
       ...(details ? { details } : {}),
     };
 

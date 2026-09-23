@@ -52,7 +52,11 @@ describe("GET /max-multiplier", () => {
       expect(response.maxMultiplier).to.be.a("number");
       expect(Number.isFinite(response.maxMultiplier)).to.equal(true);
       expect(response.maxMultiplier).to.be.greaterThan(0);
-      expect(response).to.have.property("gameId");
+      // gameId is a positive integer, or omitted — never a string.
+      if (response.gameId !== undefined) {
+        expect(Number.isSafeInteger(response.gameId)).to.equal(true);
+        expect(response.gameId).to.be.greaterThan(0);
+      }
     });
   }
 
