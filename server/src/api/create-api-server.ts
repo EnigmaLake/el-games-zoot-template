@@ -8,6 +8,7 @@ import { config } from "../config";
 import { errorHandler } from "./middlewars/error-handler";
 import { asyncWrapper } from "./middlewars/async-wrapper";
 import { createHealthcheckRequestHandler } from "./controller/healthcheck";
+import { createMaxMultiplierRequestHandler } from "./controller/max-multiplier";
 import { createRegisterUserPlayRequestHandler } from "./controller/register-user-play";
 
 /**
@@ -41,11 +42,15 @@ export const createApiServer = (): {
 
   // Request handlers
   const healthcheckRequestHandler = createHealthcheckRequestHandler();
+  const maxMultiplierRequestHandler = createMaxMultiplierRequestHandler();
   const registerUserPlayRequestHandler = createRegisterUserPlayRequestHandler({
     rgsService,
   });
 
   router.get("/healthcheck", asyncWrapper(healthcheckRequestHandler));
+
+  // Synced by games-config into games_details.max_payout_multiplier_by_rtp
+  router.get("/max-multiplier", asyncWrapper(maxMultiplierRequestHandler));
 
   router.post(
     "/register-user-play",
